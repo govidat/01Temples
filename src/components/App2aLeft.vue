@@ -54,6 +54,9 @@
             <button class="dropdown-item" type="button">Select All</button>
             <div class="dropdown-divider"></div>
             Selection List 2.1
+            <br />
+            <span>Selected Saints: {{ selectedSaints }}</span>
+
           </div>
         </div>
       </div>
@@ -82,7 +85,8 @@ export default {
     statesMaster: 'statesMasterGet',
     selectedStates: 'selectedStatesGet',
     templesMaster: 'templesMasterGet',
-    selAllStatesindicator: 'selAllStatesGet'
+    selAllStatesindicator: 'selAllStatesGet',
+    selectedSaints: 'selectedSaintsGet',
 
     // picked: 'filterselected',
     }),
@@ -98,7 +102,7 @@ export default {
   methods: {
     ...mapActions([
       'updateSelStates',
-      'selAllStates'
+      'selAllStates',
     ]),
 
   }

@@ -17,13 +17,16 @@ export const store = new Vuex.Store({
 
     selAllStatesindicator: false,
 
-    templesMaster: [{"TempCode":1,"StateId":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","SaintCode":[1,2,4],"SongCode":[1, 11, 101, 1001]},
-{"TempCode":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","SaintCode":[2,7],"SongCode":[2, 12, 102, 1002]},
-{"TempCode":3,"StateId":2,"Name":" Thirukkarambanoor - Sri Purushothaman Perumal Temple","SaintCode":[1,4],"SongCode":[3, 13, 103, 1003]},
-{"TempCode":4,"StateId":2,"Name":" Thiruvellarai - Sri Pundarikashan Perumal Temple","SaintCode":[2,4,7],"SongCode":[4, 14, 104, 1004]},
-{"TempCode":5,"StateId":3,"Name":" Thiru Anbil - Sri Vadivazhagiya Nambi Perumal Temple","SaintCode":[1,2,4],"SongCode":[5, 15, 105, 1005]},
-{"TempCode":6,"StateId":3,"Name":" Thirupper Nagar - Sri Appakkudathaan Perumal Temple","SaintCode":[3,8,9],"SongCode":[6, 16, 106, 1006]}],
+    templesMaster: [{"TempCode":1,"StateId":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","SaintId":[1,2,4],"SongId":[1, 11, 101, 1001]},
+{"TempCode":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","SaintId":[2,7],"SongId":[2, 12, 102, 1002]},
+{"TempCode":3,"StateId":2,"Name":" Thirukkarambanoor - Sri Purushothaman Perumal Temple","SaintId":[1,4],"SongId":[3, 13, 103, 1003]},
+{"TempCode":4,"StateId":2,"Name":" Thiruvellarai - Sri Pundarikashan Perumal Temple","SaintId":[2,4,7],"SongId":[4, 14, 104, 1004]},
+{"TempCode":5,"StateId":3,"Name":" Thiru Anbil - Sri Vadivazhagiya Nambi Perumal Temple","SaintId":[1,2,4],"SongId":[5, 15, 105, 1005]},
+{"TempCode":6,"StateId":3,"Name":" Thirupper Nagar - Sri Appakkudathaan Perumal Temple","SaintId":[3,8,9],"SongId":[6, 16, 106, 1006]}],
 
+    templesMaster1: [],
+
+    selectedSaints: [],
     selectedTemples: [],
 
   },
@@ -51,6 +54,11 @@ export const store = new Vuex.Store({
       return state.selAllStatesindicator;
     },
 
+    selectedSaintsGet: state => {
+      return state.selectedSaints;
+    },
+
+
     templesMasterGet: state => {
       return state.templesMaster;
     },
@@ -69,12 +77,6 @@ export const store = new Vuex.Store({
         state.nav2Sel = payload;
       },
     updateSelStates (state, payload) {
-      // if (payload does not exist in state.selectedStates) {
-      //   add payload to state.selectedStates;
-      // } else {
-      //   remove payload from state.selectedStates;
-      //   });
-      // }
       var index = state.selectedStates.indexOf(payload);
       if (index === -1) {
         state.selectedStates.push(payload);
@@ -100,6 +102,11 @@ export const store = new Vuex.Store({
 
       },
 
+      updateSelSaints (state) {
+          state.templesMaster1 = state.templesMaster.filter(itm => state.selectedStates.indexOf(itm.StateId) >-1);
+          state.selectedSaints = Array.from(new Set((state.templesMaster1.map(a => a.SaintId)).reduce((acc, a) => acc.concat(a),[])));
+      },
+
 
     },
 
@@ -112,9 +119,11 @@ export const store = new Vuex.Store({
     },
     updateSelStates: ({ commit }, payload) => {
       commit('updateSelStates', payload);
+      commit('updateSelSaints');
     },
     selAllStates: ({commit}) => {
       commit('selAllStates');
+      commit('updateSelSaints');
     },
 
   }
