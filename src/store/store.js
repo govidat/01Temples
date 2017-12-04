@@ -17,14 +17,25 @@ export const store = new Vuex.Store({
 
     selAllStatesindicator: false,
 
-    templesMaster: [{"TempCode":1,"StateId":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","SaintId":[1,2,4],"SongId":[1, 11, 101, 1001]},
-{"TempCode":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","SaintId":[2,7],"SongId":[2, 12, 102, 1002]},
-{"TempCode":3,"StateId":2,"Name":" Thirukkarambanoor - Sri Purushothaman Perumal Temple","SaintId":[1,4],"SongId":[3, 13, 103, 1003]},
-{"TempCode":4,"StateId":2,"Name":" Thiruvellarai - Sri Pundarikashan Perumal Temple","SaintId":[2,4,7],"SongId":[4, 14, 104, 1004]},
-{"TempCode":5,"StateId":3,"Name":" Thiru Anbil - Sri Vadivazhagiya Nambi Perumal Temple","SaintId":[1,2,4],"SongId":[5, 15, 105, 1005]},
-{"TempCode":6,"StateId":3,"Name":" Thirupper Nagar - Sri Appakkudathaan Perumal Temple","SaintId":[3,8,9],"SongId":[6, 16, 106, 1006]}],
+    templesMaster: [{"TempId":1,"StateId":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","SaintId":[1,2,4],"SongId":[1, 11, 101, 1001]},
+{"TempId":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","SaintId":[2,7],"SongId":[2, 12, 102, 1002]},
+{"TempId":3,"StateId":2,"Name":" Thirukkarambanoor - Sri Purushothaman Perumal Temple","SaintId":[1,4],"SongId":[3, 13, 103, 1003]},
+{"TempId":4,"StateId":2,"Name":" Thiruvellarai - Sri Pundarikashan Perumal Temple","SaintId":[2,4,7],"SongId":[4, 14, 104, 1004]},
+{"TempId":5,"StateId":3,"Name":" Thiru Anbil - Sri Vadivazhagiya Nambi Perumal Temple","SaintId":[1,2,4],"SongId":[5, 15, 105, 1005]},
+{"TempId":6,"StateId":3,"Name":" Thirupper Nagar - Sri Appakkudathaan Perumal Temple","SaintId":[3,8,9],"SongId":[6, 16, 106, 1006]}],
 
-    templesMaster1: [],
+    saintsMaster: [{"SaintId":1,"SaintName":"Poigai Alwar"},
+{"SaintId":2,"SaintName":"Bhoodath Alwar"},
+{"SaintId":3,"SaintName":"Pei Alwar"},
+{"SaintId":4,"SaintName":"Thirumazhisai Alwar"},
+{"SaintId":5,"SaintName":"Thirumangai Alwar"},
+{"SaintId":6,"SaintName":"Thondaradippodi Alwar"},
+{"SaintId":7,"SaintName":"Thiruppaan Alwar"},
+{"SaintId":8,"SaintName":"Periyalwar"},
+{"SaintId":9,"SaintName":"Sri Andal"},
+{"SaintId":10,"SaintName":"Nammalwar"},
+{"SaintId":11,"SaintName":"Madhurakavi Alwar"},
+{"SaintId":12,"SaintName":"Kulasekara Alwar"}],
 
     selectedSaints: [],
     selectedTemples: [],
@@ -45,7 +56,9 @@ export const store = new Vuex.Store({
     statesMasterGet: state => {
       return state.statesMaster;
     },
-
+    saintsMasterGet: state => {
+      return state.saintsMaster;
+    },
     selectedStatesGet: state => {
       return state.selectedStates;
     },
@@ -85,7 +98,7 @@ export const store = new Vuex.Store({
         };
       },
 
-      selAllStates (state) {
+    selAllStates (state) {
       // toggles status of selAllStatesindicator
       // if indicator = true
       //  add all the stateid into state.selectedStates
@@ -100,12 +113,17 @@ export const store = new Vuex.Store({
         state.selectedStates = [];
         };
 
-      },
+    },
 
-      updateSelSaints (state) {
-          state.templesMaster1 = state.templesMaster.filter(itm => state.selectedStates.indexOf(itm.StateId) >-1);
-          state.selectedSaints = Array.from(new Set((state.templesMaster1.map(a => a.SaintId)).reduce((acc, a) => acc.concat(a),[])));
-      },
+    updateSelSaints (state) {
+          // state.templesMaster1 = state.templesMaster.filter(itm => state.selectedStates.indexOf(itm.StateId) >-1);
+          state.selectedSaints = Array.from
+            (new Set((
+            state.templesMaster.filter(itm => state.selectedStates.indexOf(itm.StateId) >-1)
+            .map(a => a.SaintId))
+            .reduce((acc, a) => acc.concat(a),[])
+            ));
+    },
 
 
     },
