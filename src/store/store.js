@@ -17,12 +17,12 @@ export const store = new Vuex.Store({
 
     selAllStatesindicator: false,
 
-    templesMaster: [{"TempId":1,"StateId":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","SaintId":[1,2,4],"SongId":[1, 11, 101, 1001]},
-{"TempId":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","SaintId":[2,7],"SongId":[2, 12, 102, 1002]},
-{"TempId":3,"StateId":2,"Name":" Thirukkarambanoor - Sri Purushothaman Perumal Temple","SaintId":[1,4],"SongId":[3, 13, 103, 1003]},
-{"TempId":4,"StateId":2,"Name":" Thiruvellarai - Sri Pundarikashan Perumal Temple","SaintId":[2,4,7],"SongId":[4, 14, 104, 1004]},
-{"TempId":5,"StateId":3,"Name":" Thiru Anbil - Sri Vadivazhagiya Nambi Perumal Temple","SaintId":[1,2,4],"SongId":[5, 15, 105, 1005]},
-{"TempId":6,"StateId":3,"Name":" Thirupper Nagar - Sri Appakkudathaan Perumal Temple","SaintId":[3,8,9],"SongId":[6, 16, 106, 1006]}],
+    templesMaster: [{"TempId":1,"StateId":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","SaintId":[1,2],"SongId":[1, 11, 101, 1001]},
+{"TempId":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","SaintId":[2,3],"SongId":[2, 12, 102, 1002]},
+{"TempId":3,"StateId":2,"Name":" Thirukkarambanoor - Sri Purushothaman Perumal Temple","SaintId":[3,4],"SongId":[3, 13, 103, 1003]},
+{"TempId":4,"StateId":2,"Name":" Thiruvellarai - Sri Pundarikashan Perumal Temple","SaintId":[4,5],"SongId":[4, 14, 104, 1004]},
+{"TempId":5,"StateId":3,"Name":" Thiru Anbil - Sri Vadivazhagiya Nambi Perumal Temple","SaintId":[5,6],"SongId":[5, 15, 105, 1005]},
+{"TempId":6,"StateId":3,"Name":" Thirupper Nagar - Sri Appakkudathaan Perumal Temple","SaintId":[7,8,9],"SongId":[6, 16, 106, 1006]}],
 
     saintsMaster: [{"SaintId":1,"SaintName":"Poigai Alwar"},
 {"SaintId":2,"SaintName":"Bhoodath Alwar"},
