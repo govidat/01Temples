@@ -15,7 +15,6 @@
 
         <div id="collapseOneSel" class="collapse show" role="tabpanel" aria-labelledby="headingOneSel" data-parent="#accordion">
           <div class="card-body form-group">
-            <!-- <input type="checkbox" class="toggle" v-bind:class="{ checked: true }">  Select All -->
             <input type="checkbox" class="toggle" id="idOne" @click="selAllStates">
               <label for="idOne">Select All</label>
             <div class="dropdown-divider"></div>
@@ -39,16 +38,21 @@
 
         <div id="collapseTwoSel" class="collapse" role="tabpanel" aria-labelledby="headingTwoSel" data-parent="#accordion">
           <div class="card-body form-group">
-            <button class="dropdown-item" type="button">Select All</button>
+            <input type="checkbox" class="toggle" id="idTwo" :checked="selAllSaintsindicator" @click="selAllSaints">
+              <label for="idTwo">Select All</label>
             <div class="dropdown-divider"></div>
-            Selection List 2.1
-            <br />
-            <span>Selected Saints: {{ selectedSaints }}</span>
-            <li class="list-group-item" v-for="item in selectedSaints">
-                <!-- {{ saintsMaster.filter(itm => itm.SaintId === item)[0].SaintName }} -->
-                {{ saintsMaster.find(itm => itm.SaintId === item).SaintName }}
+            <span>Selected Saints Start: {{ selectedSaintsStart }}</span>
 
+            <li class="list-group-item" v-for="item in selectedSaintsStart">
+              <input type="checkbox" class="toggle" :checked="selectedSaints.indexOf(item) !== -1" :id=item @click="updateSelSaints(item)">
+              <label :for=item> {{ saintsMaster.find(itm => itm.SaintId === item).SaintName }}</label>
             </li>
+            <br>
+            <span>Selected Saints: {{ selectedSaints }}</span>
+
+            <!-- <li class="list-group-item" v-for="item in selectedSaints">
+                {{ saintsMaster.find(itm => itm.SaintId === item).SaintName }}
+            </li> -->
 
           </div>
         </div>
@@ -73,8 +77,10 @@ export default {
     selectedStates: 'selectedStatesGet',
     templesMaster: 'templesMasterGet',
     selAllStatesindicator: 'selAllStatesGet',
+    selectedSaintsStart: 'selectedSaintsStartGet',
     selectedSaints: 'selectedSaintsGet',
     saintsMaster: 'saintsMasterGet',
+    selAllSaintsindicator: 'selAllSaintsGet',
 
     // picked: 'filterselected',
     }),
@@ -91,6 +97,8 @@ export default {
     ...mapActions([
       'updateSelStates',
       'selAllStates',
+      'selAllSaints',
+      'updateSelSaints',
     ]),
 
   }
