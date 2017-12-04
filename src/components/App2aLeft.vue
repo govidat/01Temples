@@ -44,8 +44,9 @@
             <span>Selected Saints Start: {{ selectedSaintsStart }}</span>
 
             <li class="list-group-item" v-for="item in selectedSaintsStart">
-              <input type="checkbox" class="toggle" :checked="selectedSaints.indexOf(item) !== -1" :id=item @click="updateSelSaints(item)">
-              <label :for=item> {{ saintsMaster.find(itm => itm.SaintId === item).SaintName }}</label>
+              <input type="checkbox" class="toggle" :checked="selectedSaints.indexOf(item) !== -1" :id=item+100 @click="updateSelSaints(item)">
+              <label :for=item+100> {{ saintsMaster.find(itm => itm.SaintId === item).SaintName }}</label>
+              <!-- id is clashing with ids in other parts of the page. Hence added 100 to make this unique -->
             </li>
             <br>
             <span>Selected Saints: {{ selectedSaints }}</span>
