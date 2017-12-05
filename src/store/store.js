@@ -9,33 +9,38 @@ export const store = new Vuex.Store({
 // This is a variable for the selection in first scree: 0 Home, 1 Features; 2 Contact
     // nav1Sel: 0,
     nav2Sel: 0,
-    statesMaster: [{"StateId":1,"StateDesc":"Tamilnadu"},
-{"StateId":2,"StateDesc":"Kerala"},
-{"StateId":3,"StateDesc":"Andhra"}],
+    statesMaster: [{"Id":1,"Name":"Tamilnadu"},
+{"Id":2,"Name":"Kerala"},
+{"Id":3,"Name":"Andhra"}],
 
-    selectedStates: [],
+// Only this is defined here with values, as this is the startingpoint.
+    maxStates: [1,2,3],
+    selStates: [1,2,3],
+    difStates: [],
 
-    selAllStatesindicator: false,
+    // selectedStates: [],
 
-    templesMaster: [{"TempId":1,"StateId":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","SaintId":[1,2],"SongId":[1, 11, 101, 1001]},
-{"TempId":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","SaintId":[2,3],"SongId":[2, 12, 102, 1002]},
-{"TempId":3,"StateId":2,"Name":" Thirukkarambanoor - Sri Purushothaman Perumal Temple","SaintId":[3,4],"SongId":[3, 13, 103, 1003]},
-{"TempId":4,"StateId":2,"Name":" Thiruvellarai - Sri Pundarikashan Perumal Temple","SaintId":[4,5],"SongId":[4, 14, 104, 1004]},
-{"TempId":5,"StateId":3,"Name":" Thiru Anbil - Sri Vadivazhagiya Nambi Perumal Temple","SaintId":[5,6],"SongId":[5, 15, 105, 1005]},
-{"TempId":6,"StateId":3,"Name":" Thirupper Nagar - Sri Appakkudathaan Perumal Temple","SaintId":[7,8,9],"SongId":[6, 16, 106, 1006]}],
+    // selAllStatesindicator: true,
 
-    saintsMaster: [{"SaintId":1,"SaintName":"Poigai Alwar"},
-{"SaintId":2,"SaintName":"Bhoodath Alwar"},
-{"SaintId":3,"SaintName":"Pei Alwar"},
-{"SaintId":4,"SaintName":"Thirumazhisai Alwar"},
-{"SaintId":5,"SaintName":"Thirumangai Alwar"},
-{"SaintId":6,"SaintName":"Thondaradippodi Alwar"},
-{"SaintId":7,"SaintName":"Thiruppaan Alwar"},
-{"SaintId":8,"SaintName":"Periyalwar"},
-{"SaintId":9,"SaintName":"Sri Andal"},
-{"SaintId":10,"SaintName":"Nammalwar"},
-{"SaintId":11,"SaintName":"Madhurakavi Alwar"},
-{"SaintId":12,"SaintName":"Kulasekara Alwar"}],
+    templesMaster: [{"Id":1,"StateId":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","SaintId":[1,2],"SongId":[1, 11, 101, 1001]},
+{"Id":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","SaintId":[2,3],"SongId":[2, 12, 102, 1002]},
+{"Id":3,"StateId":2,"Name":" Thirukkarambanoor - Sri Purushothaman Perumal Temple","SaintId":[3,4],"SongId":[3, 13, 103, 1003]},
+{"Id":4,"StateId":2,"Name":" Thiruvellarai - Sri Pundarikashan Perumal Temple","SaintId":[4,5],"SongId":[4, 14, 104, 1004]},
+{"Id":5,"StateId":3,"Name":" Thiru Anbil - Sri Vadivazhagiya Nambi Perumal Temple","SaintId":[5,6],"SongId":[5, 15, 105, 1005]},
+{"Id":6,"StateId":3,"Name":" Thirupper Nagar - Sri Appakkudathaan Perumal Temple","SaintId":[7,8,9],"SongId":[6, 16, 106, 1006]}],
+
+    saintsMaster: [{"Id":1,"Name":"Poigai Alwar"},
+{"Id":2,"Name":"Bhoodath Alwar"},
+{"Id":3,"Name":"Pei Alwar"},
+{"Id":4,"Name":"Thirumazhisai Alwar"},
+{"Id":5,"Name":"Thirumangai Alwar"},
+{"Id":6,"Name":"Thondaradippodi Alwar"},
+{"Id":7,"Name":"Thiruppaan Alwar"},
+{"Id":8,"Name":"Periyalwar"},
+{"Id":9,"Name":"Sri Andal"},
+{"Id":10,"Name":"Nammalwar"},
+{"Id":11,"Name":"Madhurakavi Alwar"},
+{"Id":12,"Name":"Kulasekara Alwar"}],
 
     selectedSaintsStart: [],
     selectedSaints: [],
@@ -63,13 +68,26 @@ export const store = new Vuex.Store({
     saintsMasterGet: state => {
       return state.saintsMaster;
     },
+
+    maxStatesGet: state => {
+      return state.maxStates;
+    },
+    selStatesGet: state => {
+      return state.selStates;
+    },
+    difStatesGet: state => {
+      return state.difStates;
+    },
+
+
+
     selectedStatesGet: state => {
       return state.selectedStates;
     },
 
-    selAllStatesGet: state => {
-      return state.selAllStatesindicator;
-    },
+    // selAllStatesGet: state => {
+    //   return state.selAllStatesindicator;
+    // },
     selectedSaintsStartGet: state => {
       return state.selectedSaintsStart;
     },
@@ -93,20 +111,49 @@ export const store = new Vuex.Store({
   },
 
   mutations: {
-    updatenav1Sel (state, payload) {
-        state.nav1Sel = payload;
-      },
+    // updatenav1Sel (state, payload) {
+    //     state.nav1Sel = payload;
+    //   },
     updatenav2Sel (state, payload) {
         state.nav2Sel = payload;
       },
-    updateSelStates (state, payload) {
-      var index = state.selectedStates.indexOf(payload);
-      if (index === -1) {
-        state.selectedStates.push(payload);
-      } else {
-        state.selectedStates.splice(index, 1);
+
+    addStates (state, payload) {
+      // alert ("Hello2");
+
+      payload.forEach(function(item) {
+        var index = state.selStates.indexOf(item);
+        if (index === -1) {
+          state.selStates.push(item);
         };
-      },
+        state.difStates = state.maxStates.filter(function(i) {return state.selStates.indexOf(i) < 0;});
+        // else {
+        //   state.selectedStates.splice(index, 1);
+      });
+    },
+
+    delStates (state, payload) {
+      payload.forEach(function(item) {
+        // alert (item);
+        // this is a superficial check and may not be required
+        var index = state.selStates.indexOf(item);
+        if (index !== -1) {
+          state.selStates.splice(index, 1);
+          state.difStates.push(item);
+        };
+      });
+      state.selAllStatesindicator = false;
+    },
+
+
+    // updateSelStates (state, payload) {
+    //   var index = state.selectedStates.indexOf(payload);
+    //   if (index === -1) {
+    //     state.selectedStates.push(payload);
+    //   } else {
+    //     state.selectedStates.splice(index, 1);
+    //     };
+    //   },
 
     selAllStates (state) {
       // toggles status of selAllStatesindicator
@@ -170,24 +217,39 @@ export const store = new Vuex.Store({
   },
 
   actions: {
-    updatenav1Sel: ({ commit }, payload) => {
-      commit('updatenav1Sel', payload);
-    },
+    // updatenav1Sel: ({ commit }, payload) => {
+    //   commit('updatenav1Sel', payload);
+    // },
     updatenav2Sel: ({ commit }, payload) => {
       commit('updatenav2Sel', payload);
     },
-    updateSelStates: ({ commit }, payload) => {
-      commit('updateSelStates', payload);
-      commit('updateSelSaintsStart');
+//     updateSelStates: ({ commit }, payload) => {
+//       commit('updateSelStates', payload);
+//       commit('updateSelSaintsStart');
+//     },
+//     selAllStates: ({commit}) => {
+//       commit('selAllStates');
+//       commit('updateSelSaintsStart');
+//     },
+//     delAllStates: ({commit}) => {
+//       commit('delAllStates');
+// //    equivalent of delSaints  commit('updateSelSaintsStart');
+//     },
+
+    addStates: ({ commit }, payload) => {
+      commit('addStates', payload);
+      // alert ("Hello Action");
+      // commit('updateSelSaintsStart');
     },
-    selAllStates: ({commit}) => {
-      commit('selAllStates');
-      commit('updateSelSaintsStart');
+
+    delStates: ({ commit }, payload) => {
+      commit('delStates', payload);
+      // alert ("Hello Action");
+      // commit('updateSelSaintsStart');
     },
-    delAllStates: ({commit}) => {
-      commit('delAllStates');
-//    equivalent of delSaints  commit('updateSelSaintsStart');
-    },
+
+
+
 
     selAllSaints: ({commit}) => {
       commit('selAllSaints');

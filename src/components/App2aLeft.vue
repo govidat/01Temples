@@ -16,16 +16,23 @@
         <div id="collapseOneSel" class="collapse show" role="tabpanel" aria-labelledby="headingOneSel" data-parent="#accordion">
           <div class="card-body form-group">
             <!-- <input type="checkbox" class="toggle" id="idOne" @click="selAllStates"> -->
-            <input v-if="selAllStatesindicator" checked type="checkbox" class="toggle" id="idOne" @click="delAllStates">
-            <input v-else type="checkbox" class="toggle" id="idOne" @click="selAllStates">
+            <!-- if selAllStatesindicator is true , show the box as ticked and on click activate delAllStates with difStates -->
+            <input v-if="maxStates.length===selStates.length" checked type="checkbox" class="toggle" id="idOne" @click="delStates(maxStates)">
+            <!-- if selAllStatesindicator is false , show the box as unticked and on click activate selAllStates with difStates -->
+            <input v-else type="checkbox" class="toggle" id="idOne" @click="addStates(difStates)">
               <label for="idOne">Select All</label>
             <div class="dropdown-divider"></div>
-              <li class="list-group-item" v-for="item in statesMaster">
-                <input type="checkbox" class="toggle" :checked="selectedStates.indexOf(item.StateId) !== -1" :id=item.StateId @click="updateSelStates(item.StateId)">
-                <label :for=item.StateId> {{ item.StateDesc }}</label>
+              <li class="list-group-item" v-for="item in maxStates">
+                <!-- <input type="checkbox" class="toggle" :checked="selStates.indexOf(item) !== -1" :id=item @click="selStates(item)"> -->
+                <input v-if="selStates.indexOf(item) !== -1" checked type="checkbox" class="toggle" :id=item @click="delStates(item)">
+                <input v-else type="checkbox" class="toggle" :id=item @click="addStates(item)">
+
+                <label :for=item.StateId> {{ statesMaster.find(itm => itm.Id === item).Name }}</label>
               </li>
               <br>
-              <span>Selected States: {{ selectedStates }}</span>
+              <p>Max States: {{ maxStates }}</p>
+              <p>Sel States: {{ selStates }}</p>
+              <p>Dif States: {{ difStates }}</p>
           </div>
         </div>
       </div>
@@ -38,7 +45,7 @@
           </h5>
         </div>
 
-        <div id="collapseTwoSel" class="collapse" role="tabpanel" aria-labelledby="headingTwoSel" data-parent="#accordion">
+        <!-- <div id="collapseTwoSel" class="collapse" role="tabpanel" aria-labelledby="headingTwoSel" data-parent="#accordion">
           <div class="card-body form-group">
             <input type="checkbox" class="toggle" id="idTwo" :checked="selAllSaintsindicator" @click="selAllSaints">
               <label for="idTwo">Select All</label>
@@ -47,8 +54,7 @@
 
             <li class="list-group-item" v-for="item in selectedSaintsStart">
               <input type="checkbox" class="toggle" :checked="selectedSaints.indexOf(item) !== -1" :id=item+100 @click="updateSelSaints(item)">
-              <label :for=item+100> {{ saintsMaster.find(itm => itm.SaintId === item).SaintName }}</label>
-              <!-- id is clashing with ids in other parts of the page. Hence added 100 to make this unique -->
+              <label :for=item+100> {{ saintsMaster.find(itm => itm.Id === item).Name }}</label>
             </li>
             <br>
             <span>Selected Saints: {{ selectedSaints }}</span>
@@ -57,7 +63,7 @@
                 {{ saintsMaster.find(itm => itm.SaintId === item).SaintName }}
             </li> -->
 
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -79,7 +85,10 @@ export default {
     statesMaster: 'statesMasterGet',
     selectedStates: 'selectedStatesGet',
     templesMaster: 'templesMasterGet',
-    selAllStatesindicator: 'selAllStatesGet',
+    // selAllStatesindicator: 'selAllStatesGet',
+    maxStates: 'maxStatesGet',
+    selStates: 'selStatesGet',
+    difStates: 'difStatesGet',
     selectedSaintsStart: 'selectedSaintsStartGet',
     selectedSaints: 'selectedSaintsGet',
     saintsMaster: 'saintsMasterGet',
@@ -98,9 +107,9 @@ export default {
 
   methods: {
     ...mapActions([
-      'updateSelStates',
-      'selAllStates',
-      'delAllStates',
+      // 'updateSelStates',
+      'addStates',
+      'delStates',
       'selAllSaints',
       'updateSelSaints',
     ]),
