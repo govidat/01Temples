@@ -15,7 +15,9 @@
 
         <div id="collapseOneSel" class="collapse show" role="tabpanel" aria-labelledby="headingOneSel" data-parent="#accordion">
           <div class="card-body form-group">
-            <input type="checkbox" class="toggle" id="idOne" @click="selAllStates">
+            <!-- <input type="checkbox" class="toggle" id="idOne" @click="selAllStates"> -->
+            <input v-if="selAllStatesindicator" checked type="checkbox" class="toggle" id="idOne" @click="delAllStates">
+            <input v-else type="checkbox" class="toggle" id="idOne" @click="selAllStates">
               <label for="idOne">Select All</label>
             <div class="dropdown-divider"></div>
               <li class="list-group-item" v-for="item in statesMaster">
@@ -98,6 +100,7 @@ export default {
     ...mapActions([
       'updateSelStates',
       'selAllStates',
+      'delAllStates',
       'selAllSaints',
       'updateSelSaints',
     ]),

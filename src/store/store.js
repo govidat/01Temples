@@ -117,11 +117,22 @@ export const store = new Vuex.Store({
 
       state.selAllStatesindicator = !state.selAllStatesindicator;
 
-      if (state.selAllStatesindicator) {
-        state.selectedStates = state.statesMaster.map(a => a.StateId);
-      } else {
-        state.selectedStates = [];
-        };
+      // if (state.selAllStatesindicator) {
+      //   state.selectedStates = state.statesMaster.map(a => a.StateId);
+      // } else {
+      //   state.selectedStates = [];
+      //   };
+
+      state.selectedStates = state.statesMaster.map(a => a.StateId);
+
+    },
+
+    delAllStates (state) {
+
+      state.selAllStatesindicator = !state.selAllStatesindicator;
+
+      state.selectedStates = [];
+
     },
 
     updateSelSaintsStart (state) {
@@ -132,6 +143,8 @@ export const store = new Vuex.Store({
             .map(a => a.SaintId))
             .reduce((acc, a) => acc.concat(a),[])
             ));
+          // remove states in selectedSaints that are not in selectedSaintsStart
+          // add states to selectedSaints corresponding to state
           state.selectedSaints = Array.from(state.selectedSaintsStart);
     },
 
@@ -171,6 +184,11 @@ export const store = new Vuex.Store({
       commit('selAllStates');
       commit('updateSelSaintsStart');
     },
+    delAllStates: ({commit}) => {
+      commit('delAllStates');
+//    equivalent of delSaints  commit('updateSelSaintsStart');
+    },
+
     selAllSaints: ({commit}) => {
       commit('selAllSaints');
     },
