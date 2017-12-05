@@ -20,7 +20,7 @@ export const store = new Vuex.Store({
 
     // selectedStates: [],
 
-    // selAllStatesindicator: true,
+    selAllStatesindicator: true,
 
     templesMaster: [{"Id":1,"StateId":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","SaintId":[1,2],"SongId":[1, 11, 101, 1001]},
 {"Id":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","SaintId":[2,3],"SongId":[2, 12, 102, 1002]},
@@ -79,18 +79,21 @@ export const store = new Vuex.Store({
       return state.difStates;
     },
 
+    selAllStatesGet: state => {
+      return state.selAllStatesindicator;
+    },
+
+
 
 
     selectedStatesGet: state => {
       return state.selectedStates;
     },
 
-    // selAllStatesGet: state => {
-    //   return state.selAllStatesindicator;
-    // },
     selectedSaintsStartGet: state => {
       return state.selectedSaintsStart;
     },
+
     selectedSaintsGet: state => {
       return state.selectedSaints;
     },
@@ -129,6 +132,7 @@ export const store = new Vuex.Store({
         state.difStates = state.maxStates.filter(function(i) {return state.selStates.indexOf(i) < 0;});
         // else {
         //   state.selectedStates.splice(index, 1);
+        state.selAllStatesindicator = (state.difStates.length===0);
       });
     },
 
@@ -142,7 +146,7 @@ export const store = new Vuex.Store({
           state.difStates.push(item);
         };
       });
-      state.selAllStatesindicator = false;
+        state.selAllStatesindicator = (state.difStates.length===0);
     },
 
 
@@ -155,32 +159,15 @@ export const store = new Vuex.Store({
     //     };
     //   },
 
-    selAllStates (state) {
-      // toggles status of selAllStatesindicator
-      // if indicator = true
-      //  add all the stateid into state.selectedStates
-      //
-      // else remove content in state.selectedStates
-
-      state.selAllStatesindicator = !state.selAllStatesindicator;
-
-      // if (state.selAllStatesindicator) {
-      //   state.selectedStates = state.statesMaster.map(a => a.StateId);
-      // } else {
-      //   state.selectedStates = [];
-      //   };
-
-      state.selectedStates = state.statesMaster.map(a => a.StateId);
-
-    },
-
-    delAllStates (state) {
-
-      state.selAllStatesindicator = !state.selAllStatesindicator;
-
-      state.selectedStates = [];
-
-    },
+    // selAllStates (state) {
+    //   state.selAllStatesindicator = !state.selAllStatesindicator;
+    //   state.selectedStates = state.statesMaster.map(a => a.StateId);
+    // },
+    //
+    // delAllStates (state) {
+    //   state.selAllStatesindicator = !state.selAllStatesindicator;
+    //   state.selectedStates = [];
+    // },
 
     updateSelSaintsStart (state) {
           // state.templesMaster1 = state.templesMaster.filter(itm => state.selectedStates.indexOf(itm.StateId) >-1);

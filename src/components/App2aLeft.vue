@@ -15,24 +15,23 @@
 
         <div id="collapseOneSel" class="collapse show" role="tabpanel" aria-labelledby="headingOneSel" data-parent="#accordion">
           <div class="card-body form-group">
-            <!-- <input type="checkbox" class="toggle" id="idOne" @click="selAllStates"> -->
-            <!-- if selAllStatesindicator is true , show the box as ticked and on click activate delAllStates with difStates -->
-            <input v-if="maxStates.length===selStates.length" checked type="checkbox" class="toggle" id="idOne" @click="delStates(maxStates)">
-            <!-- if selAllStatesindicator is false , show the box as unticked and on click activate selAllStates with difStates -->
-            <input v-else type="checkbox" class="toggle" id="idOne" @click="addStates(difStates)">
+            <!-- if all states are selected, show the box as ticked and on click activate delAllStates with maxStates -->
+            <input v-if="difStates.length===0" :checked="difStates.length===0" type="checkbox" id="idOne" @click="delStates(maxStates)">
+            <!-- if NOT all states are selected , show the box as unticked and on click activate selAllStates with difStates -->
+            <input v-else type="checkbox" id="idOne" @click="addStates(difStates)">
               <label for="idOne">Select All</label>
             <div class="dropdown-divider"></div>
               <li class="list-group-item" v-for="item in maxStates">
-                <!-- <input type="checkbox" class="toggle" :checked="selStates.indexOf(item) !== -1" :id=item @click="selStates(item)"> -->
-                <input v-if="selStates.indexOf(item) !== -1" checked type="checkbox" class="toggle" :id=item @click="delStates(item)">
-                <input v-else type="checkbox" class="toggle" :id=item @click="addStates(item)">
+                <input v-if="selStates.indexOf(item) !== -1" :checked="selStates.indexOf(item) !== -1" type="checkbox" :id=item @click="delStates([item])">
+                <input v-else type="checkbox" :id=item @click="addStates([item])">
 
-                <label :for=item.StateId> {{ statesMaster.find(itm => itm.Id === item).Name }}</label>
+                <label :for=item> {{ statesMaster.find(itm => itm.Id === item).Name }}</label>
               </li>
               <br>
               <p>Max States: {{ maxStates }}</p>
               <p>Sel States: {{ selStates }}</p>
               <p>Dif States: {{ difStates }}</p>
+              <p>{{ selAllStatesindicator }}</p>
           </div>
         </div>
       </div>
@@ -83,12 +82,13 @@ export default {
   computed: {
     ...mapGetters({
     statesMaster: 'statesMasterGet',
-    selectedStates: 'selectedStatesGet',
+    // selectedStates: 'selectedStatesGet',
     templesMaster: 'templesMasterGet',
-    // selAllStatesindicator: 'selAllStatesGet',
+    selAllStatesindicator: 'selAllStatesGet',
     maxStates: 'maxStatesGet',
     selStates: 'selStatesGet',
     difStates: 'difStatesGet',
+
     selectedSaintsStart: 'selectedSaintsStartGet',
     selectedSaints: 'selectedSaintsGet',
     saintsMaster: 'saintsMasterGet',
@@ -96,7 +96,6 @@ export default {
 
     // picked: 'filterselected',
     }),
-
 
   },
 
