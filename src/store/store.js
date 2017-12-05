@@ -6,8 +6,6 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
 
-// This is a variable for the selection in first scree: 0 Home, 1 Features; 2 Contact
-    // nav1Sel: 0,
     nav2Sel: 0,
     statesMaster: [{"Id":1,"Name":"Tamilnadu"},
 {"Id":2,"Name":"Kerala"},
@@ -18,9 +16,6 @@ export const store = new Vuex.Store({
     selStates: [1,2,3],
     difStates: [],
 
-    // selectedStates: [],
-
-    selAllStatesindicator: true,
 
     templesMaster: [{"Id":1,"StateId":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","SaintId":[1,2],"SongId":[1, 11, 101, 1001]},
 {"Id":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","SaintId":[2,3],"SongId":[2, 12, 102, 1002]},
@@ -52,15 +47,10 @@ export const store = new Vuex.Store({
   },
 
   getters: {
-    // nav1Sel: state => {
-    //   return state.nav1Sel;
-    // },
+
     nav2Sel: state => {
       return state.nav2Sel;
     },
-    // filterselected: state => {
-    //   return state.picked;
-    // },
 
     statesMasterGet: state => {
       return state.statesMaster;
@@ -77,17 +67,6 @@ export const store = new Vuex.Store({
     },
     difStatesGet: state => {
       return state.difStates;
-    },
-
-    selAllStatesGet: state => {
-      return state.selAllStatesindicator;
-    },
-
-
-
-
-    selectedStatesGet: state => {
-      return state.selectedStates;
     },
 
     selectedSaintsStartGet: state => {
@@ -107,16 +86,10 @@ export const store = new Vuex.Store({
       return state.templesMaster;
     },
 
-    // selectedTemplesGet: state => {
-    //   return state.selectedTemples;
-    // },
-
   },
 
   mutations: {
-    // updatenav1Sel (state, payload) {
-    //     state.nav1Sel = payload;
-    //   },
+
     updatenav2Sel (state, payload) {
         state.nav2Sel = payload;
       },
@@ -130,9 +103,6 @@ export const store = new Vuex.Store({
           state.selStates.push(item);
         };
         state.difStates = state.maxStates.filter(function(i) {return state.selStates.indexOf(i) < 0;});
-        // else {
-        //   state.selectedStates.splice(index, 1);
-        state.selAllStatesindicator = (state.difStates.length===0);
       });
     },
 
@@ -146,28 +116,8 @@ export const store = new Vuex.Store({
           state.difStates.push(item);
         };
       });
-        state.selAllStatesindicator = (state.difStates.length===0);
     },
 
-
-    // updateSelStates (state, payload) {
-    //   var index = state.selectedStates.indexOf(payload);
-    //   if (index === -1) {
-    //     state.selectedStates.push(payload);
-    //   } else {
-    //     state.selectedStates.splice(index, 1);
-    //     };
-    //   },
-
-    // selAllStates (state) {
-    //   state.selAllStatesindicator = !state.selAllStatesindicator;
-    //   state.selectedStates = state.statesMaster.map(a => a.StateId);
-    // },
-    //
-    // delAllStates (state) {
-    //   state.selAllStatesindicator = !state.selAllStatesindicator;
-    //   state.selectedStates = [];
-    // },
 
     updateSelSaintsStart (state) {
           // state.templesMaster1 = state.templesMaster.filter(itm => state.selectedStates.indexOf(itm.StateId) >-1);
@@ -204,24 +154,9 @@ export const store = new Vuex.Store({
   },
 
   actions: {
-    // updatenav1Sel: ({ commit }, payload) => {
-    //   commit('updatenav1Sel', payload);
-    // },
     updatenav2Sel: ({ commit }, payload) => {
       commit('updatenav2Sel', payload);
     },
-//     updateSelStates: ({ commit }, payload) => {
-//       commit('updateSelStates', payload);
-//       commit('updateSelSaintsStart');
-//     },
-//     selAllStates: ({commit}) => {
-//       commit('selAllStates');
-//       commit('updateSelSaintsStart');
-//     },
-//     delAllStates: ({commit}) => {
-//       commit('delAllStates');
-// //    equivalent of delSaints  commit('updateSelSaintsStart');
-//     },
 
     addStates: ({ commit }, payload) => {
       commit('addStates', payload);

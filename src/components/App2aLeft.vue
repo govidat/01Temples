@@ -82,9 +82,8 @@ export default {
   computed: {
     ...mapGetters({
     statesMaster: 'statesMasterGet',
-    // selectedStates: 'selectedStatesGet',
     templesMaster: 'templesMasterGet',
-    selAllStatesindicator: 'selAllStatesGet',
+
     maxStates: 'maxStatesGet',
     selStates: 'selStatesGet',
     difStates: 'difStatesGet',
@@ -106,7 +105,7 @@ export default {
 
   methods: {
     ...mapActions([
-      // 'updateSelStates',
+
       'addStates',
       'delStates',
       'selAllSaints',
