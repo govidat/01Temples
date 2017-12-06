@@ -26,7 +26,7 @@ export const store = new Vuex.Store({
 {"Id":3,"StateId":2,"Name":" Thirukkarambanoor - Sri Purushothaman Perumal Temple","SaintId":[3,4],"SongId":[3, 13, 103, 1003]},
 {"Id":4,"StateId":2,"Name":" Thiruvellarai - Sri Pundarikashan Perumal Temple","SaintId":[4,5],"SongId":[4, 14, 104, 1004]},
 {"Id":5,"StateId":3,"Name":" Thiru Anbil - Sri Vadivazhagiya Nambi Perumal Temple","SaintId":[5,6],"SongId":[5, 15, 105, 1005]},
-{"Id":6,"StateId":3,"Name":" Thirupper Nagar - Sri Appakkudathaan Perumal Temple","SaintId":[7,8,9],"SongId":[6, 16, 106, 1006]}],
+{"Id":6,"StateId":3,"Name":" Thirupper Nagar - Sri Appakkudathaan Perumal Temple","SaintId":[7,8,9,10,11,12],"SongId":[6, 16, 106, 1006]}],
 
     saintsMaster: [{"Id":1,"Name":"Poigai Alwar"},
 {"Id":2,"Name":"Bhoodath Alwar"},
@@ -131,11 +131,33 @@ export const store = new Vuex.Store({
         };
         state.difStates = state.maxStates.filter(function(i) {return state.selStates.indexOf(i) < 0;});
       });
+
+      // get the impact of this deletion for the level below
+      // get the newmaxSaints list filter > templesMaster > with stateId in selStates > map on SaintId > reduce them to the Ids > unique by Set > array
+            var newmaxSaints = Array.from
+                    (new Set((
+                    state.templesMaster.filter(itm => state.selStates.indexOf(itm.StateId) >-1)
+                    .map(a => a.SaintId))
+                    .reduce((acc, a) => acc.concat(a),[])
+                    ));
+
+      // this will be the revised maxSaints
+      // use filter condition and create a delselSaints and add to selSaints entries id selallsaints is true (ie difSaints.length===0)
+            var deltaSaints = newmaxSaints.filter(i => state.selSaints.indexOf(i) === -1);
+            if (state.difSaints.length === 0) {
+              var newselSaints = state.selSaints.concat(deltaSaints);
+              state.selSaints = newselSaints;
+            };
+
+      // now remap both these into maxSaints and difSaints
+            state.maxSaints = newmaxSaints;
+            state.difSaints = state.maxSaints.filter(function(i) {return state.selSaints.indexOf(i) < 0;});
+
     },
 
     delStates (state, payload) {
       payload.forEach(function(item) {
-        // alert (item);
+        // alert ("delstates");
         // this is a superficial check and may not be required
         var index = state.selStates.indexOf(item);
         if (index !== -1) {
@@ -143,6 +165,23 @@ export const store = new Vuex.Store({
           state.difStates.push(item);
         };
       });
+// get the impact of this deletion for the level below
+// get the newmaxSaints list filter > templesMaster > with stateId in selStates > map on SaintId > reduce them to the Ids > unique by Set > array
+      var newmaxSaints = Array.from
+              (new Set((
+              state.templesMaster.filter(itm => state.selStates.indexOf(itm.StateId) >-1)
+              .map(a => a.SaintId))
+              .reduce((acc, a) => acc.concat(a),[])
+              ));
+
+// this will be the revised maxSaints
+// use filter condition and create a newselSaints and remove the selSaints entries that are not in newsmaxSaints
+      var newselSaints = state.selSaints.filter(i => newmaxSaints.indexOf(i) !== -1);
+// now remap both these into maxSaints and selSaintsGet
+      state.maxSaints = newmaxSaints;
+      state.selSaints = newselSaints;
+      state.difSaints = state.maxSaints.filter(function(i) {return state.selSaints.indexOf(i) < 0;});
+
     },
 
     addSaints (state, payload) {
