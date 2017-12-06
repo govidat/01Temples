@@ -6,8 +6,8 @@ import { store } from './store/store.js';
 new Vue({
   el: '#app',
   store,
-  // created() {
-  //  this.$store.dispatch('initStore')
-  // },
+  created() {
+   this.$store.dispatch('initStore')
+  },
   render: h => h(App)
 })

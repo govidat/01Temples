@@ -12,8 +12,8 @@ export const store = new Vuex.Store({
 {"Id":3,"Name":"Andhra"}],
 
 // Only this is defined here with values, as this is the startingpoint.
-    maxStates: [1,2,3],
-    selStates: [1,2,3],
+    maxStates: [],
+    selStates: [],
     difStates: [],
 
     maxSaints: [1,2,3],
@@ -106,6 +106,12 @@ export const store = new Vuex.Store({
 
   mutations: {
 
+    initStore (state) {
+      state.maxStates = state.statesMaster.map(x => x.Id);
+      state.selStates = Array.from(state.maxStates);
+    },
+
+
     updatenav2Sel (state, payload) {
         state.nav2Sel = payload;
       },
@@ -195,9 +201,10 @@ export const store = new Vuex.Store({
 
   actions: {
 
-    // initStore: ({commit}) => {
-    //   alert ("Hello init");
-    // },
+    initStore: ({commit}) => {
+      commit('initStore');
+      // alert ("Hello init");
+    },
 
     updatenav2Sel: ({ commit }, payload) => {
       commit('updatenav2Sel', payload);
