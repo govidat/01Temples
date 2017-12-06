@@ -16,8 +16,8 @@ export const store = new Vuex.Store({
     selStates: [],
     difStates: [],
 
-    maxSaints: [1,2,3],
-    selSaints: [1,2,3],
+    maxSaints: [],
+    selSaints: [],
     difSaints: [],
 
 
@@ -41,9 +41,9 @@ export const store = new Vuex.Store({
 {"Id":11,"Name":"Madhurakavi Alwar"},
 {"Id":12,"Name":"Kulasekara Alwar"}],
 
-    selectedSaintsStart: [],
-    selectedSaints: [],
-    selAllSaintsindicator: true,
+    // selectedSaintsStart: [],
+    // selectedSaints: [],
+    // selAllSaintsindicator: true,
 
 
     selectedTemples: [],
@@ -85,16 +85,16 @@ export const store = new Vuex.Store({
 
 
 
-    selectedSaintsStartGet: state => {
-      return state.selectedSaintsStart;
-    },
-
-    selectedSaintsGet: state => {
-      return state.selectedSaints;
-    },
-    selAllSaintsGet: state => {
-      return state.selAllSaintsindicator;
-    },
+    // selectedSaintsStartGet: state => {
+    //   return state.selectedSaintsStart;
+    // },
+    //
+    // selectedSaintsGet: state => {
+    //   return state.selectedSaints;
+    // },
+    // selAllSaintsGet: state => {
+    //   return state.selAllSaintsindicator;
+    // },
 
 
 
@@ -109,6 +109,11 @@ export const store = new Vuex.Store({
     initStore (state) {
       state.maxStates = state.statesMaster.map(x => x.Id);
       state.selStates = Array.from(state.maxStates);
+
+      state.maxSaints = state.saintsMaster.map(x => x.Id);
+      state.selSaints = Array.from(state.maxSaints);
+
+
     },
 
 
@@ -165,37 +170,34 @@ export const store = new Vuex.Store({
     },
 
 
-    updateSelSaintsStart (state) {
-          // state.templesMaster1 = state.templesMaster.filter(itm => state.selectedStates.indexOf(itm.StateId) >-1);
-          state.selectedSaintsStart = Array.from
-            (new Set((
-            state.templesMaster.filter(itm => state.selectedStates.indexOf(itm.StateId) >-1)
-            .map(a => a.SaintId))
-            .reduce((acc, a) => acc.concat(a),[])
-            ));
-          // remove states in selectedSaints that are not in selectedSaintsStart
-          // add states to selectedSaints corresponding to state
-          state.selectedSaints = Array.from(state.selectedSaintsStart);
-    },
-
-    selAllSaints (state) {
-      state.selAllSaintsindicator = !state.selAllSaintsindicator;
-
-      if (state.selAllSaintsindicator) {
-        state.selectedSaints = Array.from(state.selectedSaintsStart);
-      } else {
-        state.selectedSaints = [];
-        };
-    },
-
-    updateSelSaints (state, payload) {
-      var index = state.selectedSaints.indexOf(payload);
-      if (index === -1) {
-        state.selectedSaints.push(payload);
-      } else {
-        state.selectedSaints.splice(index, 1);
-        };
-      },
+    // updateSelSaintsStart (state) {
+    //       state.selectedSaintsStart = Array.from
+    //         (new Set((
+    //         state.templesMaster.filter(itm => state.selectedStates.indexOf(itm.StateId) >-1)
+    //         .map(a => a.SaintId))
+    //         .reduce((acc, a) => acc.concat(a),[])
+    //         ));
+    //       state.selectedSaints = Array.from(state.selectedSaintsStart);
+    // },
+    //
+    // selAllSaints (state) {
+    //   state.selAllSaintsindicator = !state.selAllSaintsindicator;
+    //
+    //   if (state.selAllSaintsindicator) {
+    //     state.selectedSaints = Array.from(state.selectedSaintsStart);
+    //   } else {
+    //     state.selectedSaints = [];
+    //     };
+    // },
+    //
+    // updateSelSaints (state, payload) {
+    //   var index = state.selectedSaints.indexOf(payload);
+    //   if (index === -1) {
+    //     state.selectedSaints.push(payload);
+    //   } else {
+    //     state.selectedSaints.splice(index, 1);
+    //     };
+    //   },
 
   },
 
@@ -213,7 +215,6 @@ export const store = new Vuex.Store({
     addStates: ({ commit }, payload) => {
       commit('addStates', payload);
       // alert ("Hello Action");
-      // commit('updateSelSaintsStart');
     },
 
     delStates: ({ commit }, payload) => {
@@ -236,13 +237,13 @@ export const store = new Vuex.Store({
 
 
 
-    selAllSaints: ({commit}) => {
-      commit('selAllSaints');
-    },
-    updateSelSaints: ({ commit }, payload) => {
-      commit('updateSelSaints', payload);
-      // commit('updateSelSaintsStart');  to refactir for next level of selections
-    },
+    // selAllSaints: ({commit}) => {
+    //   commit('selAllSaints');
+    // },
+    // updateSelSaints: ({ commit }, payload) => {
+    //   commit('updateSelSaints', payload);
+    //   // commit('updateSelSaintsStart');  to refactir for next level of selections
+    // },
 
   }
 

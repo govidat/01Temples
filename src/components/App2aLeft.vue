@@ -21,18 +21,17 @@
             <input v-else type="checkbox" id="idOne" @click="addStates(difStates)">
               <label for="idOne">Select All</label>
             <div class="dropdown-divider"></div>
-              <li class="list-group-item" v-for="item in maxStates">
+            <li class="list-group-item" v-for="item in maxStates">
                 <input v-if="selStates.indexOf(item) !== -1" :checked="selStates.indexOf(item) !== -1" type="checkbox" :id=item @click="delStates([item])">
                 <input v-else type="checkbox" :id=item @click="addStates([item])">
-
                 <label :for=item> {{ statesMaster.find(itm => itm.Id === item).Name }}</label>
-              </li>
-              <br>
-              <div>
+            </li>
+            <br>
+            <div>
                 <p>Max States: {{ maxStates }}</p>
                 <p>Sel States: {{ selStates }}</p>
                 <p>Dif States: {{ difStates }}</p>
-              </div>
+            </div>
 
           </div>
         </div>
@@ -45,24 +44,25 @@
             </a>
           </h5>
         </div>
-        <!-- <div id="collapseTwoSel" class="collapse" role="tabpanel" aria-labelledby="headingTwoSel" data-parent="#accordion">
+        <div id="collapseTwoSel" class="collapse" role="tabpanel" aria-labelledby="headingTwoSel" data-parent="#accordion">
           <div class="card-body form-group">
             <input v-if="difSaints.length===0" :checked="difSaints.length===0" type="checkbox" id="idTwo" @click="delSaints(maxSaints)">
             <input v-else type="checkbox" id="idTwo" @click="addSaints(difSaints)">
-
-            <input type="checkbox" class="toggle" id="idTwo" :checked="selAllSaintsindicator" @click="selAllSaints">
               <label for="idTwo">Select All</label>
             <div class="dropdown-divider"></div>
-            <span>Selected Saints Start: {{ selectedSaintsStart }}</span>
-
-            <li class="list-group-item" v-for="item in selectedSaintsStart">
-              <input type="checkbox" class="toggle" :checked="selectedSaints.indexOf(item) !== -1" :id=item+100 @click="updateSelSaints(item)">
+            <li class="list-group-item" v-for="item in maxSaints">
+              <input v-if="selSaints.indexOf(item) !== -1" :checked="selSaints.indexOf(item) !== -1" type="checkbox" :id=item+100 @click="delSaints([item])">
+              <input v-else type="checkbox" :id=item @click="addSaints([item])">
               <label :for=item+100> {{ saintsMaster.find(itm => itm.Id === item).Name }}</label>
             </li>
             <br>
-            <span>Selected Saints: {{ selectedSaints }}</span>
+            <div>
+                <p>Max Saints: {{ maxSaints }}</p>
+                <p>Sel Saints: {{ selSaints }}</p>
+                <p>Dif Saints: {{ difSaints }}</p>
+            </div>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
 
