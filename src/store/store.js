@@ -16,6 +16,10 @@ export const store = new Vuex.Store({
     selStates: [1,2,3],
     difStates: [],
 
+    maxSaints: [1,2,3],
+    selSaints: [1,2,3],
+    difSaints: [],
+
 
     templesMaster: [{"Id":1,"StateId":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","SaintId":[1,2],"SongId":[1, 11, 101, 1001]},
 {"Id":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","SaintId":[2,3],"SongId":[2, 12, 102, 1002]},
@@ -69,6 +73,18 @@ export const store = new Vuex.Store({
       return state.difStates;
     },
 
+    maxSaintsGet: state => {
+      return state.maxSaints;
+    },
+    selSaintsGet: state => {
+      return state.selSaints;
+    },
+    difSaintsGet: state => {
+      return state.difSaints;
+    },
+
+
+
     selectedSaintsStartGet: state => {
       return state.selectedSaintsStart;
     },
@@ -118,6 +134,30 @@ export const store = new Vuex.Store({
       });
     },
 
+    addSaints (state, payload) {
+      // alert ("Hello2");
+
+      payload.forEach(function(item) {
+        var index = state.selSaints.indexOf(item);
+        if (index === -1) {
+          state.selSaints.push(item);
+        };
+        state.difSaints = state.maxSaints.filter(function(i) {return state.selSaints.indexOf(i) < 0;});
+      });
+    },
+
+    delSaints (state, payload) {
+      payload.forEach(function(item) {
+        // alert (item);
+        // this is a superficial check and may not be required
+        var index = state.selSaints.indexOf(item);
+        if (index !== -1) {
+          state.selSaints.splice(index, 1);
+          state.difSaints.push(item);
+        };
+      });
+    },
+
 
     updateSelSaintsStart (state) {
           // state.templesMaster1 = state.templesMaster.filter(itm => state.selectedStates.indexOf(itm.StateId) >-1);
@@ -154,6 +194,11 @@ export const store = new Vuex.Store({
   },
 
   actions: {
+
+    // initStore: ({commit}) => {
+    //   alert ("Hello init");
+    // },
+
     updatenav2Sel: ({ commit }, payload) => {
       commit('updatenav2Sel', payload);
     },
@@ -170,6 +215,17 @@ export const store = new Vuex.Store({
       // commit('updateSelSaintsStart');
     },
 
+    addSaints: ({ commit }, payload) => {
+      commit('addSaints', payload);
+      // alert ("Hello Action");
+      // commit('updateSelSaintsStart');
+    },
+
+    delSaints: ({ commit }, payload) => {
+      commit('delSaints', payload);
+      // alert ("Hello Action");
+      // commit('updateSelSaintsStart');
+    },
 
 
 

@@ -28,10 +28,12 @@
                 <label :for=item> {{ statesMaster.find(itm => itm.Id === item).Name }}</label>
               </li>
               <br>
-              <p>Max States: {{ maxStates }}</p>
-              <p>Sel States: {{ selStates }}</p>
-              <p>Dif States: {{ difStates }}</p>
-              <p>{{ selAllStatesindicator }}</p>
+              <div>
+                <p>Max States: {{ maxStates }}</p>
+                <p>Sel States: {{ selStates }}</p>
+                <p>Dif States: {{ difStates }}</p>
+              </div>
+
           </div>
         </div>
       </div>
@@ -43,9 +45,11 @@
             </a>
           </h5>
         </div>
-
         <!-- <div id="collapseTwoSel" class="collapse" role="tabpanel" aria-labelledby="headingTwoSel" data-parent="#accordion">
           <div class="card-body form-group">
+            <input v-if="difSaints.length===0" :checked="difSaints.length===0" type="checkbox" id="idTwo" @click="delSaints(maxSaints)">
+            <input v-else type="checkbox" id="idTwo" @click="addSaints(difSaints)">
+
             <input type="checkbox" class="toggle" id="idTwo" :checked="selAllSaintsindicator" @click="selAllSaints">
               <label for="idTwo">Select All</label>
             <div class="dropdown-divider"></div>
@@ -57,13 +61,8 @@
             </li>
             <br>
             <span>Selected Saints: {{ selectedSaints }}</span>
-
-            <!-- <li class="list-group-item" v-for="item in selectedSaints">
-                {{ saintsMaster.find(itm => itm.SaintId === item).SaintName }}
-            </li> -->
-
-          </div> -->
-        </div>
+          </div>
+        </div> -->
       </div>
     </div>
 
@@ -88,6 +87,11 @@ export default {
     selStates: 'selStatesGet',
     difStates: 'difStatesGet',
 
+    maxSaints: 'maxSaintsGet',
+    selSaints: 'selSaintsGet',
+    difSaints: 'difSaintsGet',
+
+
     selectedSaintsStart: 'selectedSaintsStartGet',
     selectedSaints: 'selectedSaintsGet',
     saintsMaster: 'saintsMasterGet',
@@ -108,6 +112,10 @@ export default {
 
       'addStates',
       'delStates',
+
+      'addSaints',
+      'delSaints',
+
       'selAllSaints',
       'updateSelSaints',
     ]),
