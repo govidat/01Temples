@@ -42,12 +42,6 @@ export const store = new Vuex.Store({
 {"Id":11,"Name":"Madhurakavi Alwar"},
 {"Id":12,"Name":"Kulasekara Alwar"}],
 
-    // selectedSaintsStart: [],
-    // selectedSaints: [],
-    // selAllSaintsindicator: true,
-
-
-    selectedTemples: [],
 
   },
 
@@ -85,20 +79,6 @@ export const store = new Vuex.Store({
     },
 
 
-
-    // selectedSaintsStartGet: state => {
-    //   return state.selectedSaintsStart;
-    // },
-    //
-    // selectedSaintsGet: state => {
-    //   return state.selectedSaints;
-    // },
-    // selAllSaintsGet: state => {
-    //   return state.selAllSaintsindicator;
-    // },
-
-
-
     templesMasterGet: state => {
       return state.templesMaster;
     },
@@ -108,12 +88,12 @@ export const store = new Vuex.Store({
   mutations: {
 
     initStore (state) {
+      // update this for any new table addition in selection
       state.maxStates = state.statesMaster.map(x => x.Id);
       state.selStates = Array.from(state.maxStates);
 
       state.maxSaints = state.saintsMaster.map(x => x.Id);
       state.selSaints = Array.from(state.maxSaints);
-
 
     },
 
@@ -122,51 +102,70 @@ export const store = new Vuex.Store({
         state.nav2Sel = payload;
       },
 
-    addStates (state, payload) {
+    addX (state, payload) {
       // alert ("Hello2");
-
-      payload.forEach(function(item) {
-        var index = state.selStates.indexOf(item);
-        if (index === -1) {
-          state.selStates.push(item);
-        };
-        state.difStates = state.maxStates.filter(function(i) {return state.selStates.indexOf(i) < 0;});
-      });
-
-      // get the impact of this deletion for the level below
-      // get the newmaxSaints list filter > templesMaster > with stateId in selStates > map on SaintId > reduce them to the Ids > unique by Set > array
-            var newmaxSaints = Array.from
-                    (new Set((
-                    state.templesMaster.filter(itm => state.selStates.indexOf(itm.StateId) >-1)
-                    .map(a => a.SaintId))
-                    .reduce((acc, a) => acc.concat(a),[])
-                    ));
-
-      // this will be the revised maxSaints
-      // use filter condition and create a delselSaints and add to selSaints entries id selallsaints is true (ie difSaints.length===0)
-            var deltaSaints = newmaxSaints.filter(i => state.selSaints.indexOf(i) === -1);
-            if (state.difSaints.length === 0) {
-              var newselSaints = state.selSaints.concat(deltaSaints);
-              state.selSaints = newselSaints;
-            };
-
-      // now remap both these into maxSaints and difSaints
-            state.maxSaints = newmaxSaints;
-            state.difSaints = state.maxSaints.filter(function(i) {return state.selSaints.indexOf(i) < 0;});
-
-    },
-
-    delX (state, payload) {
-// passing a obj is working only on a local variable, hence this part is done here
       var namStates = {'max': state.maxStates, 'sel': state.selStates, 'dif': state.difStates};
       var namSaints = {'max': state.maxSaints, 'sel': state.selSaints, 'dif': state.difSaints};
+      // update this for any new table addition in selection
 
       // set this correctly as per the input coming like States, Saints....);
       if (payload[1] === 'States') {
         var namx = namStates;
-        var namy = namSaints;
       } else if (payload[1] === 'Saints') {
         var namx = namSaints;
+        // update this for any new table addition in selection
+
+      };
+
+      payload[0].forEach(function(item) {
+          namx['sel'].push(item);
+          // namx['dif'].splice(namx['dif'].indexOf(item), 1);  --- this gives errors
+        // = does not work ---- namx['dif'] = namx['max'].filter(function(i) {return namx['sel'].indexOf(i) < 0;}).slice();
+      });
+
+// to be refactored -- = condition does not work correctly for referenced objects
+      if (payload[1] === 'States') {
+        state.difStates = namx['max'].filter(function(i) {return namx['sel'].indexOf(i) < 0;});
+      } else if (payload[1] === 'Saints') {
+        state.difSaints = namx['max'].filter(function(i) {return namx['sel'].indexOf(i) < 0;});
+        // update this for any new table addition in selection
+      };
+
+      // update this for any new table addition in selection
+      // Propogate this addition to the next level - have worked out only for Saints
+      // get the newmaxSaints list filter > templesMaster > with stateId in selStates > map on SaintId > reduce them to the Ids > unique by Set > array
+      if (payload[1] === 'States') {
+        var newmaxSaints = Array.from
+                (new Set((
+                state.templesMaster.filter(itm => state.selStates.indexOf(itm.StateId) >-1)
+                .map(a => a.SaintId))
+                .reduce((acc, a) => acc.concat(a),[])
+                ));
+                // this will be the revised maxSaints
+                // use filter condition and create a delselSaints and add to selSaints entries id selallsaints is true (ie difSaints.length===0)
+        var deltaSaints = newmaxSaints.filter(i => state.selSaints.indexOf(i) === -1);
+        if (state.difSaints.length === 0) {
+          var newselSaints = state.selSaints.concat(deltaSaints);
+          state.selSaints = newselSaints;
+        };
+        // now remap both these into maxSaints and difSaints
+        state.maxSaints = newmaxSaints;
+        state.difSaints = state.maxSaints.filter(function(i) {return state.selSaints.indexOf(i) < 0;});
+      };
+    },
+
+    delX (state, payload) {
+      // passing a obj is working only on a local variable, hence this part is done here
+      var namStates = {'max': state.maxStates, 'sel': state.selStates, 'dif': state.difStates};
+      var namSaints = {'max': state.maxSaints, 'sel': state.selSaints, 'dif': state.difSaints};
+      // update this for any new table addition in selection
+
+      // set this correctly as per the input coming like States, Saints....);
+      if (payload[1] === 'States') {
+        var namx = namStates;
+      } else if (payload[1] === 'Saints') {
+        var namx = namSaints;
+        // update this for any new table addition in selection
       };
 
       payload[0].forEach(function(item) {
@@ -183,6 +182,7 @@ export const store = new Vuex.Store({
 // get the newmaxSaints list filter > templesMaster > with stateId in selStates > map on SaintId > reduce them to the Ids > unique by Set > array
 
 // refactor this for all levels of propogation, presently this propgates to Saints only from States
+// update this for any new table addition in selection
       if (payload[1] === 'States') {
         // var namy = namSaints;
         var newmax = Array.from
@@ -201,62 +201,7 @@ export const store = new Vuex.Store({
         state.difSaints = state.maxSaints.filter(function(i) {return state.selSaints.indexOf(i) < 0;});
       };
 
-
     },
-
-    addSaints (state, payload) {
-      // alert ("Hello2");
-
-      payload.forEach(function(item) {
-        var index = state.selSaints.indexOf(item);
-        if (index === -1) {
-          state.selSaints.push(item);
-        };
-        state.difSaints = state.maxSaints.filter(function(i) {return state.selSaints.indexOf(i) < 0;});
-      });
-    },
-
-    delSaints (state, payload) {
-      payload.forEach(function(item) {
-        // alert (item);
-        // this is a superficial check and may not be required
-        var index = state.selSaints.indexOf(item);
-        if (index !== -1) {
-          state.selSaints.splice(index, 1);
-          state.difSaints.push(item);
-        };
-      });
-    },
-
-
-    // updateSelSaintsStart (state) {
-    //       state.selectedSaintsStart = Array.from
-    //         (new Set((
-    //         state.templesMaster.filter(itm => state.selectedStates.indexOf(itm.StateId) >-1)
-    //         .map(a => a.SaintId))
-    //         .reduce((acc, a) => acc.concat(a),[])
-    //         ));
-    //       state.selectedSaints = Array.from(state.selectedSaintsStart);
-    // },
-    //
-    // selAllSaints (state) {
-    //   state.selAllSaintsindicator = !state.selAllSaintsindicator;
-    //
-    //   if (state.selAllSaintsindicator) {
-    //     state.selectedSaints = Array.from(state.selectedSaintsStart);
-    //   } else {
-    //     state.selectedSaints = [];
-    //     };
-    // },
-    //
-    // updateSelSaints (state, payload) {
-    //   var index = state.selectedSaints.indexOf(payload);
-    //   if (index === -1) {
-    //     state.selectedSaints.push(payload);
-    //   } else {
-    //     state.selectedSaints.splice(index, 1);
-    //     };
-    //   },
 
   },
 
@@ -271,39 +216,16 @@ export const store = new Vuex.Store({
       commit('updatenav2Sel', payload);
     },
 
-    addStates: ({ commit }, payload) => {
-      commit('addStates', payload);
+    addX: ({ commit }, payload) => {
+      commit('addX', payload);
       // alert ("Hello Action");
     },
 
     delX: ({ commit }, payload) => {
       commit('delX', payload);
       // alert ("Hello Action");
-      // commit('updateSelSaintsStart');
     },
 
-    addSaints: ({ commit }, payload) => {
-      commit('addSaints', payload);
-      // alert ("Hello Action");
-      // commit('updateSelSaintsStart');
-    },
-
-    // delSaints: ({ commit }, payload) => {
-    //   commit('delSaints', payload);
-    //   // alert ("Hello Action");
-    //   // commit('updateSelSaintsStart');
-    // },
-
-
-
-    // selAllSaints: ({commit}) => {
-    //   commit('selAllSaints');
-    // },
-    // updateSelSaints: ({ commit }, payload) => {
-    //   commit('updateSelSaints', payload);
-    //   // commit('updateSelSaintsStart');  to refactir for next level of selections
-    // },
-
-  }
+  },
 
 })
