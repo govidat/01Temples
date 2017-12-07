@@ -16,13 +16,13 @@
         <div id="collapseOneSel" class="collapse show" role="tabpanel" aria-labelledby="headingOneSel" data-parent="#accordion">
           <div class="card-body form-group">
             <!-- if all states are selected, show the box as ticked and on click activate delAllStates with maxStates -->
-            <input v-if="difStates.length===0" :checked="difStates.length===0" type="checkbox" id="idOne" @click="delStates(maxStates)">
+            <input v-if="difStates.length===0" :checked="difStates.length===0" type="checkbox" id="idOne" @click="delX([maxStates, 'States'])">
             <!-- if NOT all states are selected , show the box as unticked and on click activate selAllStates with difStates -->
             <input v-else type="checkbox" id="idOne" @click="addStates(difStates)">
               <label for="idOne">Select All</label>
             <div class="dropdown-divider"></div>
             <li class="list-group-item" v-for="item in maxStates">
-                <input v-if="selStates.indexOf(item) !== -1" :checked="selStates.indexOf(item) !== -1" type="checkbox" :id=item @click="delStates([item])">
+                <input v-if="selStates.indexOf(item) !== -1" :checked="selStates.indexOf(item) !== -1" type="checkbox" :id=item @click="delX([[item],'States'])">
                 <input v-else type="checkbox" :id=item @click="addStates([item])">
                 <label :for=item> {{ statesMaster.find(itm => itm.Id === item).Name }}</label>
             </li>
@@ -46,12 +46,12 @@
         </div>
         <div id="collapseTwoSel" class="collapse" role="tabpanel" aria-labelledby="headingTwoSel" data-parent="#accordion">
           <div class="card-body form-group">
-            <input v-if="difSaints.length===0" :checked="difSaints.length===0" type="checkbox" id="idTwo" @click="delSaints(maxSaints)">
+            <input v-if="difSaints.length===0" :checked="difSaints.length===0" type="checkbox" id="idTwo" @click="delX([maxSaints, 'Saints'])">
             <input v-else type="checkbox" id="idTwo" @click="addSaints(difSaints)">
               <label for="idTwo">Select All</label>
             <div class="dropdown-divider"></div>
             <li class="list-group-item" v-for="item in maxSaints">
-              <input v-if="selSaints.indexOf(item) !== -1" :checked="selSaints.indexOf(item) !== -1" type="checkbox" :id=item+100 @click="delSaints([item])">
+              <input v-if="selSaints.indexOf(item) !== -1" :checked="selSaints.indexOf(item) !== -1" type="checkbox" :id=item+100 @click="delX([[item],'Saints'])">
               <input v-else type="checkbox" :id=item @click="addSaints([item])">
               <label :for=item+100> {{ saintsMaster.find(itm => itm.Id === item).Name }}</label>
             </li>
@@ -111,10 +111,10 @@ export default {
     ...mapActions([
 
       'addStates',
-      'delStates',
+      'delX',
 
       'addSaints',
-      'delSaints',
+//    'delSaints',
 
       'selAllSaints',
       'updateSelSaints',

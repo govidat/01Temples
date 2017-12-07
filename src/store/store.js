@@ -21,6 +21,7 @@ export const store = new Vuex.Store({
     difSaints: [],
 
 
+
     templesMaster: [{"Id":1,"StateId":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","SaintId":[1,2],"SongId":[1, 11, 101, 1001]},
 {"Id":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","SaintId":[2,3],"SongId":[2, 12, 102, 1002]},
 {"Id":3,"StateId":2,"Name":" Thirukkarambanoor - Sri Purushothaman Perumal Temple","SaintId":[3,4],"SongId":[3, 13, 103, 1003]},
@@ -155,32 +156,51 @@ export const store = new Vuex.Store({
 
     },
 
-    delStates (state, payload) {
-      payload.forEach(function(item) {
-        // alert ("delstates");
+    delX (state, payload) {
+// passing a obj is working only on a local variable, hence this part is done here
+      var namStates = {'max': state.maxStates, 'sel': state.selStates, 'dif': state.difStates};
+      var namSaints = {'max': state.maxSaints, 'sel': state.selSaints, 'dif': state.difSaints};
+
+      // set this correctly as per the input coming like States, Saints....);
+      if (payload[1] === 'States') {
+        var namx = namStates;
+        var namy = namSaints;
+      } else if (payload[1] === 'Saints') {
+        var namx = namSaints;
+      };
+
+      payload[0].forEach(function(item) {
+        // alert (state.namStates['sel']);
         // this is a superficial check and may not be required
-        var index = state.selStates.indexOf(item);
+
+        var index = namx['sel'].indexOf(item);
         if (index !== -1) {
-          state.selStates.splice(index, 1);
-          state.difStates.push(item);
+          namx['sel'].splice(index, 1);
+          namx['dif'].push(item);
         };
       });
 // get the impact of this deletion for the level below
 // get the newmaxSaints list filter > templesMaster > with stateId in selStates > map on SaintId > reduce them to the Ids > unique by Set > array
-      var newmaxSaints = Array.from
-              (new Set((
-              state.templesMaster.filter(itm => state.selStates.indexOf(itm.StateId) >-1)
-              .map(a => a.SaintId))
-              .reduce((acc, a) => acc.concat(a),[])
-              ));
 
-// this will be the revised maxSaints
-// use filter condition and create a newselSaints and remove the selSaints entries that are not in newsmaxSaints
-      var newselSaints = state.selSaints.filter(i => newmaxSaints.indexOf(i) !== -1);
-// now remap both these into maxSaints and selSaintsGet
-      state.maxSaints = newmaxSaints;
-      state.selSaints = newselSaints;
-      state.difSaints = state.maxSaints.filter(function(i) {return state.selSaints.indexOf(i) < 0;});
+// refactor this for all levels of propogation, presently this propgates to Saints only from States
+      if (payload[1] === 'States') {
+        // var namy = namSaints;
+        var newmax = Array.from
+                (new Set((
+                state.templesMaster.filter(itm => state.selStates.indexOf(itm.StateId) >-1)
+                .map(a => a.SaintId))
+                .reduce((acc, a) => acc.concat(a),[])
+                ));
+
+  // this will be the revised maxSaints
+  // use filter condition and create a newselSaints and remove the selSaints entries that are not in newsmaxSaints
+        var newsel = state.selSaints.filter(i => newmax.indexOf(i) !== -1);
+  // now remap both these into maxSaints and selSaints
+        state.maxSaints = newmax;
+        state.selSaints = newsel;
+        state.difSaints = state.maxSaints.filter(function(i) {return state.selSaints.indexOf(i) < 0;});
+      };
+
 
     },
 
@@ -256,8 +276,8 @@ export const store = new Vuex.Store({
       // alert ("Hello Action");
     },
 
-    delStates: ({ commit }, payload) => {
-      commit('delStates', payload);
+    delX: ({ commit }, payload) => {
+      commit('delX', payload);
       // alert ("Hello Action");
       // commit('updateSelSaintsStart');
     },
@@ -268,11 +288,11 @@ export const store = new Vuex.Store({
       // commit('updateSelSaintsStart');
     },
 
-    delSaints: ({ commit }, payload) => {
-      commit('delSaints', payload);
-      // alert ("Hello Action");
-      // commit('updateSelSaintsStart');
-    },
+    // delSaints: ({ commit }, payload) => {
+    //   commit('delSaints', payload);
+    //   // alert ("Hello Action");
+    //   // commit('updateSelSaintsStart');
+    // },
 
 
 
