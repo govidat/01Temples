@@ -95,6 +95,12 @@ export const store = new Vuex.Store({
       state.maxSaints = state.saintsMaster.map(x => x.Id);
       state.selSaints = Array.from(state.maxSaints);
 
+      // state.mapStates = new Map();
+      // state.mapStates.set('max', state.maxStates).set('sel', state.selStates).set('dif', state.difStates);
+      // state.mapSaints = new Map();
+      // state.mapSaints.set('max', state.maxSaints).set('sel', state.selSaints).set('dif', state.difSaints);
+
+
     },
 
 
@@ -156,15 +162,27 @@ export const store = new Vuex.Store({
 
     delX (state, payload) {
       // passing a obj is working only on a local variable, hence this part is done here
-      var namStates = {'max': state.maxStates, 'sel': state.selStates, 'dif': state.difStates};
-      var namSaints = {'max': state.maxSaints, 'sel': state.selSaints, 'dif': state.difSaints};
+      // var namStates = {'max': state.maxStates, 'sel': state.selStates, 'dif': state.difStates};
+      // var namSaints = {'max': state.maxSaints, 'sel': state.selSaints, 'dif': state.difSaints};
+
+      var mapStates = new Map();
+      mapStates.set('max', state.maxStates).set('sel', state.selStates).set('dif', state.difStates);
+      var mapSaints = new Map();
+      mapSaints.set('max', state.maxSaints).set('sel', state.selSaints).set('dif', state.difSaints);
+
+
+      // alert (namStates2.get('max'));
+
+
       // update this for any new table addition in selection
 
       // set this correctly as per the input coming like States, Saints....);
       if (payload[1] === 'States') {
-        var namx = namStates;
+        var mapX = mapStates;
+        // alert (namx.get('max'));
       } else if (payload[1] === 'Saints') {
-        var namx = namSaints;
+        var mapX = mapSaints;
+        alert (mapX.get('max'));
         // update this for any new table addition in selection
       };
 
@@ -172,10 +190,16 @@ export const store = new Vuex.Store({
         // alert (state.namStates['sel']);
         // this is a superficial check and may not be required
 
-        var index = namx['sel'].indexOf(item);
+        // var index = namx['sel'].indexOf(item);
+        var index = mapX.get('sel').indexOf(item);
         if (index !== -1) {
-          namx['sel'].splice(index, 1);
-          namx['dif'].push(item);
+          // namx['sel'].splice(index, 1);
+          mapX.get('sel').splice(index, 1);
+          // alert (namx['sel']);
+          // alert (namStates2.get('sel'));
+
+          // namx['dif'].push(item);
+          mapX.get('dif').push(item);
         };
       });
 // get the impact of this deletion for the level below
@@ -184,7 +208,8 @@ export const store = new Vuex.Store({
 // refactor this for all levels of propogation, presently this propgates to Saints only from States
 // update this for any new table addition in selection
       if (payload[1] === 'States') {
-        // var namy = namSaints;
+        var mapY = mapSaints;
+        // var mapY = mapSaints;
         var newmax = Array.from
                 (new Set((
                 state.templesMaster.filter(itm => state.selStates.indexOf(itm.StateId) >-1)
@@ -199,6 +224,12 @@ export const store = new Vuex.Store({
         state.maxSaints = newmax;
         state.selSaints = newsel;
         state.difSaints = state.maxSaints.filter(function(i) {return state.selSaints.indexOf(i) < 0;});
+        //   alert (mapY.get('max'));
+        // mapY.get('max') = newmax;
+        // mapY.get('sel') = newsel;
+        // mapY.get('dif') = mapY.get('max').filter(function(i) {return mapY.get('sel').indexOf(i) < 0;});
+
+
       };
 
     },
