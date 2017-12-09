@@ -62,6 +62,34 @@
           </div>
         </div>
       </div>
+      <div class="card">
+        <div class="card-header" role="tab" id="headingThreeSel">
+          <h5 class="mb-0">
+            <a data-toggle="collapse" href="#collapseThreeSel" aria-expanded="true" aria-controls="collapseThreeSel">
+              Select Temples
+            </a>
+          </h5>
+        </div>
+        <div id="collapseThreeSel" class="collapse" role="tabpanel" aria-labelledby="headingThreeSel" data-parent="#accordion">
+          <div class="card-body form-group">
+            <input v-if="maxTemples.length===selTemples.length" :checked="maxTemples.length===selTemples.length" type="checkbox" id="idThree" @click="delX([maxTemples, 'Temples'])">
+            <input v-else type="checkbox" id="idThree" @click="addX([maxTemples, 'Temples'])">
+              <label for="idThree">Select All</label>
+            <div class="dropdown-divider"></div>
+            <li class="list-group-item" v-for="item in maxTemples">
+              <input v-if="selTemples.indexOf(item) !== -1" :checked="selTemples.indexOf(item) !== -1" type="checkbox" :id=item+100 @click="delX([[item],'Temples'])">
+              <input v-else type="checkbox" :id=item+1000 @click="addX([[item], 'Temples'])">
+              <label :for=item+1000> {{ templesMaster.find(itm => itm.Id === item).Name }}</label>
+            </li>
+            <br>
+            <div>
+                <p>Max Temples: {{ maxTemples }}</p>
+                <p>Sel Temples: {{ selTemples }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -87,6 +115,10 @@ export default {
 
     maxSaints: 'maxSaintsGet',
     selSaints: 'selSaintsGet',
+
+    maxTemples: 'maxTemplesGet',
+    selTemples: 'selTemplesGet',
+
     }),
 
   },
@@ -101,6 +133,9 @@ export default {
 
       'addX',
       'delX',
+
+//      'selAllSaints',
+//      'updateSelSaints',
     ]),
 
   }
