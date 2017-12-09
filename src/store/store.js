@@ -110,69 +110,65 @@ export const store = new Vuex.Store({
 
     addX (state, payload) {
       // alert ("Hello2");
-      var namStates = {'max': state.maxStates, 'sel': state.selStates, 'dif': state.difStates};
-      var namSaints = {'max': state.maxSaints, 'sel': state.selSaints, 'dif': state.difSaints};
       // update this for any new table addition in selection
+      var mapStates = new Map();
+      mapStates.set('max', state.maxStates).set('sel', state.selStates).set('dif', state.difStates);
+      var mapSaints = new Map();
+      mapSaints.set('max', state.maxSaints).set('sel', state.selSaints).set('dif', state.difSaints);
 
-      // set this correctly as per the input coming like States, Saints....);
       if (payload[1] === 'States') {
-        var namx = namStates;
+        var mapX = mapStates;
       } else if (payload[1] === 'Saints') {
-        var namx = namSaints;
+        var mapX = mapSaints;
         // update this for any new table addition in selection
-
       };
 
       payload[0].forEach(function(item) {
-          namx['sel'].push(item);
-          // namx['dif'].splice(namx['dif'].indexOf(item), 1);  --- this gives errors
-        // = does not work ---- namx['dif'] = namx['max'].filter(function(i) {return namx['sel'].indexOf(i) < 0;}).slice();
-      });
 
-// to be refactored -- = condition does not work correctly for referenced objects
-      if (payload[1] === 'States') {
-        state.difStates = namx['max'].filter(function(i) {return namx['sel'].indexOf(i) < 0;});
-      } else if (payload[1] === 'Saints') {
-        state.difSaints = namx['max'].filter(function(i) {return namx['sel'].indexOf(i) < 0;});
-        // update this for any new table addition in selection
-      };
+// for select all max is passed on as payload; else only one item is passed as payload
+// check if the item is in sel and if not found add to sel; if found, no need to add
+        var index = mapX.get('sel').indexOf(item);
+        if (index === -1) {
+          mapX.get('sel').push(item);
+        };
+      });
 
       // update this for any new table addition in selection
       // Propogate this addition to the next level - have worked out only for Saints
       // get the newmaxSaints list filter > templesMaster > with stateId in selStates > map on SaintId > reduce them to the Ids > unique by Set > array
+
       if (payload[1] === 'States') {
-        var newmaxSaints = Array.from
+        var mapY = mapSaints;
+        var newmax = Array.from
                 (new Set((
                 state.templesMaster.filter(itm => state.selStates.indexOf(itm.StateId) >-1)
                 .map(a => a.SaintId))
                 .reduce((acc, a) => acc.concat(a),[])
                 ));
                 // this will be the revised maxSaints
-                // use filter condition and create a delselSaints and add to selSaints entries id selallsaints is true (ie difSaints.length===0)
-        var deltaSaints = newmaxSaints.filter(i => state.selSaints.indexOf(i) === -1);
-        if (state.difSaints.length === 0) {
-          var newselSaints = state.selSaints.concat(deltaSaints);
-          state.selSaints = newselSaints;
+        var delta = newmax.filter(i => state.maxSaints.indexOf(i) === -1);
+        // if select all indicator is on then push the delta to both max and sel; else just pust to max
+        if (mapY.get('max').length === mapY.get('sel').length) {
+          delta.forEach(function(item) {
+              mapY.get('max').push(item);
+              mapY.get('sel').push(item);
+          });
+        } else {
+          delta.forEach(function(item) {
+              mapY.get('max').push(item);
+          });
         };
-        // now remap both these into maxSaints and difSaints
-        state.maxSaints = newmaxSaints;
-        state.difSaints = state.maxSaints.filter(function(i) {return state.selSaints.indexOf(i) < 0;});
+        mapY.get('max').sort(function(a, b){ return a -b;});
+        mapY.get('sel').sort(function(a, b){ return a -b;});
       };
     },
 
     delX (state, payload) {
-      // passing a obj is working only on a local variable, hence this part is done here
-      // var namStates = {'max': state.maxStates, 'sel': state.selStates, 'dif': state.difStates};
-      // var namSaints = {'max': state.maxSaints, 'sel': state.selSaints, 'dif': state.difSaints};
 
       var mapStates = new Map();
       mapStates.set('max', state.maxStates).set('sel', state.selStates).set('dif', state.difStates);
       var mapSaints = new Map();
       mapSaints.set('max', state.maxSaints).set('sel', state.selSaints).set('dif', state.difSaints);
-
-
-      // alert (namStates2.get('max'));
-
 
       // update this for any new table addition in selection
 
@@ -182,24 +178,17 @@ export const store = new Vuex.Store({
         // alert (namx.get('max'));
       } else if (payload[1] === 'Saints') {
         var mapX = mapSaints;
-        alert (mapX.get('max'));
+        // alert (mapX.get('max'));
         // update this for any new table addition in selection
       };
 
       payload[0].forEach(function(item) {
-        // alert (state.namStates['sel']);
-        // this is a superficial check and may not be required
 
-        // var index = namx['sel'].indexOf(item);
+        // this check is done to use the same functionality when deslecting all
+
         var index = mapX.get('sel').indexOf(item);
         if (index !== -1) {
-          // namx['sel'].splice(index, 1);
           mapX.get('sel').splice(index, 1);
-          // alert (namx['sel']);
-          // alert (namStates2.get('sel'));
-
-          // namx['dif'].push(item);
-          mapX.get('dif').push(item);
         };
       });
 // get the impact of this deletion for the level below
@@ -207,9 +196,11 @@ export const store = new Vuex.Store({
 
 // refactor this for all levels of propogation, presently this propgates to Saints only from States
 // update this for any new table addition in selection
+
+
+
       if (payload[1] === 'States') {
         var mapY = mapSaints;
-        // var mapY = mapSaints;
         var newmax = Array.from
                 (new Set((
                 state.templesMaster.filter(itm => state.selStates.indexOf(itm.StateId) >-1)
@@ -218,16 +209,26 @@ export const store = new Vuex.Store({
                 ));
 
   // this will be the revised maxSaints
-  // use filter condition and create a newselSaints and remove the selSaints entries that are not in newsmaxSaints
-        var newsel = state.selSaints.filter(i => newmax.indexOf(i) !== -1);
-  // now remap both these into maxSaints and selSaints
-        state.maxSaints = newmax;
-        state.selSaints = newsel;
-        state.difSaints = state.maxSaints.filter(function(i) {return state.selSaints.indexOf(i) < 0;});
-        //   alert (mapY.get('max'));
-        // mapY.get('max') = newmax;
-        // mapY.get('sel') = newsel;
-        // mapY.get('dif') = mapY.get('max').filter(function(i) {return mapY.get('sel').indexOf(i) < 0;});
+  // find the delta difference  oldmax - newmax
+        var delta = state.maxSaints.filter(i => newmax.indexOf(i) === -1);
+
+        delta.forEach(function(item) {
+// remove from maxSaints
+          var index = mapY.get('max').indexOf(item);
+          mapY.get('max').splice(index, 1);
+// remove from selSaints if found in that
+
+          var index = mapY.get('sel').indexOf(item);
+          if (index !== -1) {
+            mapY.get('sel').splice(index, 1);
+          };
+
+        });
+
+        // var newsel = state.selSaints.filter(i => newmax.indexOf(i) !== -1);
+        // state.maxSaints = newmax;
+        // state.selSaints = newsel;
+        // state.difSaints = state.maxSaints.filter(function(i) {return state.selSaints.indexOf(i) < 0;});
 
 
       };

@@ -16,9 +16,9 @@
         <div id="collapseOneSel" class="collapse show" role="tabpanel" aria-labelledby="headingOneSel" data-parent="#accordion">
           <div class="card-body form-group">
             <!-- if all states are selected, show the box as ticked and on click activate delAllStates with maxStates -->
-            <input v-if="difStates.length===0" :checked="difStates.length===0" type="checkbox" id="idOne" @click="delX([maxStates, 'States'])">
+            <input v-if="maxStates.length===selStates.length" :checked="maxStates.length===selStates.length" type="checkbox" id="idOne" @click="delX([maxStates, 'States'])">
             <!-- if NOT all states are selected , show the box as unticked and on click activate selAllStates with difStates -->
-            <input v-else type="checkbox" id="idOne" @click="addX([difStates, 'States'])">
+            <input v-else type="checkbox" id="idOne" @click="addX([maxStates, 'States'])">
               <label for="idOne">Select All</label>
             <div class="dropdown-divider"></div>
             <li class="list-group-item" v-for="item in maxStates">
@@ -46,8 +46,8 @@
         </div>
         <div id="collapseTwoSel" class="collapse" role="tabpanel" aria-labelledby="headingTwoSel" data-parent="#accordion">
           <div class="card-body form-group">
-            <input v-if="difSaints.length===0" :checked="difSaints.length===0" type="checkbox" id="idTwo" @click="delX([maxSaints, 'Saints'])">
-            <input v-else type="checkbox" id="idTwo" @click="addX([difSaints, 'Saints'])">
+            <input v-if="maxSaints.length===selSaints.length" :checked="maxSaints.length===selSaints.length" type="checkbox" id="idTwo" @click="delX([maxSaints, 'Saints'])">
+            <input v-else type="checkbox" id="idTwo" @click="addX([maxSaints, 'Saints'])">
               <label for="idTwo">Select All</label>
             <div class="dropdown-divider"></div>
             <li class="list-group-item" v-for="item in maxSaints">
