@@ -14,13 +14,9 @@ export const store = new Vuex.Store({
 // Only this is defined here with values, as this is the startingpoint.
     maxStates: [],
     selStates: [],
-    difStates: [],
 
     maxSaints: [],
     selSaints: [],
-    difSaints: [],
-
-
 
     templesMaster: [{"Id":1,"StateId":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","SaintId":[1,2],"SongId":[1, 11, 101, 1001]},
 {"Id":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","SaintId":[2,3],"SongId":[2, 12, 102, 1002]},
@@ -64,18 +60,12 @@ export const store = new Vuex.Store({
     selStatesGet: state => {
       return state.selStates;
     },
-    difStatesGet: state => {
-      return state.difStates;
-    },
 
     maxSaintsGet: state => {
       return state.maxSaints;
     },
     selSaintsGet: state => {
       return state.selSaints;
-    },
-    difSaintsGet: state => {
-      return state.difSaints;
     },
 
 
@@ -96,9 +86,9 @@ export const store = new Vuex.Store({
       state.selSaints = Array.from(state.maxSaints);
 
       // state.mapStates = new Map();
-      // state.mapStates.set('max', state.maxStates).set('sel', state.selStates).set('dif', state.difStates);
+      // state.mapStates.set('max', state.maxStates).set('sel', state.selStates);
       // state.mapSaints = new Map();
-      // state.mapSaints.set('max', state.maxSaints).set('sel', state.selSaints).set('dif', state.difSaints);
+      // state.mapSaints.set('max', state.maxSaints).set('sel', state.selSaints);
 
 
     },
@@ -112,9 +102,9 @@ export const store = new Vuex.Store({
       // alert ("Hello2");
       // update this for any new table addition in selection
       var mapStates = new Map();
-      mapStates.set('max', state.maxStates).set('sel', state.selStates).set('dif', state.difStates);
+      mapStates.set('max', state.maxStates).set('sel', state.selStates);
       var mapSaints = new Map();
-      mapSaints.set('max', state.maxSaints).set('sel', state.selSaints).set('dif', state.difSaints);
+      mapSaints.set('max', state.maxSaints).set('sel', state.selSaints);
 
       if (payload[1] === 'States') {
         var mapX = mapStates;
@@ -166,9 +156,9 @@ export const store = new Vuex.Store({
     delX (state, payload) {
 
       var mapStates = new Map();
-      mapStates.set('max', state.maxStates).set('sel', state.selStates).set('dif', state.difStates);
+      mapStates.set('max', state.maxStates).set('sel', state.selStates);
       var mapSaints = new Map();
-      mapSaints.set('max', state.maxSaints).set('sel', state.selSaints).set('dif', state.difSaints);
+      mapSaints.set('max', state.maxSaints).set('sel', state.selSaints);
 
       // update this for any new table addition in selection
 
@@ -178,14 +168,12 @@ export const store = new Vuex.Store({
         // alert (namx.get('max'));
       } else if (payload[1] === 'Saints') {
         var mapX = mapSaints;
-        // alert (mapX.get('max'));
         // update this for any new table addition in selection
       };
 
       payload[0].forEach(function(item) {
 
         // this check is done to use the same functionality when deslecting all
-
         var index = mapX.get('sel').indexOf(item);
         if (index !== -1) {
           mapX.get('sel').splice(index, 1);
@@ -193,12 +181,8 @@ export const store = new Vuex.Store({
       });
 // get the impact of this deletion for the level below
 // get the newmaxSaints list filter > templesMaster > with stateId in selStates > map on SaintId > reduce them to the Ids > unique by Set > array
-
 // refactor this for all levels of propogation, presently this propgates to Saints only from States
 // update this for any new table addition in selection
-
-
-
       if (payload[1] === 'States') {
         var mapY = mapSaints;
         var newmax = Array.from
@@ -207,34 +191,21 @@ export const store = new Vuex.Store({
                 .map(a => a.SaintId))
                 .reduce((acc, a) => acc.concat(a),[])
                 ));
-
   // this will be the revised maxSaints
   // find the delta difference  oldmax - newmax
         var delta = state.maxSaints.filter(i => newmax.indexOf(i) === -1);
-
         delta.forEach(function(item) {
 // remove from maxSaints
           var index = mapY.get('max').indexOf(item);
           mapY.get('max').splice(index, 1);
 // remove from selSaints if found in that
-
           var index = mapY.get('sel').indexOf(item);
           if (index !== -1) {
             mapY.get('sel').splice(index, 1);
           };
-
         });
-
-        // var newsel = state.selSaints.filter(i => newmax.indexOf(i) !== -1);
-        // state.maxSaints = newmax;
-        // state.selSaints = newsel;
-        // state.difSaints = state.maxSaints.filter(function(i) {return state.selSaints.indexOf(i) < 0;});
-
-
       };
-
     },
-
   },
 
   actions: {

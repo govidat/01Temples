@@ -17,7 +17,7 @@
           <div class="card-body form-group">
             <!-- if all states are selected, show the box as ticked and on click activate delAllStates with maxStates -->
             <input v-if="maxStates.length===selStates.length" :checked="maxStates.length===selStates.length" type="checkbox" id="idOne" @click="delX([maxStates, 'States'])">
-            <!-- if NOT all states are selected , show the box as unticked and on click activate selAllStates with difStates -->
+            <!-- if NOT all states are selected , show the box as unticked and on click activate selAllStates -->
             <input v-else type="checkbox" id="idOne" @click="addX([maxStates, 'States'])">
               <label for="idOne">Select All</label>
             <div class="dropdown-divider"></div>
@@ -30,7 +30,6 @@
             <div>
                 <p>Max States: {{ maxStates }}</p>
                 <p>Sel States: {{ selStates }}</p>
-                <p>Dif States: {{ difStates }}</p>
             </div>
 
           </div>
@@ -59,7 +58,6 @@
             <div>
                 <p>Max Saints: {{ maxSaints }}</p>
                 <p>Sel Saints: {{ selSaints }}</p>
-                <p>Dif Saints: {{ difSaints }}</p>
             </div>
           </div>
         </div>
@@ -86,19 +84,9 @@ export default {
 
     maxStates: 'maxStatesGet',
     selStates: 'selStatesGet',
-    difStates: 'difStatesGet',
 
     maxSaints: 'maxSaintsGet',
     selSaints: 'selSaintsGet',
-    difSaints: 'difSaintsGet',
-
-
-//    selectedSaintsStart: 'selectedSaintsStartGet',
-//    selectedSaints: 'selectedSaintsGet',
-
-//    selAllSaintsindicator: 'selAllSaintsGet',
-
-    // picked: 'filterselected',
     }),
 
   },
@@ -113,9 +101,6 @@ export default {
 
       'addX',
       'delX',
-
-//      'selAllSaints',
-//      'updateSelSaints',
     ]),
 
   }
