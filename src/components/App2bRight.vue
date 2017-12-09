@@ -9,10 +9,10 @@
           <a class="nav-link disabled" href="#">Maps</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" @click.prevent="updatenav2Sel(2)">Temples</a>
+          <a class="nav-link" href="#" @click.prevent="updatenav2Sel(2)">Temples<span class="badge badge-primary badge-pill">{{ selTemples.length }}</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" @click.prevent="updatenav2Sel(3)">Saints</a>
+          <a class="nav-link" href="#" @click.prevent="updatenav2Sel(3)">Saints<span class="badge badge-primary badge-pill">{{ selSaints.length }}</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" @click.prevent="updatenav2Sel(4)">Songs</a>
@@ -79,6 +79,8 @@ export default {
   computed: {
     ...mapGetters({
     nav2Sel: 'nav2Sel',
+    selTemples: 'selTemplesGet',
+    selSaints: 'selSaintsGet',
     // picked: 'filterselected',
     }),
   },

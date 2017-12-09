@@ -1,7 +1,7 @@
 <template>
   <div class=" card list-group dropdown">
-    <div class="card-header">Selected Temples
-      <span class="badge badge-primary badge-pill">{{statesMaster.length}}</span>
+    <div class="card-header">Filter
+      <!-- <span class="badge badge-primary badge-pill">{{statesMaster.length}}</span> -->
     </div>
     <div id="accordion" role="tablist">
       <div class="card">
