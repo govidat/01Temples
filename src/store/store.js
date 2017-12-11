@@ -59,6 +59,13 @@ export const store = new Vuex.Store({
 {"Id":5,"StateId":3,"Name":" Thiru Anbil - Sri Vadivazhagiya Nambi Perumal Temple","SaintId":[5,6],"SongId":[5, 15, 105, 1005]},
 {"Id":6,"StateId":3,"Name":" Thirupper Nagar - Sri Appakkudathaan Perumal Temple","SaintId":[7,8,9,10,11,12],"SongId":[6, 16, 106, 1006]}],
 
+templesDetails: [{"Id":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","Detail1": "Some details1","Detail2": "Some details2" },
+{"Id":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","Detail1": "Some details1","Detail2": "Some details2"},
+{"Id":3,"StateId":2,"Name":" Thirukkarambanoor - Sri Purushothaman Perumal Temple","Detail1": "Some details1","Detail2": "Some details2" },
+{"Id":4,"StateId":2,"Name":" Thiruvellarai - Sri Pundarikashan Perumal Temple","Detail1": "Some details1","Detail2": "Some details2" },
+{"Id":5,"StateId":3,"Name":" Thiru Anbil - Sri Vadivazhagiya Nambi Perumal Temple","Detail1": "Some details1","Detail2": "Some details2" },
+{"Id":6,"StateId":3,"Name":" Thirupper Nagar - Sri Appakkudathaan Perumal Temple","Detail1": "Some details1","Detail2": "Some details2"} ],
+
     saintsMaster: [{"Id":1,"Name":"Poigai Alwar"},
 {"Id":2,"Name":"Bhoodath Alwar"},
 {"Id":3,"Name":"Pei Alwar"},
@@ -72,6 +79,18 @@ export const store = new Vuex.Store({
 {"Id":11,"Name":"Madhurakavi Alwar"},
 {"Id":12,"Name":"Kulasekara Alwar"}],
 
+saintsDetails: [{"Id":1,"Name":"Poigai Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
+{"Id":2,"Name":"Bhoodath Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
+{"Id":3,"Name":"Pei Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
+{"Id":4,"Name":"Thirumazhisai Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
+{"Id":5,"Name":"Thirumangai Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
+{"Id":6,"Name":"Thondaradippodi Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
+{"Id":7,"Name":"Thiruppaan Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
+{"Id":8,"Name":"Periyalwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
+{"Id":9,"Name":"Sri Andal", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
+{"Id":10,"Name":"Nammalwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
+{"Id":11,"Name":"Madhurakavi Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
+{"Id":12,"Name":"Kulasekara Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"}],
 
   },
 
@@ -102,6 +121,10 @@ export const store = new Vuex.Store({
     selSaintsGet: state => {
       return state.selSaints;
     },
+    saintsDetailsGet: state => {
+      return state.saintsDetails;
+    },
+
 
     templesMasterGet: state => {
       return state.templesMaster;
@@ -111,6 +134,9 @@ export const store = new Vuex.Store({
     },
     selTemplesGet: state => {
       return state.selTemples;
+    },
+    templesDetailsGet: state => {
+      return state.templesDetails;
     },
 
 

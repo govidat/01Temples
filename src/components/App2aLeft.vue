@@ -5,15 +5,15 @@
     </div>
     <div id="accordion" role="tablist">
       <div class="card">
-        <div class="card-header" role="tab" id="headingOneSel">
+        <div class="card-header" role="tab" id="headingStates">
           <h5 class="mb-0">
-            <a data-toggle="collapse" href="#collapseOneSel" aria-expanded="true" aria-controls="collapseOneSel">
+            <a data-toggle="collapse" href="#itemsStates" aria-expanded="true" aria-controls="itemsStates">
               Select States
             </a>
           </h5>
         </div>
 
-        <div id="collapseOneSel" class="collapse show" role="tabpanel" aria-labelledby="headingOneSel" data-parent="#accordion">
+        <div id="itemsStates" class="collapse show" role="tabpanel" aria-labelledby="headingStates" data-parent="#accordion">
           <div class="card-body form-group">
             <!-- if all states are selected, show the box as ticked and on click activate delAllStates with maxStates -->
             <input v-if="maxStates.length===selStates.length" :checked="maxStates.length===selStates.length" type="checkbox" id="idOne" @click="delX([maxStates, 'States'])">
@@ -36,14 +36,14 @@
         </div>
       </div>
       <div class="card">
-        <div class="card-header" role="tab" id="headingTwoSel">
+        <div class="card-header" role="tab" id="headingSaints">
           <h5 class="mb-0">
-            <a data-toggle="collapse" href="#collapseTwoSel" aria-expanded="true" aria-controls="collapseTwoSel">
+            <a data-toggle="collapse" href="#itemsSaints" aria-expanded="true" aria-controls="itemsSaints">
               Select Saints
             </a>
           </h5>
         </div>
-        <div id="collapseTwoSel" class="collapse" role="tabpanel" aria-labelledby="headingTwoSel" data-parent="#accordion">
+        <div id="itemsSaints" class="collapse" role="tabpanel" aria-labelledby="headingSaints" data-parent="#accordion">
           <div class="card-body form-group">
             <input v-if="maxSaints.length===selSaints.length" :checked="maxSaints.length===selSaints.length" type="checkbox" id="idTwo" @click="delX([maxSaints, 'Saints'])">
             <input v-else type="checkbox" id="idTwo" @click="addX([maxSaints, 'Saints'])">
@@ -63,14 +63,14 @@
         </div>
       </div>
       <div class="card">
-        <div class="card-header" role="tab" id="headingThreeSel">
+        <div class="card-header" role="tab" id="headingTemples">
           <h5 class="mb-0">
-            <a data-toggle="collapse" href="#collapseThreeSel" aria-expanded="true" aria-controls="collapseThreeSel">
+            <a data-toggle="collapse" href="#itemsTemples" aria-expanded="true" aria-controls="itemsTemples">
               Select Temples
             </a>
           </h5>
         </div>
-        <div id="collapseThreeSel" class="collapse" role="tabpanel" aria-labelledby="headingThreeSel" data-parent="#accordion">
+        <div id="itemsTemples" class="collapse" role="tabpanel" aria-labelledby="headingTemples" data-parent="#accordion">
           <div class="card-body form-group">
             <input v-if="maxTemples.length===selTemples.length" :checked="maxTemples.length===selTemples.length" type="checkbox" id="idThree" @click="delX([maxTemples, 'Temples'])">
             <input v-else type="checkbox" id="idThree" @click="addX([maxTemples, 'Temples'])">

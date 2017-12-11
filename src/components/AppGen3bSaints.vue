@@ -1,54 +1,41 @@
 <template>
-  <div id="accordion" role="tablist">
-    <div class="card">
-      <div class="card-header" role="tab" id="headingOne">
+  <div id="accordionSaints" role="tablist">
+    <div class="card" v-for="(item, index) in selSaints">
+      <div class="card-header" role="tab" :id="'headingSaints'+String(item)">
         <h5 class="mb-0">
-          <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Saint details #1
+          <a data-toggle="collapse" :href="'#'+'itemSaint'+String(item)" aria-expanded="true" :aria-controls="'itemSaint'+String(item)">
+          <!-- <a data-toggle="collapse" :href=String(#)+String(temple+2000) aria-expanded="true" :aria-controls=temple+2000> -->
+            <label :for="'headingSaints'+String(item)"> Saint : {{ saintsDetails.find(itm => itm.Id === item).Name }}</label>
           </a>
         </h5>
       </div>
 
-      <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+      <div :id="'itemSaint'+String(item)" class="collapse" :class="{ show: index===0}" role="tabpanel" :aria-labelledby="'headingSaints'+String(item)" data-parent="#accordionSaints">
+      <!-- <div :id=temple+2000 class="collapse show" role="tabpanel" :aria-labelledby=temple+2000 data-parent="#accordion"> -->
         <div class="card-body">
-          Collapse 1 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          Saint details {{ saintsDetails.find(itm => itm.Id === item).Detail1 }}
+          <br />
+          Body {{ saintsDetails.find(itm => itm.Id === item).Detail2 }}
         </div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-header" role="tab" id="headingTwo">
-        <h5 class="mb-0">
-          <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Saint details #2
-          </a>
-        </h5>
-      </div>
-      <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-        <div class="card-body">
-          Collapse 2 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header" role="tab" id="headingThree">
-        <h5 class="mb-0">
-          <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Saint details #3
-          </a>
-        </h5>
-      </div>
-      <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-        <div class="card-body">
-          Collapse 3 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-        </div>
-      </div>
-    </div>
+
   </div>
 </template>
 
 <script>
-  export default {
-    components: {
-    }
-  }
+import { mapGetters } from 'vuex';
+
+export default {
+  computed: {
+    ...mapGetters({
+    saintsMaster: 'saintsMasterGet',
+    selSaints: 'selSaintsGet',
+    saintsDetails: 'saintsDetailsGet',
+    }),
+  },
+
+}
+
+
 </script>
