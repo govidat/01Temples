@@ -4,7 +4,10 @@
       <!-- <span class="badge badge-primary badge-pill">{{statesMaster.length}}</span> -->
     </div>
     <div id="accordion" role="tablist">
-      <div class="card">
+      <z30LeftCard name="States"></z30LeftCard>
+      <z30LeftCard name="Saints"></z30LeftCard>
+      <z30LeftCard name="Temples"></z30LeftCard>
+      <!-- <div class="card">
         <div class="card-header" role="tab" id="headingStates">
           <h5 class="mb-0">
             <a data-toggle="collapse" href="#itemsStates" aria-expanded="true" aria-controls="itemsStates">
@@ -12,12 +15,9 @@
             </a>
           </h5>
         </div>
-
         <div id="itemsStates" class="collapse show" role="tabpanel" aria-labelledby="headingStates" data-parent="#accordion">
           <div class="card-body form-group">
-            <!-- if all states are selected, show the box as ticked and on click activate delAllStates with maxStates -->
             <input v-if="maxStates.length===selStates.length" :checked="maxStates.length===selStates.length" type="checkbox" id="idOne" @click="delX([maxStates, 'States'])">
-            <!-- if NOT all states are selected , show the box as unticked and on click activate selAllStates -->
             <input v-else type="checkbox" id="idOne" @click="addX([maxStates, 'States'])">
               <label for="idOne">Select All</label>
             <div class="dropdown-divider"></div>
@@ -31,11 +31,10 @@
                 <p>Max States: {{ maxStates }}</p>
                 <p>Sel States: {{ selStates }}</p>
             </div>
-
           </div>
         </div>
-      </div>
-      <div class="card">
+      </div> -->
+      <!-- <div class="card">
         <div class="card-header" role="tab" id="headingSaints">
           <h5 class="mb-0">
             <a data-toggle="collapse" href="#itemsSaints" aria-expanded="true" aria-controls="itemsSaints">
@@ -88,7 +87,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
 
@@ -101,44 +100,43 @@
 import { mapGetters } from 'vuex';
 import { mapActions } from 'vuex';
 
+import z30LeftCard from './App2aLeftCard.vue';
+
+
 
 export default {
 
-  computed: {
-    ...mapGetters({
-    statesMaster: 'statesMasterGet',
-    templesMaster: 'templesMasterGet',
-    saintsMaster: 'saintsMasterGet',
-
-    maxStates: 'maxStatesGet',
-    selStates: 'selStatesGet',
-
-    maxSaints: 'maxSaintsGet',
-    selSaints: 'selSaintsGet',
-
-    maxTemples: 'maxTemplesGet',
-    selTemples: 'selTemplesGet',
-
-    }),
-
-  },
+  // computed: {
+  //   ...mapGetters({
+  //   statesMaster: 'statesMasterGet',
+  //   templesMaster: 'templesMasterGet',
+  //   saintsMaster: 'saintsMasterGet',
+  //
+  //   maxStates: 'maxStatesGet',
+  //   selStates: 'selStatesGet',
+  //
+  //   maxSaints: 'maxSaintsGet',
+  //   selSaints: 'selSaintsGet',
+  //
+  //   maxTemples: 'maxTemplesGet',
+  //   selTemples: 'selTemplesGet',
+  //
+  //   }),
+  //
+  // },
 
 
   components: {
-    // z40States,
+    z30LeftCard,
   },
 
-  methods: {
-    ...mapActions([
-
-      'addX',
-      'delX',
-
-//      'selAllSaints',
-//      'updateSelSaints',
-    ]),
-
-  }
+  // methods: {
+  //   ...mapActions([
+  //     'addX',
+  //     'delX',
+  //   ]),
+// 
+  // }
 
 }
 
