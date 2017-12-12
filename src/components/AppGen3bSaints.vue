@@ -1,11 +1,14 @@
 <template>
   <div id="accordionSaints" role="tablist">
     <div class="card" v-for="(item, index) in selSaints">
+      <!-- v-for="(item, index) - This index is used to show the first item as show - by default -->
       <div class="card-header" role="tab" :id="'headingSaints'+String(item)">
+        <!-- :id="'headingTemples'+String(item)" - This is used to make the id unique across all components -->
         <h5 class="mb-0">
           <a data-toggle="collapse" :href="'#'+'itemSaint'+String(item)" aria-expanded="true" :aria-controls="'itemSaint'+String(item)">
-          <!-- <a data-toggle="collapse" :href=String(#)+String(temple+2000) aria-expanded="true" :aria-controls=temple+2000> -->
-            <label :for="'headingSaints'+String(item)"> Saint : {{ saintsDetails.find(itm => itm.Id === item).Name }}</label>
+            <label :for="'headingSaints'+String(item)">
+              Saint : {{ saintsDetails.find(itm => itm.Id === item).Name }}
+            </label>
           </a>
         </h5>
       </div>
