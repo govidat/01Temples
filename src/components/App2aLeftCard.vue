@@ -7,17 +7,16 @@
             </a>
           </h5>
         </div>
-
         <div :id="'items'+name" class="collapse" :class="{ show: name==='States'}" role="tabpanel" aria-labelledby="'heading'+name" data-parent="#accordion">
           <div class="card-body form-group">
-
+            <!-- If the previois selecton option is deselect all, then the subsequent selection screen should displya a message -->
             <div v-if="mapName.get('max').length===0">
               <label>Select atleast one from previous </label>
             </div>
             <div v-else>
-              <!-- if all states are selected, show the box as ticked and on click activate delAllStates with maxStates -->
+              <!-- if all options are selected, show the box as ticked and on click activate delAll with maxXXX -->
               <input v-if="mapName.get('max').length===mapName.get('sel').length" :checked="mapName.get('max').length===mapName.get('sel').length" type="checkbox" :id="'idOne'+name" @click="delX([mapName.get('max'), name])">
-              <!-- if NOT all states are selected , show the box as unticked and on click activate selAllStates -->
+              <!-- if NOT all options are selected , show the box as unticked and on click activate selAllXXX -->
               <input v-else type="checkbox" :id="'idOne'+name" @click="addX([mapName.get('max'), name])">
                 <label :for="'idOne'+name">Select All</label>
               <div class="dropdown-divider"></div>
@@ -26,14 +25,12 @@
                   <input v-else type="checkbox" :id="name+String(item)" @click="addX([[item],name])">
                   <label :for="name+String(item)"> {{ mapName.get('master').find(itm => itm.Id === item).Name }}</label>
               </li>
-
             </div>
             <br>
             <div>
                 <p>Max : {{ name }} {{ mapName.get('max') }}</p>
                 <p>Sel : {{ name }} {{ mapName.get('sel') }}</p>
             </div>
-
           </div>
         </div>
       </div>
@@ -44,10 +41,9 @@
   import { mapGetters } from 'vuex';
   import { mapActions } from 'vuex';
 
-  // using the Map set and get function to refer subsequently
+  // using the Map set and get function to refer subsequently - DRY and call all Selection Options in a loop
  function derivemapName() {
    var mapName = new Map();
-   // alert("Hello1")
    // update this for any addition
    if (this.name === 'States') {
    return mapName.set('max', this.maxStates).set('sel', this.selStates).set('master', this.statesMaster);
@@ -56,7 +52,6 @@
    } else if (this.name === 'Temples') {
    return mapName.set('max', this.maxTemples).set('sel', this.selTemples).set('master', this.templesMaster);
    };
-
  }
 
 export default {
