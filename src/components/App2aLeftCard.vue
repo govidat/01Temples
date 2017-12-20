@@ -7,7 +7,7 @@
             </a>
           </h5>
         </div>
-        <div :id="'items'+name" class="collapse" :class="{ show: name==='States'}" role="tabpanel" aria-labelledby="'heading'+name" data-parent="#accordion">
+        <div :id="'items'+name" class="collapse" :class="{ show: name==='States'}" role="tabpanel" aria-labelledby="'heading'+name" data-parent="#FilterItems">
           <div class="card-body form-group">
             <!-- If the previois selecton option is deselect all, then the subsequent selection screen should displya a message -->
             <div v-if="mapName.get('max').length===0">

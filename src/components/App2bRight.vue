@@ -9,13 +9,13 @@
           <a class="nav-link disabled" href="#">Maps</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" @click.prevent="updatenav2Sel(2)">Temples<span class="badge badge-primary badge-pill">{{ selTemples.length }}</span></a>
+          <a class="nav-link" href="#" @click.prevent="updatenav2Sel(2)">Saints<span class="badge badge-primary badge-pill">{{ selSaints.length }}</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" @click.prevent="updatenav2Sel(3)">Saints<span class="badge badge-primary badge-pill">{{ selSaints.length }}</span></a>
+          <a class="nav-link" href="#" @click.prevent="updatenav2Sel(3)">Temples<span class="badge badge-primary badge-pill">{{ selTemples.length }}</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" @click.prevent="updatenav2Sel(4)">Songs</a>
+          <a class="nav-link" href="#" @click.prevent="updatenav2Sel(4)">Songs<span class="badge badge-primary badge-pill">{{ selSongs.length }}</span></a>
         </li>
         <li class="nav-item ml-auto">
           <a class="nav-link" href="#" @click.prevent="updatenav2Sel(5)">Contacts</a>
@@ -37,12 +37,12 @@
       </ul>
 
     </div>
-    <div class="card-body">
+    <div class="card-body" v-bind:class="{'col-lg-12 col-md-12 col-sm-12 col-xs-12': filterCollapsed}">
       <div v-if="nav2Sel == 2">
-        <z30Tem></z30Tem>
+        <z30Sai></z30Sai>
       </div>
       <div v-else-if="nav2Sel == 3">
-        <z30Sai></z30Sai>
+        <z30Tem></z30Tem>
       </div>
       <div v-else-if="nav2Sel == 4">
         <z30Son></z30Son>
@@ -81,6 +81,10 @@ export default {
     nav2Sel: 'nav2Sel',
     selTemples: 'selTemplesGet',
     selSaints: 'selSaintsGet',
+    selSongs: 'selSongsGet',
+
+    // get the value of filterCollapsed
+    filterCollapsed: 'filterCollapsed',
     // picked: 'filterselected',
     }),
   },
