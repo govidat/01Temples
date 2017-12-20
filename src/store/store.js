@@ -117,7 +117,7 @@ songsMaster: [{"Id":1,"Name":"Song1"},
 {"Id":102,"Name":"Song102"},
 {"Id":1003,"Name":"Song1003"}],
 
-songsDetails: [{"Id":1,"Name":"Song1","Detail1": "Some details1","Detail2": "Some details 1" },
+songsDetails: [{"Id":1,"Name":"Song1","Detail1": "\u0bae\u0bc0\u0ba9\u0bcd\u0ba8\u0bcb\u0b95\u0bcd\u0b95\u0bc1\u0bae\u0bcd \u0ba8\u0bc0\u0bb3\u0bcd\u0bb5\u0baf\u0bb2\u0bcd\u0b9a\u0bc2\u0bb4\u0bcd \u0bb5\u0bbf\u0bb1\u0bcd\u0bb1\u0bc1\u0bb5\u0b95\u0bcd\u0b95\u0bcb\u0b9f\u0bcd \u0b9f\u0bae\u0bcd\u0bae\u0bbe\u0b8e\u0ba9\u0bcd","Detail2": "Some details 1" },
 {"Id":2,"Name":"Song2","Detail1": "Some details2","Detail2": "Some details 2"},
 {"Id":3,"Name":"Song3","Detail1": "Some details3","Detail2": "Some details 3"},
 {"Id":4,"Name":"Song4","Detail1": "Some details4","Detail2": "Some details 4"},

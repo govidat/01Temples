@@ -11,7 +11,7 @@
       </div>
       <div :id="'itemSong'+String(item)" class="collapse" :class="{ show: index===0}" role="tabpanel" :aria-labelledby="'headingSongs'+String(item)" data-parent="#accordionSongs">
         <div class="card-body">
-          Song Details {{ item }}
+          Song Details {{ songsDetails.find(itm => itm.Id === item).Detail1 }}
           <div class="card-header" role="tab" :id="'subheading1Songs'+String(item)">
             <h5 class="mb-0">
               <a class="collapsed" data-toggle="collapse" :href="'#'+'subitem1Song'+String(item)" aria-expanded="false" :aria-controls="'subitem1Song'+String(item)">
