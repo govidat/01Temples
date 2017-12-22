@@ -39,10 +39,8 @@ export default {
   computed: {
     ...mapGetters({
     nav2Sel: 'nav2Sel',
-
     // get the value of filterCollapsed
     filterCollapsed: 'filterCollapsed',
-    // picked: 'filterselected',
     }),
   },
 

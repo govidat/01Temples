@@ -2,9 +2,9 @@
       <div class="card">
         <div class="card-header" role="tab" :id="'heading'+name">
           <h5 class="mb-0">
-            <a data-toggle="collapse" :href="'#items'+name" aria-expanded="true" :aria-controls="'items'+name">
-              Select {{ name }}
-            </a>
+            <button class="btn btn-block btn-secondary" data-toggle="collapse" :href="'#items'+name" aria-expanded="true" :aria-controls="'items'+name">
+              <i class="fa fa-arrows-v fa-lg"></i> Select {{ name }}
+            </button>
           </h5>
         </div>
         <div :id="'items'+name" class="collapse" :class="{ show: name==='States'}" role="tabpanel" aria-labelledby="'heading'+name" data-parent="#FilterItems">
@@ -18,7 +18,7 @@
               <input v-if="mapName.get('max').length===mapName.get('sel').length" :checked="mapName.get('max').length===mapName.get('sel').length" type="checkbox" :id="'idOne'+name" @click="delX([mapName.get('max'), name])">
               <!-- if NOT all options are selected , show the box as unticked and on click activate selAllXXX -->
               <input v-else type="checkbox" :id="'idOne'+name" @click="addX([mapName.get('max'), name])">
-                <label :for="'idOne'+name">Select All</label>
+                <label :for="'idOne'+name">Select/ Deselect All</label>
               <div class="dropdown-divider"></div>
               <li class="list-group-item" v-for="item in mapName.get('max')">
                   <input v-if="mapName.get('sel').indexOf(item) !== -1" :checked="mapName.get('sel').indexOf(item) !== -1" type="checkbox" :id="name+String(item)" @click="delX([[item],name])">

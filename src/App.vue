@@ -4,34 +4,27 @@
       <div class="cover-container">
         <div class="container">
           <div class="row">
-<!-- Left1 -->
+<!-- Qtr 11 -->
+            <div class="card-header col-lg-3 col-md-3 col-sm-3 col-xs-3">
+              <z20Q11></z20Q11>
+            </div>
 
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <button class="btn btn-warning" @click.prevent="toggle3">Toggle Filter </button>
-              </div>
-<!-- Right2 -->
+<!-- Qtr 12 -->
               <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-              <!-- <div> -->
-                <z20Right2></z20Right2>
+                <z20Q12></z20Q12>
               </div>
           </div>
 
           <div class="row">
-<!-- Left3               -->
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="sidebar">
-              <!-- <div class="row"> -->
-                <z20Left></z20Left>
+<!-- Qtr 21               -->
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" :class="{'d-none': filterCollapsed}">
+                <z20Q21></z20Q21>
               </div>
-<!-- Right4               -->
-              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" id="mainbar">
-              <!-- <div> -->
-                <z20Right4></z20Right4>
+<!-- Qtr 22               -->
+              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" :class="{'col-lg-12 col-md-12 col-sm-12 col-xs-12': filterCollapsed}">
+                <z20Q22></z20Q22>
               </div>
           </div>
-
-
-
-
           </div>
               <footer class="mastfoot">
                 <div class="inner">
@@ -39,54 +32,30 @@
                 </div>
               </footer>
         </div>
-
-
       </div>
-    <!-- </div>
-  </div> -->
-
-
-
-  <!-- <div> -->
-    <!-- <z20Nav></z20Nav> -->
-    <!-- <div class="container">
-      <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-            <z20Left></z20Left>
-          </div>
-          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-            <z20Right></z20Right>
-          </div>
-      </div>
-    </div>
-
-    <footer class="mastfoot">
-      <div class="inner">
-        <p> by <a href="https://twitter.com/govidat">govidat@</a>.</p>
-      </div>
-    </footer>
-
-  </div> -->
 </template>
 
 <script>
-  import z20Left from './components/App2aLeft3.vue';
-  import z20Right2 from './components/App2bRight2.vue';
-  import z20Right4 from './components/App2bRight4.vue';
+  import z20Q11 from './components/App11.vue';
+  import z20Q12 from './components/App12.vue';
+  import z20Q21 from './components/App21.vue';
+  import z20Q22 from './components/App22.vue';
+
+  import { mapGetters } from 'vuex';
 
   export default {
-    components: {
-      z20Left,
-      z20Right2,
-      z20Right4
+
+    computed: {
+      ...mapGetters({
+      // get the value of filterCollapsed
+      filterCollapsed: 'filterCollapsed',
+      }),
     },
-    methods: {
-      toggle3: function() {
-        document.getElementById('sidebar').classList.toggle('d-none')
-        document.getElementById('mainbar').classList.toggle('col-lg-9')
-        document.getElementById('mainbar').classList.toggle('col-lg-12')
-      }
-    }
+    components: {
+      z20Q11,
+      z20Q12,
+      z20Q21,
+      z20Q22
+    },
   }
 </script>
-<!-- <style src="./css/Component2.css"></style> -->
