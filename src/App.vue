@@ -5,7 +5,7 @@
         <div class="container">
           <div class="row">
 <!-- Qtr 11 -->
-            <div class="card-header col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
               <z20Q11></z20Q11>
             </div>
 

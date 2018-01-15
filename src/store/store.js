@@ -1,135 +1,38 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import {deriveMaxSaints, deriveMaxTemples, deriveMaxSongs} from './helper.js';
+import {mstatesMaster} from './masters/States.js';
+import {mtemplesMaster, mtemplesDetails} from './masters/Temples.js';
+import {msaintsMaster, msaintsDetails} from './masters/Saints.js';
+import {msongsMaster, msongsDetails} from './masters/Songs.js';
 
 Vue.use(Vuex);
-
-// helper functions
-function deriveMaxSaints(state) {
-  return Array.from
-          (new Set((
-          state.templesMaster.filter(itm => state.selStates.indexOf(itm.StateId) >-1)
-          .map(a => a.SaintId))
-          .reduce((acc, a) => acc.concat(a),[])
-          ));
-}
-
-function deriveMaxTemples(state) {
-
-  return Array.from
-          (new Set((
-          state.templesMaster.filter(itm => (
-            (state.selStates.indexOf(itm.StateId) >-1)
-            &&
-            // atleast one element of saintarray in this temple itm is in selSaints
-            (itm.SaintId.filter(function(n) {
-                return state.selSaints.indexOf(n) > -1;
-              }).length > 0
-            )
-          ))
-          .map(a => a.Id))
-          .reduce((acc, a) => acc.concat(a),[])
-          ));
-}
-function deriveMaxSongs(state) {
-  return Array.from
-          (new Set((
-          state.templesMaster.filter(itm => state.selTemples.indexOf(itm.Id) >-1)
-          .map(a => a.SongId))
-          .reduce((acc, a) => acc.concat(a),[])
-          ));
-}
-// end helper functions
 
 export const store = new Vuex.Store({
   state: {
 
     nav2Sel: 0,
     // this flag is maintained to know the status of the filters in selection. If collapsed, to expend the right bottom
-    // initial state is false.
     filterCollapsed: false,
 
-    statesMaster: [{"Id":1,"Name":"Tamilnadu"},
-{"Id":2,"Name":"Kerala"},
-{"Id":3,"Name":"Andhra"}],
-
-// Only this is defined here with values, as this is the startingpoint.
     maxStates: [],
     selStates: [],
+    statesMaster: mstatesMaster,
 
     maxSaints: [],
     selSaints: [],
+    saintsMaster: msaintsMaster,
+    saintsDetails: msaintsDetails,
 
     maxTemples: [],
     selTemples: [],
+    templesMaster: mtemplesMaster,
+    templesDetails: mtemplesDetails,
 
     maxSongs: [],
     selSongs: [],
-
-    templesMaster: [{"Id":1,"StateId":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","SaintId":[1,2],"SongId":[1, 11]},
-{"Id":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","SaintId":[2,3],"SongId":[2, 12, 102]},
-{"Id":3,"StateId":2,"Name":" Thirukkarambanoor - Sri Purushothaman Perumal Temple","SaintId":[3,4],"SongId":[3, 13, 1003]},
-{"Id":4,"StateId":2,"Name":" Thiruvellarai - Sri Pundarikashan Perumal Temple","SaintId":[4,5],"SongId":[4]},
-{"Id":5,"StateId":3,"Name":" Thiru Anbil - Sri Vadivazhagiya Nambi Perumal Temple","SaintId":[5,6],"SongId":[5]},
-{"Id":6,"StateId":3,"Name":" Thirupper Nagar - Sri Appakkudathaan Perumal Temple","SaintId":[7,8,9,10,11,12],"SongId":[6]}],
-
-templesDetails: [{"Id":1,"Name":" Thiruvarangam - Sri Ranganathaswamy Temple","Detail1": "Some details1","Detail2": "Some details2" },
-{"Id":2,"StateId":1,"Name":" Thirukkozhi - Sri Azhagiya Manavala Perumal Temple","Detail1": "Some details1","Detail2": "Some details2"},
-{"Id":3,"StateId":2,"Name":" Thirukkarambanoor - Sri Purushothaman Perumal Temple","Detail1": "Some details1","Detail2": "Some details2" },
-{"Id":4,"StateId":2,"Name":" Thiruvellarai - Sri Pundarikashan Perumal Temple","Detail1": "Some details1","Detail2": "Some details2" },
-{"Id":5,"StateId":3,"Name":" Thiru Anbil - Sri Vadivazhagiya Nambi Perumal Temple","Detail1": "Some details1","Detail2": "Some details2" },
-{"Id":6,"StateId":3,"Name":" Thirupper Nagar - Sri Appakkudathaan Perumal Temple","Detail1": "Some details1","Detail2": "Some details2"} ],
-
-    saintsMaster: [{"Id":1,"Name":"Poigai Alwar"},
-{"Id":2,"Name":"Bhoodath Alwar"},
-{"Id":3,"Name":"Pei Alwar"},
-{"Id":4,"Name":"Thirumazhisai Alwar"},
-{"Id":5,"Name":"Thirumangai Alwar"},
-{"Id":6,"Name":"Thondaradippodi Alwar"},
-{"Id":7,"Name":"Thiruppaan Alwar"},
-{"Id":8,"Name":"Periyalwar"},
-{"Id":9,"Name":"Sri Andal"},
-{"Id":10,"Name":"Nammalwar"},
-{"Id":11,"Name":"Madhurakavi Alwar"},
-{"Id":12,"Name":"Kulasekara Alwar"}],
-
-saintsDetails: [{"Id":1,"Name":"Poigai Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
-{"Id":2,"Name":"Bhoodath Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
-{"Id":3,"Name":"Pei Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
-{"Id":4,"Name":"Thirumazhisai Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
-{"Id":5,"Name":"Thirumangai Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
-{"Id":6,"Name":"Thondaradippodi Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
-{"Id":7,"Name":"Thiruppaan Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
-{"Id":8,"Name":"Periyalwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
-{"Id":9,"Name":"Sri Andal", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
-{"Id":10,"Name":"Nammalwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
-{"Id":11,"Name":"Madhurakavi Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
-{"Id":12,"Name":"Kulasekara Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"}],
-
-songsMaster: [{"Id":1,"Name":"Song1"},
-{"Id":2,"Name":"Song2"},
-{"Id":3,"Name":"Song3"},
-{"Id":4,"Name":"Song4"},
-{"Id":5,"Name":"Song5"},
-{"Id":6,"Name":"Song6"},
-{"Id":11,"Name":"Song11"},
-{"Id":12,"Name":"Song12"},
-{"Id":13,"Name":"Song13"},
-{"Id":102,"Name":"Song102"},
-{"Id":1003,"Name":"Song1003"}],
-
-songsDetails: [{"Id":1,"Name":"Song1","Detail1": ["\u0bae\u0bc0\u0ba9\u0bcd\u0ba8\u0bcb\u0b95\u0bcd\u0b95\u0bc1\u0bae\u0bcd \u0ba8\u0bc0\u0bb3\u0bcd\u0bb5\u0baf\u0bb2\u0bcd\u0b9a\u0bc2\u0bb4\u0bcd \u0bb5\u0bbf\u0bb1\u0bcd\u0bb1\u0bc1\u0bb5\u0b95\u0bcd\u0b95\u0bcb\u0b9f\u0bcd \u0b9f\u0bae\u0bcd\u0bae\u0bbe\u0b8e\u0ba9\u0bcd",
- "line2 \u0bae\u0bc0\u0ba9\u0bcd\u0ba8\u0bcb\u0b95\u0bcd\u0b95\u0bc1\u0bae\u0bcd \u0ba8\u0bc0\u0bb3\u0bcd\u0bb5\u0baf\u0bb2\u0bcd\u0b9a\u0bc2\u0bb4\u0bcd \u0bb5\u0bbf\u0bb1\u0bcd\u0bb1\u0bc1\u0bb5\u0b95\u0bcd\u0b95\u0bcb\u0b9f\u0bcd \u0b9f\u0bae\u0bcd\u0bae\u0bbe\u0b8e\u0ba9\u0bcd" ],
- "Detail2": "Some details 1" },
-{"Id":2,"Name":"Song2","Detail1": ["Some details2a","Some details2b"],"Detail2": "Some details 2"},
-{"Id":3,"Name":"Song3","Detail1": ["Some details3"],"Detail2": "Some details 3"},
-{"Id":4,"Name":"Song4","Detail1": ["Some details4"],"Detail2": "Some details 4"},
-{"Id":5,"Name":"Song5","Detail1": ["Some details5"],"Detail2": "Some details 5"},
-{"Id":6,"Name":"Song6","Detail1": ["Some details6"],"Detail2": "Some details 6"},
-{"Id":11,"Name":"Song11","Detail1": ["Some details11"],"Detail2": "Some details 11"},
-{"Id":12,"Name":"Song12","Detail1": ["Some details12"],"Detail2": "Some details 12"},
-{"Id":13,"Name":"Song13","Detail1": ["Some details13"],"Detail2": "Some details 13"},
-{"Id":102,"Name":"Song102","Detail1": ["Some details102"],"Detail2": "Some details 102"},
-{"Id":1003,"Name":"Song1003","Detail1": ["Some details1003"],"Detail2": "Some details 1003"}],
+    songsMaster: msongsMaster,
+    songsDetails: msongsDetails,
   },
 
 
@@ -142,15 +45,9 @@ songsDetails: [{"Id":1,"Name":"Song1","Detail1": ["\u0bae\u0bc0\u0ba9\u0bcd\u0ba
       return state.filterCollapsed;
     },
 
-
     statesMasterGet: state => {
       return state.statesMaster;
     },
-
-    saintsMasterGet: state => {
-      return state.saintsMaster;
-    },
-
     maxStatesGet: state => {
       return state.maxStates;
     },
@@ -164,39 +61,39 @@ songsDetails: [{"Id":1,"Name":"Song1","Detail1": ["\u0bae\u0bc0\u0ba9\u0bcd\u0ba
     selSaintsGet: state => {
       return state.selSaints;
     },
+    saintsMasterGet: state => {
+      return state.saintsMaster;
+    },
     saintsDetailsGet: state => {
       return state.saintsDetails;
     },
 
 
-    templesMasterGet: state => {
-      return state.templesMaster;
-    },
     maxTemplesGet: state => {
       return state.maxTemples;
     },
     selTemplesGet: state => {
       return state.selTemples;
     },
+    templesMasterGet: state => {
+      return state.templesMaster;
+    },
     templesDetailsGet: state => {
       return state.templesDetails;
     },
 
-    songsMasterGet: state => {
-      return state.songsMaster;
-    },
     maxSongsGet: state => {
       return state.maxSongs;
     },
     selSongsGet: state => {
       return state.selSongs;
     },
+    songsMasterGet: state => {
+      return state.songsMaster;
+    },
     songsDetailsGet: state => {
       return state.songsDetails;
     },
-
-
-
   },
 
   mutations: {
@@ -307,27 +204,27 @@ songsDetails: [{"Id":1,"Name":"Song1","Detail1": ["\u0bae\u0bc0\u0ba9\u0bcd\u0ba
       };
 
     // refactor to update songs max and sel are same as we are not providing for selection of songs
-    if ((payload[1] === 'States') || (payload[1] === 'Saints') || (payload[1] === 'Temples'))  {
-      var mapY = state.mapSongs;
-      var newmax = deriveMaxSongs(state);
-      // alert(newmax);
-      // var delta = newmax.filter(i => state.maxxxx.indexOf(i) === -1);
-      var delta = newmax.filter(i => mapY.get('max').indexOf(i) === -1);
-      // push the delta to both max and sel
-//      if (mapY.get('max').length === mapY.get('sel').length) {
-        delta.forEach(function(item) {
-            mapY.get('max').push(item);
-            mapY.get('sel').push(item);
-        });
-//      } else {
-//        delta.forEach(function(item) {
-//            mapY.get('max').push(item);
-//        });
-//      };
-      // sort max to get the same order of display
-      mapY.get('max').sort(function(a, b){ return a -b;});
-      mapY.get('sel').sort(function(a, b){ return a -b;});
-    };
+      if ((payload[1] === 'States') || (payload[1] === 'Saints') || (payload[1] === 'Temples'))  {
+        var mapY = state.mapSongs;
+        var newmax = deriveMaxSongs(state);
+        // alert(newmax);
+        // var delta = newmax.filter(i => state.maxxxx.indexOf(i) === -1);
+        var delta = newmax.filter(i => mapY.get('max').indexOf(i) === -1);
+        // push the delta to both max and sel
+  //      if (mapY.get('max').length === mapY.get('sel').length) {
+          delta.forEach(function(item) {
+              mapY.get('max').push(item);
+              mapY.get('sel').push(item);
+          });
+  //      } else {
+  //        delta.forEach(function(item) {
+  //            mapY.get('max').push(item);
+  //        });
+  //      };
+        // sort max to get the same order of display
+        mapY.get('max').sort(function(a, b){ return a -b;});
+        mapY.get('sel').sort(function(a, b){ return a -b;});
+      };
 
     },
 
@@ -408,9 +305,6 @@ songsDetails: [{"Id":1,"Name":"Song1","Detail1": ["\u0bae\u0bc0\u0ba9\u0bcd\u0ba
           };
         });
       };
-
-
-
     },
   },
 
@@ -418,7 +312,6 @@ songsDetails: [{"Id":1,"Name":"Song1","Detail1": ["\u0bae\u0bc0\u0ba9\u0bcd\u0ba
 
     initStore: ({commit}) => {
       commit('initStore');
-      // alert ("Hello init");
     },
 
     updatenav2Sel: ({ commit }, payload) => {
@@ -431,12 +324,10 @@ songsDetails: [{"Id":1,"Name":"Song1","Detail1": ["\u0bae\u0bc0\u0ba9\u0bcd\u0ba
 
     addX: ({ commit }, payload) => {
       commit('addX', payload);
-      // alert ("Hello Action");
     },
 
     delX: ({ commit }, payload) => {
       commit('delX', payload);
-      // alert ("Hello Action");
     },
 
   },
