@@ -1,0 +1,2758 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" >
+ <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+var scrolltotop={
+	//startline: Integer. Number of pixels from top of doc scrollbar is scrolled before showing control
+	//scrollto: Keyword (Integer, or "Scroll_to_Element_ID"). How far to scroll document up when control is clicked on (0=top).
+	setting: {startline:100, scrollto: 0, scrollduration:1000, fadeduration:[500, 100]},
+	controlHTML: '<img src="/images/stories/audio/up.png" style="width:48px; height:48px" />', //HTML for control, which is auto wrapped in DIV w/ ID="topcontrol"
+	controlattrs: {offsetx:5, offsety:5}, //offset of control relative to right/ bottom of window corner
+	anchorkeyword: '#top', //Enter href value of HTML anchors on the page that should also act as "Scroll Up" links
+
+	state: {isvisible:false, shouldvisible:false},
+
+	scrollup:function(){
+		if (!this.cssfixedsupport) //if control is positioned using JavaScript
+			this.$control.css({opacity:0}) //hide control immediately after clicking it
+		var dest=isNaN(this.setting.scrollto)? this.setting.scrollto : parseInt(this.setting.scrollto)
+		if (typeof dest=="string" && jQuery('#'+dest).length==1) //check element set by string exists
+			dest=jQuery('#'+dest).offset().top
+		else
+			dest=0
+		this.$body.animate({scrollTop: dest}, this.setting.scrollduration);
+	},
+
+	keepfixed:function(){
+		var $window=jQuery(window)
+		var controlx=$window.scrollLeft() + $window.width() - this.$control.width() - this.controlattrs.offsetx
+		var controly=$window.scrollTop() + $window.height() - this.$control.height() - this.controlattrs.offsety
+		this.$control.css({left:controlx+'px', top:controly+'px'})
+	},
+
+	togglecontrol:function(){
+		var scrolltop=jQuery(window).scrollTop()
+		if (!this.cssfixedsupport)
+			this.keepfixed()
+		this.state.shouldvisible=(scrolltop>=this.setting.startline)? true : false
+		if (this.state.shouldvisible && !this.state.isvisible){
+			this.$control.stop().animate({opacity:1}, this.setting.fadeduration[0])
+			this.state.isvisible=true
+		}
+		else if (this.state.shouldvisible==false && this.state.isvisible){
+			this.$control.stop().animate({opacity:0}, this.setting.fadeduration[1])
+			this.state.isvisible=false
+		}
+	},
+	
+	init:function(){
+		jQuery(document).ready(function($){
+			var mainobj=scrolltotop
+			var iebrws=document.all
+			mainobj.cssfixedsupport=!iebrws || iebrws && document.compatMode=="CSS1Compat" && window.XMLHttpRequest //not IE or IE7+ browsers in standards mode
+			mainobj.$body=(window.opera)? (document.compatMode=="CSS1Compat"? $('html') : $('body')) : $('html,body')
+			mainobj.$control=$('<div id="topcontrol">'+mainobj.controlHTML+'</div>')
+				.css({position:mainobj.cssfixedsupport? 'fixed' : 'absolute', bottom:mainobj.controlattrs.offsety, right:mainobj.controlattrs.offsetx, opacity:0, cursor:'pointer'})
+				.attr({title:'Scroll Back to Top'})
+				.click(function(){mainobj.scrollup(); return false})
+				.appendTo('body')
+			if (document.all && !window.XMLHttpRequest && mainobj.$control.text()!='') //loose check for IE6 and below, plus whether control contains any text
+				mainobj.$control.css({width:mainobj.$control.width()}) //IE6- seems to require an explicit width on a DIV containing text
+			mainobj.togglecontrol()
+			$('a[href="' + mainobj.anchorkeyword +'"]').click(function(){
+				mainobj.scrollup()
+				return false
+			})
+			$(window).bind('scroll resize', function(e){
+				mainobj.togglecontrol()
+			})
+		})
+	}
+}
+
+scrolltotop.init()
+
+/***********************************************
+* Scroll To Top Control script- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Project Page at http://www.dynamicdrive.com for full source code
+***********************************************/
+
+</script>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=EmulateIE7" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="நாலாயிர திவ்ய பிரபந்தம், nalayira divya prabandham,naalaayira divya prabandham" />
+  <meta name="title" content="108 - திவ்ய தேசங்கள்" />
+  <meta name="author" content="Administrator" />
+  <meta name="description" content="நாலாயிர திவ்ய பிரபந்தம், nalayira divya prabandham,naalaayira divya prabandham" />
+  <meta name="generator" content="Joomla! 1.5 - Open Source Content Management" />
+  <title>108 - திவ்ய தேசங்கள்</title>
+  <link rel="stylesheet" href="/plugins/system/modalizer/modals/colorbox/style5/colorbox.css" type="text/css" />
+  <link rel="stylesheet" href="http://www.dravidaveda.org/plugins/content/qluetip/css/tip.css" type="text/css" />
+  <link rel="stylesheet" href="/modules/mod_vvisit_counter/css/mod_vvisit_counter.css" type="text/css" />
+  <style type="text/css">
+    <!--
+#cboxLoadedContent{background-color:#fff;}
+    -->
+  </style>
+  <script type="text/javascript" src="/plugins/system/modalizer/modals/jquery.min.js"></script>
+  <script type="text/javascript" src="/plugins/system/modalizer/modals/colorbox/jquery.colorbox-min.js"></script>
+  <script type="text/javascript" src="/media/system/js/mootools.js"></script>
+  <script type="text/javascript" src="/media/system/js/caption.js"></script>
+  <script type="text/javascript" src="http://www.dravidaveda.org/plugins/content/qluetip/js/qluetip.js"></script>
+  <script type="text/javascript">
+
+			$j(document).ready(function(){
+				$j('a.modalizer_link,').colorbox({width:'100%',height:'100%',iframe:true});
+				$j('a.modalizer_link_image').colorbox({width:'100%',height:'100%'});
+				$j('a.modalizer_link_external').colorbox({width:'100%',height:'100%',iframe:true});
+			});
+		
+  </script>
+
+  <link rel="stylesheet" href="/templates/system/css/system.css" type="text/css" />
+  <link rel="stylesheet" href="/templates/system/css/general.css" type="text/css" />
+  <link rel="Favorite icon" href="/images/stories/audio/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/templates/dravida_song/css/template.css" />
+  <!--[if IE 6]><link rel="stylesheet" href="/templates/dravida_song/css/template.ie6.css" type="text/css" media="screen" /><![endif]-->
+  <!--[if IE 7]><link rel="stylesheet" href="/templates/dravida_song/css/template.ie7.css" type="text/css" media="screen" /><![endif]-->
+  <script type="text/javascript" src="/templates/dravida_song/script.js"></script>
+ </head>
+<body>
+<div id="art-page-background-simple-gradient">
+<table align="center" width="1000px" height="28px" ><tr><td></td><td></td></tr></table>
+
+
+<table align="center" width="1000" height="175" ><tr><td><a href="http://dravidaveda.org/"><img src="/images/stories/dv-logo.png"/></a></td><td>
+<div class="art-nostyle">
+
+<form action="index.php" method="post">
+	<div class="search">
+		<input name="searchword" id="mod_search_searchword" maxlength="20" alt="search" class="inputbox" type="text" size="20" value="search..."  onblur="if(this.value=='') this.value='search...';" onfocus="if(this.value=='search...') this.value='';" />	</div>
+	<input type="hidden" name="task"   value="search" />
+	<input type="hidden" name="option" value="com_search" />
+	<input type="hidden" name="Itemid" value=0 />
+</form>
+</div>
+</td></tr></table>
+
+<table align="center" width="1008px" height="96px"><tr><td></td></tr></table>
+<table align="center" width="1006px" style="padding: 20px 0 0 0;"><tr><td></td></tr></table>
+</div>
+<div id="art-main">
+<div class="art-Sheet">
+    <div class="art-Sheet-tl"></div>
+    <div class="art-Sheet-tr"></div>
+    <div class="art-Sheet-bl"></div>
+    <div class="art-Sheet-br"></div>
+    <div class="art-Sheet-tc"></div>
+    <div class="art-Sheet-bc"></div>
+    <div class="art-Sheet-cl"></div>
+    <div class="art-Sheet-cr"></div>
+    <div class="art-Sheet-cc"></div>
+    <div class="art-Sheet-body">
+<table align="center" width="1000px" style="margin:-3px 0 0 -3px;"><tr><td></td></tr></table>
+
+
+<div class="art-contentLayout">
+<div class="art-content">
+
+
+
+
+<div class="art-Post">
+    <div class="art-Post-tl"></div>
+    <div class="art-Post-tr"></div>
+    <div class="art-Post-bl"></div>
+    <div class="art-Post-br"></div>
+    <div class="art-Post-tc"></div>
+    <div class="art-Post-bc"></div>
+    <div class="art-Post-cl"></div>
+    <div class="art-Post-cr"></div>
+    <div class="art-Post-cc"></div>
+    <div class="art-Post-body">
+<div class="art-Post-inner">
+
+ <h2 class="art-PostHeader"> 
+108 - திவ்ய தேசங்கள்
+
+</h2>
+
+<div class="art-PostContent">
+<div class="art-article"><p style="text-align: justify;"><img src="/images/stories/divya.jpg" border="0" width="80" height="80" style="float: left; border: 0pt none; margin: 0px 10px 10px 0px;" />பன்னிரு  ஆழ்வார்கள் பாடிய நாலாயிர திவ்ய பிரபந்த த்தில் இடம்பெற்ற சிறப்புமிக்க வைணவத் திருத்தலமே திவ்ய தேசம் என்று அழைக்கப்படுகிறது. இப்படிப் புகழ்பெற்ற திருத்தலங்கள் 108, அஃதே 108 திவ்ய தேசங்கள்</p>
+
+<p>எனப்படுகிறது. இனி 108 திவ்ய தேசங்களையும் அந்த திவ்ய தேசங்களின் தாயார் யார், பெருமாள் யார், அந்த தலம் எந்த மண்டலத்தில் இருக்கிறது, எந்த நகருக்கருகில் இருக்கிறது போன்ற விவரங்களை இந்த பட்டியலில் காணலாம்.</p>
+<p> </p>
+<p><span style="font-size: x-small;"><br /></span></p>
+<table style="margin-left: 0px; border: 0px solid #0b4a84; width: 100%; height: 4820px;" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td width="30">
+<p><span style="font-size: x-small;"> </span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திவ்விய</strong><strong> </strong><strong>தேசம்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;"><strong>தாயார்</strong><strong> </strong></span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;"><strong>மூலவர்</strong><strong> </strong></span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;"><strong>உத்சவர்</strong><strong> </strong></span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;"><strong>மண்டலம்</strong><strong> </strong></span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;"><strong>எந்த</strong><strong> </strong><strong>நகருக்கருகில்</strong><strong> </strong></span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">1</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>ஸ்ரீரங்கம்</strong><strong> </strong></span></p>
+<p align="center"><span style="font-size: x-small;">(திருவரங்கம்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீரங்க   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ரங்கநாதன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">நம்பெருமாள்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருச்சிராப்பள்ளி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">2</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்கோழி</strong></span></p>
+<p align="center"><span style="font-size: x-small;">(உறையூர், நிசுலாபுரி, உரந்தை)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கமலவல்லி நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அழகிய மணவாளன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">--</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருச்சிராப்பள்ளி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">3</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்கரம்பனூர்</strong><strong> </strong>(உத்தமர் கோவில், கடம்ப க்ஷேத்ரம்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பூர்வ தேவி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   புருஷோத்தமன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருச்சிராப்பள்ளி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">4</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருவெள்ளறை</strong><strong> </strong>(வேதகிரி க்ஷேத்ரம்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   செண்பகவல்லி நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   புண்டரீகாக்ஷன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருச்சிராப்பள்ளி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">5</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருஅன்பில்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அழகியவல்லி நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வடிவழகிய நம்பி</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   சுந்தரராஜன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருச்சிராப்பள்ளி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">6</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருப்பேர்நகர்</strong><strong> </strong><strong>,</strong></span> அப்பக்குடத்தான்</p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கமலவல்லி (இந்திரா   தேவி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">அப்பலா   ரங்கநாதன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருச்சிராப்பள்ளி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">7</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்கண்டியூர்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கமலவல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஹர   சாப விமோசன   பெருமாள்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">கமலநாதன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருச்சிராப்பள்ளி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">8</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்கூடலூர்,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">ஆடுதுறை   பெருமாள் கோவில்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பத்மாசனி (புஷ்பவல்லி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">வையம்   காத்த பெருமாள்   (ஜகத்ரக்ஷகன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கும்பகோணம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">9</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>கவித்தலம்</strong></span> (கபிஸ்தலம்)</p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ரமாமணிவல்லி (பொற்றாமரையாள்)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">கஜேந்திர   வரதன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கும்பகோணம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">10</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருப்புள்ளம்</strong><strong> </strong>(பூதங்குடி)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பொற்றாமரையாள் (ஹேமாம்புஜவல்லி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வல்விலி ராமர்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கும்பகோணம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">11</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>ஆதனூர்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ரங்கநாயகி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ  ஆண்டளக்குமையன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கும்பகோணம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">12</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருகுடந்தை</strong></span></p>
+<p align="center"><span style="font-size: x-small;">(பாஸ்கர    க்ஷேத்ரம்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கோமளவல்லி (படிதாண்டா   பத்தினி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   சாரங்கபாணி</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கும்பகோணம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">13</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருவிண்ணகர், </strong></span></p>
+<p align="center"><span style="font-size: x-small;">ஒப்பிலியப்பன் கோயில்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பூமிதேவி நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ஒப்பிலியப்பன் (ஸ்ரீநிவாசன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கும்பகோணம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">14</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>நறையூர், </strong></span></p>
+<p align="center"><span style="font-size: x-small;">நாச்சியார்   கோயில்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வஞ்சுளவல்லி நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">திருநறையூர்   நம்பி</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கும்பகோணம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">15</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருச்சேறை</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   சாரநாயகி (சார   நாச்சியார்)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   சாரநாதன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கும்பகோணம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">16</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>கண்ணமங்கை</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அபிசேக வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">பக்த   வத்சல பெருமாள்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கும்பகோணம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">17</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்கண்ணபுரம்</strong><strong> </strong>(கிருஷ்ணாரண்யா, பஞ்சக்ருஷ்ண, சப்த புண்ணிய   க்ஷேதரம்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கண்ணபுர நாயகி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">நீல   மேகப் பெருமாள்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">சௌரிராஜ   பெருமாள்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">நாகப்பட்டினம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">18</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>கண்ணங்குடி</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   லோகநாயகி (அரவிந்த   வல்லி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   லோகநாதன் (சியாமளமேணிப் பெருமாள்)</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">தாமோதர   நாராயணன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கும்பகோணம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">19</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>நாகை,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">நாகப்பட்டினம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   சௌந்தர்ய வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">நீலமேகப்   பெருமாள்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">சௌந்தர்யராஜன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">நாகப்பட்டினம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">20</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>தஞ்சைமாமணி</strong><strong> </strong><strong>கோயில்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   செங்கமல வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">நீலமேகப்   பெருமாள்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">தஞ்சாவூர்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">21</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>நந்திபுர</strong><strong> </strong><strong>விண்ணகரம்,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">நாதன்   கோயில்,   தக்ஷின ஜகன்னாத்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   செண்பக வல்லி   தாயார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ஜகந்நாதன் (நாதநாதன், விண்ணகர பெருமாள்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கும்பகோணம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">22</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>வெள்ளியங்குடி</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   மரகத வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">கோலவல்வில்லி ராமன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்ருங்கார   சுந்தரன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சீர்காழி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">23</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருவழுந்தூர்</strong><strong> </strong></span></p>
+<p align="center"><span style="font-size: x-small;">(தேரழுந்தூர்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   செங்கமல வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">தேவாதிராஜன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஆமருவியப்பன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">மயிலாடுதுறை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">24</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>சிறுபுலியூர்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   திருமாமகள் நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">அருள்மாக்கடல்  (ஜலசயனப் பெருமாள்)</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">க்ருபா  சமுத்ரப்   பெருமாள்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">மயிலாடுதுறை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">25</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>தலைச்</strong><strong> </strong><strong>சங்க</strong><strong> </strong><strong>நாண்மதியம்</strong><strong> </strong>(தலைச்சங்காடு)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ  தலைச்சங்க   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">நாண்மதியப்   பெருமாள்    (வெண்சுடர் பெருமாள்)</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">வியோமஜோதிப்பிரான் (வெண்சுடர்பிரான்,   லோகநாதன்)</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">மயிலாடுதுறை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">26</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>இந்தளூர்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பரிமள ரங்க   நாயகி (சந்திர   சாப விமோசன   வல்லி,   புண்டரிக வல்லி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">பரிமள   ரங்கநாதன் (மருவினிய   மைந்தன்,   சுகந்தவன நாதன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">மயிலாடுதுறை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">27</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்</strong><strong> </strong><strong>காவளம்பாடி,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">திரு   நாங்கூர்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   மடவரல் மங்கை</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கோபால கிருஷ்ணன்   (ராஜ கோபாலன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சீர்காழி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">28</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்</strong><strong> </strong><strong>காழி</strong><strong> </strong><strong>ஸ்ரீராம</strong><strong> </strong><strong>விண்ணகரம், </strong>சிர்காழி</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   லோக நாயகி   (மட்டவிழ்குழலி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">திரு   விக்ரமன் (தாடாளன்)</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">த்ரிவிக்ரம   நாராயணன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சீர்காழி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">29</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>அரிமேய</strong><strong> </strong><strong>விண்ணகரம்,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">திரு   நாங்கூர்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அம்ருதகட வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">குடமாடுகூத்தன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">சதுர்புஜங்களுடன் கோபாலன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சீர்காழி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">30</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருவண்</strong><strong> </strong><strong>புருடோத்தமம், </strong></span></p>
+<p align="center"><span style="font-size: x-small;">திரு   நாங்கூர்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   புருஷோத்தம நாயகி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   புருஷோத்தமன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சீர்காழி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">31</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>செம்பொன்செய்</strong><strong> </strong><strong>கோயில், </strong></span></p>
+<p align="center"><span style="font-size: x-small;">திரு   நாங்கூர்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அல்லிமாமலர்    நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பேரருளாளன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஹேமரங்கர்   (செம்பொன்னரங்கர்)</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சீர்காழி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">32</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருமணிமாடக்</strong><strong> </strong><strong>கோயில்,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">திரு   நாங்கூர்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   புண்டரீக வல்லி   தாயார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   நாராயணன் (நந்தாவிளக்கு)</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">நாராயணன், அளத்தற்கரியான்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சீர்காழி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">33</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>வைகுந்த</strong><strong> </strong><strong>விண்ணகரம்,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">திரு   நாங்கூர்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வைகுந்த வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வைகுந்த நாதன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சீர்காழி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">34</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருவாலி</strong><strong> </strong><strong>மற்றும்</strong><strong> </strong><strong>திருநகரி</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">திருவாலி: ஸ்ரீ அம்ருதகட வல்லி, திருநகரி: ஸ்ரீ அம்ருத வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">திருவாலி: ஸ்ரீ லக்ஷ்மி ந்ருசிம்ஹர்   (வயலாளி மணவாளன்), திருநகரி: ஸ்ரீ வேதராஜன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">திருவாலி: ஸ்ரீ திருவாலி நகராளன், திருநகரி: ஸ்ரீ கல்யாண ரங்கநாதன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சீர்காழி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">35</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>தேவனார்</strong><strong> </strong><strong>தொகை,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">திரு   நாங்கூர்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கடல் மகள்   நாச்சியார்,   மாதவநாயகி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">தெய்வநாயகன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">மாதவப்   பெருமாள்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சீர்காழி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">36</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருத்தெற்றி</strong><strong> </strong><strong>அம்பலம், </strong></span></p>
+<p align="center"><span style="font-size: x-small;">திரு   நாங்கூர்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   செங்கமல வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">செங்கண்   மால் (ரங்கநாதன், ஸ்ரீ லக்ஷ்மிரங்கர்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சீர்காழி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">37</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருமணிக்கூடம்</strong><strong> </strong><strong>,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">திரு   நாங்கூர்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   திருமகள் நாச்சியார்   (ஸ்ரீதேவி),   பூதேவி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">வரதராஜப்   பெருமாள் (மணிகூட   நாயகன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சீர்காழி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">38</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>அண்ணன்</strong><strong> </strong><strong>கோயில்</strong><strong> </strong>(திருவெள்ளக்குளம்), திரு நாங்கூர்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அலர்மேல்மங்கை,   ஸ்ரீ பூவார் திருமகள்   நாச்சியார்,   பத்மாவதி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீநிவாசன், கண்ணன், நாராயணன், அண்ணன் பெருமாள்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சீர்காழி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">39</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>பார்த்தன்</strong><strong> </strong><strong>பள்ளி,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">திரு   நாங்கூர்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   தாமரை நாயகி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   தாமரையாள் கேள்வன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பார்த்தசாரதி</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சீர்காழி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">40</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருச்சித்திரக்</strong><strong> </strong><strong>கூடம்</strong><strong> </strong><strong>,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">சிதம்பரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   புண்டரீக வல்லி   தாயார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">கோவிந்தராஜன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">தேவாதி   தேவன் (பார்த்தசாரதி)</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">சோழ   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சிதம்பரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">41</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>அஹீந்த்ரபுரம், </strong></span></p>
+<p align="center"><span style="font-size: x-small;">ஆயிந்தை</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ஹேமாமபுஜ வல்லி   தாயார் (வைகுண்ட   நாயகி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   தெய்வநாயகன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   மூவராகிய ஒருவன், தேவநாதன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">நாடு   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கடலூர்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">42</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்கோவலூர்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பூங்கோவை நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">த்ரிவிக்ரமன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஆயனார், கோவலன் (கோபாலன்)</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">நாடு   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கடலூர்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">43</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்கச்சி, </strong></span></p>
+<p align="center"><span style="font-size: x-small;">அத்திகிரி    (அத்தியூர், காஞ்சிபுரம், சத்யவ்ரத க்ஷேத்ரம்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பெருந்தேவி (மகாதேவி) தாயார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பேரருளாள வரதராஜன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">44</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>அஷ்டபுயகரம்,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அலர்மேல் மங்கை, பத்மாசனித் தாயார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஆதி   கேசவ பெருமாள்   (சக்ரதரர்,   கஜேந்திர வரதன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">45</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருத்தண்கா, </strong></span></p>
+<p align="center"><span style="font-size: x-small;">தூப்புல், காஞ்சிபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   மரகத வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   தீபப் பிரகாசன்   (விளக்கொளிப் பெருமாள், திவ்யப்ரகாசர்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">46</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>வேளுக்கை,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வேளுக்கை வல்லி   (அம்ருதவல்லி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">அழகியசிங்கர் (ந்ருசிம்ஹர்,   ஸ்ரீ முகுந்த நாயகன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">47</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>நீரகம்,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   நிலமங்கை வல்லி</span></p>
+</td>
+<td width="108"><span style="font-size: x-small;"><br /></span></td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ஜகதீச்வரர்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">48</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருப்</strong><strong> </strong><strong>பாடகம், </strong></span></p>
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ருக்மிணி,   சத்ய பாமா</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">பாண்டவ   தூதர்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">49</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>நிலா</strong><strong> </strong><strong>திங்கள்</strong><strong> </strong><strong>துண்டம், </strong>காஞ்சிபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">நேர்   ஒருவர் இல்லா   வல்லி (நிலாத்திங்கள் துண்ட தாயார்)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">சந்திர   சூட பெருமாள்   (நிலாத்திங்கள் துண்டத்தான்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">50</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>ஊரகம்,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அமுத வல்லி   நாச்சியார் (அம்ருதவல்லி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   த்ரிவிக்ரமன் (உலகளந்த   பெருமாள்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">51</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>வெஃகா,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கோமள வல்லி   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   யதோக்தகாரி    (வேகாசேது,   சொன்னவண்ணம் செய்த பெருமாள்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">52</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்</strong><strong> </strong><strong>காரகம்,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பத்மாமணி நாச்சியார்   (ரமாமணி நாச்சியார்)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கருணாகர பெருமாள்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">53</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்</strong><strong> </strong><strong>கார்வானம்,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கமல வல்லி   (தாமரையாள்)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கள்வன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">54</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்</strong><strong> </strong><strong>கள்வனூர்,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அஞ்சில வல்லி   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஆதி   வராஹப் பெருமாள்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">55</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருப்</strong><strong> </strong><strong>பவளவண்ணம்,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பவள வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பவளவண்ணன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">56</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருப்</strong><strong> </strong><strong>பரமேஸ்வர</strong><strong> </strong><strong>விண்ணகரம், </strong>காஞ்சிபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வைகுண்ட வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பரமபதநாதன் (வைகுந்தநாதன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">57</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருப்புட்குழி</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   மரகத வல்லி   தாயார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   விஜய ராகவப்   பெருமாள்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   விஜய ராகவப்   பெருமாள்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">காஞ்சிபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">58</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>நின்றவூர்</strong><strong> </strong></span></p>
+<p align="center"><span style="font-size: x-small;">(தின்னனூர்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   சுதா வல்லி   (என்னைப் பெற்ற   தாயார்)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பக்தவத்சலப் பெருமாள்   (பத்தராவிப் பெருமாள்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சென்னை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">59</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>எவ்வுள்</strong><strong> </strong></span></p>
+<p align="center"><span style="font-size: x-small;">(புண்யாவ்ருத, வீக்ஷாரண்ய க்ஷேத்ரம்),   திருவள்ளூர்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கனக வல்லி   (வசுமதி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">வைத்ய   வீர ராகவப்   பெருமாள்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சென்னை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">60</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>அல்லிக்</strong><strong> </strong><strong>கேணி</strong></span> (திருவல்லிக்கேணி, ப்ரிந்தாரண்ய க்ஷேத்ரம்)</p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ருக்மிணித் தாயார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வேங்கட கிருஷ்ணன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பார்த்தசாரதி</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சென்னை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">61</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>நீர்மலை</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அணிமாமலர் மங்கை</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">நீர்வண்ணன்   (நீலமுகில்வண்ணன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சென்னை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">62</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>இட</strong><strong> </strong><strong>வெந்தை</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கோமள வல்லி   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">லக்ஷ்மி   வராஹப் பெருமாள்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">நித்ய   கல்யாணப் பெருமாள்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சென்னை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">63</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்</strong><strong> </strong><strong>கடல்</strong><strong> </strong><strong>மல்லை,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">மஹாபலிபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   நில மங்கை   நாயகி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்தல   சயனப் பெருமாள்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்தலசயனதுரைவார் (உலகுய்ய நின்றான்)</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சென்னை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">64</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்கடிகை,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">சோளிங்கர்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அம்ருத வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">யோக   ந்ருஸிம்ஹன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">அக்காரக்கனி</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">தொண்டை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">சென்னை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">65</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>அயோத்தி, </strong></span></p>
+<p align="center"><span style="font-size: x-small;">அயோத்யா</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   சீதாப் பிராட்டி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ராமன்    (சக்கரவர்த்தித் திருமகன், ரகுநாயகன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">வட   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">உத்தர்   பிரதேஷ்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">66</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>நைமிசாரண்யம்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ஸ்ரீஹரி லக்ஷ்மி   (ஸ்ரீ புண்டரீகவல்லி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ஸ்ரீஹரி (தேவராஜன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">வட   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">உத்தர்   பிரதேஷ்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">67</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருப்</strong><strong> </strong><strong>ப்ரிதி</strong><strong> </strong><strong>(நந்தப்</strong><strong> </strong><strong>பிரயாக்,</strong></span></p>
+<p align="center"><span style="font-size: x-small;">(ஜோஷி   மடம்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பரிமள வல்லி   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">பரம   புருஷன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">வட   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">உத்தராஞ்சல்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">68</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்</strong><strong> </strong><strong>கண்டமென்னும்</strong><strong> </strong><strong>கடிநகர்</strong> (தேவப்ரயாகை)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   புண்டரீக வல்லி   தாயார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   நீலமேக பெருமாள்   (ஸ்ரீ புருஷோத்தமன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">வட   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">உத்தராஞ்சல்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">69</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>வதரி</strong><strong> </strong><strong>ஆசிரமம்</strong><strong> </strong></span></p>
+<p align="center"><span style="font-size: x-small;">(பத்ரிநாத்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அரவிந்த வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பத்ரி நாராயணன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">வட   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">உத்தராஞ்சல்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">70</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>சாளக்ராமம்</strong><strong> </strong></span></p>
+<p align="center"><span style="font-size: x-small;">(முக்திநாத்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ஸ்ரீதேவி நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ஸ்ரீ மூர்த்தி</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">வட   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">நேபால்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">71</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>வட</strong><strong> </strong><strong>மதுரை</strong><strong> </strong></span></p>
+<p align="center"><span style="font-size: x-small;">(மதுரா)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   சத்ய பாமா   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">கோவர்தனேசன்   (பால க்ருஷ்ணன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">வட   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">உத்தர்   பிரதேஷ்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">72</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருவாய்ப்பாடி, </strong></span></p>
+<p align="center"><span style="font-size: x-small;">கோகுலம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ருக்மிணி மற்றும்   சத்ய பாமா</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   நவ மோகன   கிருஷ்ணன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">வட   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">உத்தர்   பிரதேஷ்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">73</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>த்வாரகை</strong><strong> </strong></span></p>
+<p align="center"><span style="font-size: x-small;">(துவரை, துவராபதி)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கல்யாண நாச்சியார்   (ஸ்ரீ லக்ஷ்மிஸ்ரீ, ருக்மிணி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">கல்யாண   நாராயணன் (த்வாரகாதீசன், த்வாரகாநாத்ஜி)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">வட   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">குஜராத்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">74</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>சிங்கவேழ்குன்றம்,</strong></span> அஹோபிலம்</p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   செஞ்சு லக்ஷ்மி   (ஸ்ரீ அம்ருத   வல்லி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ப்ரஹலாதவரதன் (லக்ஷ்மிந்ருசிம்ஹன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">வட   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">ஆந்திரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">75</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருவேங்கடம்</strong><strong> </strong></span></p>
+<p align="center"><span style="font-size: x-small;">(திருப்பதி, திருமலை, ஆதிவராஹ  க்ஷேத்ரம்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">அலர்மேல்   மங்கை (பத்மாவதி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   திருவேங்கமுடையான்    (வெங்கடாசலபதி,   பாலாஜி)</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீநிவாசன்  (மலையப்ப   சுவாமி,   மலைகுனியன் நின்ற பெருமாள்)</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">வட   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">ஆந்திரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">76</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>நாவாய்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   மலர் மங்கை   நாச்சியார் (சிறுதேவி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">நாவாய்   முகுந்தன் (நாராயணன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">மலை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கேரளம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">77</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>வித்துவக்கோடு</strong><strong> </strong>(திருவிசிக்கோடு, திருவஞ்சிக்கோடு)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வித்துவக்கோட்டு வல்லி   (பத்மபாணி நாச்சியார்)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">உய்ய   வந்த பெருமாள்   (அபயப்ரதன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">மலை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கேரளம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">78</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்காட்கரை</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பெருஞ்செல்வ நாயகி   (ஸ்ரீ வாத்சல்ய   வல்லி நாச்சியார்)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">காட்கரையப்பன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">மலை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கேரளம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">79</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>மூழிக்களம்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   மதுரவேணி நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">திரு   மூழிக்களத்தான்    (ஸ்ரீ சூக்தி   நாத பெருமாள், அப்பன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">மலை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கேரளம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">80</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>வல்ல</strong><strong> </strong><strong>வாழ்</strong></span></p>
+<p align="center"><span style="font-size: x-small;">(திருவல்லா, ஸ்ரீ வல்லபா க்ஷேத்ரம்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வாத்சல்ய தேவி   (ஸ்ரீ செல்வ   திருக்கொழுந்து)   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கோலப்பிரான் (திருவல்லமார்பன் ,   ஸ்ரீவல்லபன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">மலை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கேரளம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">81</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்கடித்தானம்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கற்பக வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அம்ருத (அத்புத) நாராயணன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">மலை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கேரளம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">82</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருச்செங்குன்றூர்</strong><strong> </strong></span></p>
+<p align="center"><span style="font-size: x-small;">(திருசிற்றாறு)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   செங்கமல வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">இமயவரப்பன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">மலை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கேரளம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">83</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருப்புலியூர்</strong><strong> </strong></span></p>
+<p align="center"><span style="font-size: x-small;">(குட்டநாடு)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பொற்கொடி நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">மாயப்பிரான்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">மலை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கேரளம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">84</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருவாறன்விளை</strong><strong> </strong></span></p>
+<p align="center"><span style="font-size: x-small;">(ஆறன்முளா)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ  பத்மாஸநி  நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">திருக்குறளப்பன் (செஷாசனா )</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">மலை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கேரளம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">85</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருவண்</strong><strong> </strong><strong>வண்டுர்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கமல வல்லி   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">பாம்பணை   அப்பன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">மலை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கேரளம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">86</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருவனந்தபுரம்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ஸ்ரீஹரி லக்ஷ்மி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">அனந்தபத்மநாபன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">மலை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கேரளம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">87</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>வட்டாறு</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   மரகத வல்லி   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஆதி   கேசவ பெருமாள்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">மலை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கேரளம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">88</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருவண்பரிசாரம்</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கமல வல்லி   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   திருக்குறளப்பன் (திருவாழ்மார்பன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">மலை   நாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">கேரளம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">89</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்குறுங்குடி</strong><strong> </strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   குறுங்குடிவல்லி நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">சுந்தர   பரிபூரணன் (நின்ற   நம்பி)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருநெல்வேலி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">90</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>சிரீவர</strong><strong> </strong><strong>மங்கை</strong><strong> </strong>(வானமாமலை,   தோதாத்ரி க்ஷேத்ரம்,திருசிரீவரமங்கள நகர், நாங்குநேரி)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   சிரீவரமங்கை நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   தோதாத்ரிநாதன்    (வானமாமலை)</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   தெய்வநாயகன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருநெல்வேலி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">91</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>ஸ்ரீவைகுண்டம், </strong></span></p>
+<p align="center"><span style="font-size: x-small;">நவதிருப்பதி</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வைகுந்தவல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வைகுந்தநாதன் (ஸ்ரீ   கள்ளபிரான்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருநெல்வேலி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">92</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருவரகுணமங்கை, </strong></span></p>
+<p align="center"><span style="font-size: x-small;">நவதிருப்பதி</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வரகுண வல்லி   தாயார் (ஸ்ரீ   வரகுணமங்கை தாயார்)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">விஜயாசனப்  பெருமாள்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருநெல்வேலி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">93</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருப்புளிங்குடி, </strong></span></p>
+<p align="center"><span style="font-size: x-small;">நவதிருப்பதி</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   மலர்மகள் நாச்சியார், ஸ்ரீ புளிங்குடி வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   காய்சினவேந்தன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருநெல்வேலி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">94</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>தொலைவில்லிமங்கலம்</strong></span> (ரெட்டைத் திருப்பதி),   நவதிருப்பதி</p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கரும் தடங்கண்ணி   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அரவிந்த லோசனன், ஸ்ரீநிவாசன் (தேவப்பிரான்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருநெல்வேலி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">95</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்குளந்தை</strong><strong> </strong>(பெருங்குளம்),   நவதிருப்பதி</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   அலமேலுமங்கை தாயார், ஸ்ரீ குளந்தை    வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ஸ்ரீநிவாசன்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   மாயக்கூத்தன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருநெல்வேலி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">96</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்கோளூர், </strong>நவதிருப்பதி</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   குமுத வல்லி, ஸ்ரீ   கோளூர் வல்லி   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வைத்த மாநிதி   பெருமாள் (நிக்ஷேபவிதன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருநெல்வேலி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">97</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருப்பேரை</strong><strong> </strong></span></p>
+<p align="center"><span style="font-size: x-small;">(தென்   திருப்பேரை),   நவதிருப்பதி</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   குழைக்காது வல்லி, ஸ்ரீ   திருப்பேரை நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   மகர நெடும்   குழைக்காதன் (ஸ்ரீ   நிகரில் முகில்   வண்ணன்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருநெல்வேலி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">98</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்குருகூர்</strong></span></p>
+<p align="center"><span style="font-size: x-small;">(ஆழ்வார்   திருநகரி),   நவதிருப்பதி</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ஆதிநாத வல்லி, ஸ்ரீ   குருகூர் வல்லி</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ஆதிநாதன் (ஸ்ரீ   ஆதிப்பிரான்)</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பொலிந்து நின்ற   பிரான்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">திருநெல்வேலி</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">99</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>ஸ்ரீவில்லிபுத்தூர்</strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   ஆண்டாள் (ஸ்ரீ   கோதா நாச்சியார்)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   வடபத்ரசாயி (ரங்கமன்னார்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">விருதுநகர்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">100</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருதண்கால்</strong><strong> </strong>(திருதண்காலூர்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   செங்கமல தாயார்   (அன்ன நாயகி, அனந்த நாயகி,   அம்ருத நாயகி, ஜாம்பவதி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   நின்ற நாராயணன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">விருதுநகர்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">101</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்கூடல், </strong></span></p>
+<p align="center"><span style="font-size: x-small;">மதுரை</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   மதுர வல்லி   (வகுலவல்லி,   வரகுணவல்லி, மரகதவல்லி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">கூடல்   அழகர்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">மதுரை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">102</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருமாலிரும்</strong><strong> </strong><strong>சோலை</strong><strong> </strong></span></p>
+<p align="center"><span style="font-size: x-small;">(அழகர்   கோயில்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   சுந்தர வல்லி   (ஸ்ரீதேவி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">திரு   மாலிரும் சோலை   நம்பி (அழகர், கள்ளழகர், மாலாங்காரர்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">மதுரை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">103</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திரு</strong><strong> </strong><strong>மோகூர்</strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   மோகூர் வல்லி   (மேகவல்லி,   மோகன வல்லி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   காளமேக பெருமாள்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   திருமோகூர் ஆப்தன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">மதுரை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">104</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருக்கோஷ்டியூர்</strong><strong> </strong>(கோஷ்டி க்ஷேத்ரம்)</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">திருமாமகள்   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   உரகமெல்லணையான்</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   சௌம்யநாராயணன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">புதுக்கோட்டை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">105</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருப்புல்லாணி, </strong>ராமநாதபுரம்</span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கல்யாண வல்லி, ஸ்ரீ  பத்மாஸநி   த் தாயார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கல்யாண ஜகந்நாதன்   (தெய்வச் சிலையார்)</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">ராமநாதபுரம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">106</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருமெய்யம்</strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   உய்ய வந்த   நாச்சியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   சத்ய கிரிநாதன்   (ஸ்ரீ சத்யமூர்த்தி)</span></p>
+</td>
+<td width="90">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   மெய்யப்பன்</span></p>
+</td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">பாண்டியநாடு</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">புதுக்கோட்டை</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">107</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>திருப்பாற்கடல்</strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   கடல் மகள்   நாச்சியார் (ஸ்ரீ   பூதேவி)</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   க்ஷீராப்தி நாதன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">விண்ணுலகம்</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">விண்ணுலகம்</span></p>
+</td>
+</tr>
+<tr>
+<td width="30">
+<p align="center"><span style="font-size: x-small;">108</span></p>
+</td>
+<td width="168">
+<p align="center"><span style="font-size: x-small;"><strong>பரமபதம்</strong></span></p>
+</td>
+<td width="138">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பெரிய பிராட்டியார்</span></p>
+</td>
+<td width="108">
+<p align="center"><span style="font-size: x-small;">ஸ்ரீ   பரமபத நாதன்</span></p>
+</td>
+<td width="90"><span style="font-size: x-small;"><br /></span></td>
+<td width="114">
+<p align="center"><span style="font-size: x-small;">விண்ணுலகம்</span></p>
+</td>
+<td width="102">
+<p align="center"><span style="font-size: x-small;">விண்ணுலகம்</span></p>
+</td>
+</tr>
+</tbody>
+</table></div><span class="article_separator">&nbsp;</span>
+</div>
+<div class="cleared"></div>
+
+
+</div>
+
+		<div class="cleared"></div>
+    </div>
+</div>
+
+
+
+
+
+</div>
+
+<div class="art-sidebar1">
+<div class="art-Block">
+		    <div class="art-Block-cc"></div>
+		    <div class="art-Block-body">
+		
+		
+<div class="art-BlockHeader">
+		    <div class="l"></div>
+		    <div class="r"></div>
+		    <div class="art-header-tag-icon">
+		        <div class="t">
+		வருகை பதிவு
+</div>
+		    </div>
+		</div>
+		
+		
+<div class="art-BlockContent">
+		    <div class="art-BlockContent-body">
+		
+		<!-- Vinaora Visitors Counter for Joomla! --><div id="vvisit_counter"><div><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/4.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/0.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/5.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/1.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/9.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/0.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/4.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /></div><div><a href="http://vinaora.com" target="_self" title="Vinaora Visitors Counter 2.0 for Joomla!">Visitors Counter</a></div></div>
+
+				<div class="cleared"></div>
+		    </div>
+		</div>
+		
+		
+
+				<div class="cleared"></div>
+		    </div>
+		</div>
+		
+
+</div>
+
+
+</div>
+<div class="cleared"></div>
+
+
+
+<div class="art-Footer">
+ <div class="art-Footer-inner">
+  <div class="art-Footer-text">
+  
+  
+  </div>
+ </div>
+
+</div>
+
+		<div class="cleared"></div>
+    </div>
+</div>
+<div class="cleared"></div>
+<table align="center" width="1000px"><tr><td>
+<div class="art-nostyle">
+
+
+
+<table class="contentpaneopen">
+
+
+
+<tr>
+<td valign="top">
+<table style="width: 1000px; text-align: justify;" border="0">
+<tbody>
+<tr>
+<td style="text-align: center;">
+<p style="padding-left: 30px; text-align: justify;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">அறிமுகம்</span></strong></span></span></p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: justify; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: large;"><span style="font-family: arial,helvetica,sans-serif;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">உள்ளடக்கம்</span></strong></span></span></span></span></span></p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: left; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: large;"><span style="font-family: arial,helvetica,sans-serif;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">இணைப்புகள்</span></strong></span></span></span></span></span></p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: left; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: large;"><span style="font-family: arial,helvetica,sans-serif;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">Follow us on</span></strong></span></span></span></span></span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left; padding-left: 30px;"><span style="color: #99ccff;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /><a href="/index.php?option=com_content&amp;view=article&amp;id=4125"><span style="color: #183661; ">எங்களைப் பற்றி</span></a></span><span style="color: #183661;"><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">தள அறிமுகம்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">அறிவிப்பு</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">கடிதங்கள்</span></span></span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><a href="/index.php?option=com_contact&amp;view=contact&amp;id=1&amp;Itemid=205"><span style="font-size: small;">தொடர்பு</span></a> 
+<ul>
+</ul>
+</td>
+<td style="padding-left: 30px;"><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">பிரபந்தம்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=65:2010-10-25-08-00-01&amp;catid=52:2010-10-25-07-52-34">திவ்ய தேசங்கள்</a></span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">கதைகள்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">கட்டுரைகள்</span></span> 
+<ul>
+</ul>
+</td>
+<td style="padding-left: 30px;">
+<p><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">பக்தி இலக்கியம்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span></span><span style="color: #183661;"><span style="font-size: small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=4614&amp;Itemid=58">வைணவ இணைய தளங்கள்</a></span></span><br /><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">வலைப் பூக்கள்<br /></span></span></p>
+<p><span style="color: #183661;"><span style="font-size: small;"><br /></span></span></p>
+<ul>
+</ul>
+</td>
+<td>
+<p style="line-height: 20px; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/small_facebook_icon.png" border="0" /> Facebook</span><span style="font-size: small;"> </span><br /><span style="font-size: small;"><img src="/images/stories/small_twitter_icon.png" border="0" /> Twitter</span></span></p>
+<p style="line-height: 20px; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: small;"><br /></span></span></p>
+<p style="line-height: 20px; padding-left: 30px;"><span style="color: #183661;"><br /></span></p>
+<ul>
+</ul>
+</td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+
+</table>
+<span class="article_separator">&nbsp;</span>
+
+</div>
+</td></tr></table>
+
+
+<table width="100%" height="60px"border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td bgcolor="#EDECDA">&nbsp;</td>
+    <td width="500" align="left" bgcolor="#EDECDA"><div>Sitemap  |  Disclaimer</a></div></td>
+    <td width="500" align="right" bgcolor="#EDECDA"> &copy; Dravida Veda | All rights reseved <br> <a href="http://www.mediapurple.com/"> Web Design - Purple Rain</a></td>
+    <td bgcolor="#EDECDA">&nbsp;</td>
+  </tr>
+</table>
+</div>
+
+
+</body> 
+</html>

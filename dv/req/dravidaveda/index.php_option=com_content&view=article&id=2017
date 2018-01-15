@@ -1,0 +1,539 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" >
+ <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+var scrolltotop={
+	//startline: Integer. Number of pixels from top of doc scrollbar is scrolled before showing control
+	//scrollto: Keyword (Integer, or "Scroll_to_Element_ID"). How far to scroll document up when control is clicked on (0=top).
+	setting: {startline:100, scrollto: 0, scrollduration:1000, fadeduration:[500, 100]},
+	controlHTML: '<img src="/images/stories/audio/up.png" style="width:48px; height:48px" />', //HTML for control, which is auto wrapped in DIV w/ ID="topcontrol"
+	controlattrs: {offsetx:5, offsety:5}, //offset of control relative to right/ bottom of window corner
+	anchorkeyword: '#top', //Enter href value of HTML anchors on the page that should also act as "Scroll Up" links
+
+	state: {isvisible:false, shouldvisible:false},
+
+	scrollup:function(){
+		if (!this.cssfixedsupport) //if control is positioned using JavaScript
+			this.$control.css({opacity:0}) //hide control immediately after clicking it
+		var dest=isNaN(this.setting.scrollto)? this.setting.scrollto : parseInt(this.setting.scrollto)
+		if (typeof dest=="string" && jQuery('#'+dest).length==1) //check element set by string exists
+			dest=jQuery('#'+dest).offset().top
+		else
+			dest=0
+		this.$body.animate({scrollTop: dest}, this.setting.scrollduration);
+	},
+
+	keepfixed:function(){
+		var $window=jQuery(window)
+		var controlx=$window.scrollLeft() + $window.width() - this.$control.width() - this.controlattrs.offsetx
+		var controly=$window.scrollTop() + $window.height() - this.$control.height() - this.controlattrs.offsety
+		this.$control.css({left:controlx+'px', top:controly+'px'})
+	},
+
+	togglecontrol:function(){
+		var scrolltop=jQuery(window).scrollTop()
+		if (!this.cssfixedsupport)
+			this.keepfixed()
+		this.state.shouldvisible=(scrolltop>=this.setting.startline)? true : false
+		if (this.state.shouldvisible && !this.state.isvisible){
+			this.$control.stop().animate({opacity:1}, this.setting.fadeduration[0])
+			this.state.isvisible=true
+		}
+		else if (this.state.shouldvisible==false && this.state.isvisible){
+			this.$control.stop().animate({opacity:0}, this.setting.fadeduration[1])
+			this.state.isvisible=false
+		}
+	},
+	
+	init:function(){
+		jQuery(document).ready(function($){
+			var mainobj=scrolltotop
+			var iebrws=document.all
+			mainobj.cssfixedsupport=!iebrws || iebrws && document.compatMode=="CSS1Compat" && window.XMLHttpRequest //not IE or IE7+ browsers in standards mode
+			mainobj.$body=(window.opera)? (document.compatMode=="CSS1Compat"? $('html') : $('body')) : $('html,body')
+			mainobj.$control=$('<div id="topcontrol">'+mainobj.controlHTML+'</div>')
+				.css({position:mainobj.cssfixedsupport? 'fixed' : 'absolute', bottom:mainobj.controlattrs.offsety, right:mainobj.controlattrs.offsetx, opacity:0, cursor:'pointer'})
+				.attr({title:'Scroll Back to Top'})
+				.click(function(){mainobj.scrollup(); return false})
+				.appendTo('body')
+			if (document.all && !window.XMLHttpRequest && mainobj.$control.text()!='') //loose check for IE6 and below, plus whether control contains any text
+				mainobj.$control.css({width:mainobj.$control.width()}) //IE6- seems to require an explicit width on a DIV containing text
+			mainobj.togglecontrol()
+			$('a[href="' + mainobj.anchorkeyword +'"]').click(function(){
+				mainobj.scrollup()
+				return false
+			})
+			$(window).bind('scroll resize', function(e){
+				mainobj.togglecontrol()
+			})
+		})
+	}
+}
+
+scrolltotop.init()
+
+/***********************************************
+* Scroll To Top Control script- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Project Page at http://www.dynamicdrive.com for full source code
+***********************************************/
+
+</script>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=EmulateIE7" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="நாலாயிர திவ்ய பிரபந்தம், nalayira divya prabandham,naalaayira divya prabandham" />
+  <meta name="title" content="(1422)" />
+  <meta name="author" content="Administrator" />
+  <meta name="description" content="நாலாயிர திவ்ய பிரபந்தம், nalayira divya prabandham,naalaayira divya prabandham" />
+  <meta name="generator" content="Joomla! 1.5 - Open Source Content Management" />
+  <title>(1422)</title>
+  <link rel="stylesheet" href="/plugins/system/modalizer/modals/colorbox/style5/colorbox.css" type="text/css" />
+  <link rel="stylesheet" href="http://www.dravidaveda.org/plugins/content/qluetip/css/tip.css" type="text/css" />
+  <link rel="stylesheet" href="/modules/mod_vvisit_counter/css/mod_vvisit_counter.css" type="text/css" />
+  <style type="text/css">
+    <!--
+#cboxLoadedContent{background-color:#fff;}
+    -->
+  </style>
+  <script type="text/javascript" src="/plugins/system/modalizer/modals/jquery.min.js"></script>
+  <script type="text/javascript" src="/plugins/system/modalizer/modals/colorbox/jquery.colorbox-min.js"></script>
+  <script type="text/javascript" src="/media/system/js/mootools.js"></script>
+  <script type="text/javascript" src="/media/system/js/caption.js"></script>
+  <script type="text/javascript" src="http://www.dravidaveda.org/plugins/content/qluetip/js/qluetip.js"></script>
+  <script type="text/javascript">
+
+			$j(document).ready(function(){
+				$j('a.modalizer_link,').colorbox({width:'100%',height:'100%',iframe:true});
+				$j('a.modalizer_link_image').colorbox({width:'100%',height:'100%'});
+				$j('a.modalizer_link_external').colorbox({width:'100%',height:'100%',iframe:true});
+			});
+		
+  </script>
+
+  <link rel="stylesheet" href="/templates/system/css/system.css" type="text/css" />
+  <link rel="stylesheet" href="/templates/system/css/general.css" type="text/css" />
+  <link rel="Favorite icon" href="/images/stories/audio/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/templates/dravida_song/css/template.css" />
+  <!--[if IE 6]><link rel="stylesheet" href="/templates/dravida_song/css/template.ie6.css" type="text/css" media="screen" /><![endif]-->
+  <!--[if IE 7]><link rel="stylesheet" href="/templates/dravida_song/css/template.ie7.css" type="text/css" media="screen" /><![endif]-->
+  <script type="text/javascript" src="/templates/dravida_song/script.js"></script>
+ </head>
+<body>
+<div id="art-page-background-simple-gradient">
+<table align="center" width="1000px" height="28px" ><tr><td></td><td></td></tr></table>
+
+
+<table align="center" width="1000" height="175" ><tr><td><a href="http://dravidaveda.org/"><img src="/images/stories/dv-logo.png"/></a></td><td>
+<div class="art-nostyle">
+
+<form action="index.php" method="post">
+	<div class="search">
+		<input name="searchword" id="mod_search_searchword" maxlength="20" alt="search" class="inputbox" type="text" size="20" value="search..."  onblur="if(this.value=='') this.value='search...';" onfocus="if(this.value=='search...') this.value='';" />	</div>
+	<input type="hidden" name="task"   value="search" />
+	<input type="hidden" name="option" value="com_search" />
+	<input type="hidden" name="Itemid" value=0 />
+</form>
+</div>
+</td></tr></table>
+
+<table align="center" width="1008px" height="96px"><tr><td></td></tr></table>
+<table align="center" width="1006px" style="padding: 20px 0 0 0;"><tr><td></td></tr></table>
+</div>
+<div id="art-main">
+<div class="art-Sheet">
+    <div class="art-Sheet-tl"></div>
+    <div class="art-Sheet-tr"></div>
+    <div class="art-Sheet-bl"></div>
+    <div class="art-Sheet-br"></div>
+    <div class="art-Sheet-tc"></div>
+    <div class="art-Sheet-bc"></div>
+    <div class="art-Sheet-cl"></div>
+    <div class="art-Sheet-cr"></div>
+    <div class="art-Sheet-cc"></div>
+    <div class="art-Sheet-body">
+<table align="center" width="1000px" style="margin:-3px 0 0 -3px;"><tr><td></td></tr></table>
+
+
+<div class="art-contentLayout">
+<div class="art-content">
+
+
+
+
+<div class="art-Post">
+    <div class="art-Post-tl"></div>
+    <div class="art-Post-tr"></div>
+    <div class="art-Post-bl"></div>
+    <div class="art-Post-br"></div>
+    <div class="art-Post-tc"></div>
+    <div class="art-Post-bc"></div>
+    <div class="art-Post-cl"></div>
+    <div class="art-Post-cr"></div>
+    <div class="art-Post-cc"></div>
+    <div class="art-Post-body">
+<div class="art-Post-inner">
+<div class="art-PostContent">
+<div class="art-article"><h5 style="text-align: center;"><span style="font-size: medium;">(1422)</span></h5>
+<p style="text-align: left; padding-left: 150px;">மாக மாநிலம் முழுவதும்வந் திரைஞ்சும் <em> </em> மலர டிகண்ட மாமறை யாளன்<em>, </em><em> </em></p>
+<p style="text-align: left; padding-left: 150px;">தோகை மாமயி லன்னவ ரின்பம் <em> </em> துற்றி லாமை யிலத்தவிங் கொழிந்து <em> </em></p>
+<p style="text-align: left; padding-left: 150px;">போகம் நீயெய்திப் பின்னும்நம் மிடைக்கே <em> </em> போது வாய்<em>, </em>என்ற பொன்னருள்<em>, </em>எனக்கும் <em></em></p>
+<p style="text-align: left; padding-left: 150px;">ஆக வேண்டுமென் றடியிணை யடைந்தேன் <em></em> அணிபொ ழில்திரு வரங்கத்தம் மானே,</p>
+<p> </p>
+<p align="center"><strong><span style="text-decoration: underline;">பதவுரை</span></strong></p>
+<table border="1" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+<tr>
+<td colspan="3" width="602">
+<p align="center">ஆணி பொழில் திரு அரங்கத்து   அம்மானே!--;</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>மா   கம்</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>பரமாகாசமெனப்   படுகிற பரமபதத்திலுள்ளாரும்</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>மா   நிலம்</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>விசாலமான   இப்பூமண்டலத்திலுள்ளாரும்</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>முழுதும்</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>மற்றுமுள்ள   சராசரங்களடங்கலும்</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>வந்து   இறைஞ்சும்</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>வந்து   வணங்கப்பெற்ற</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>மலர்   அடி</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>(உனது) திருவடித் தாமரைகளை</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>கண்ட</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>ஸாக்ஷாத்கரித்த</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>மா   மறையாளன்</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>(கோவிந்தஸ்வாமி   யென்னும்) மஹாவைதிக ப்ராம்மணனொருவனைக்குறித்து</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>அந்த</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>‘அப்பா!,</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>நீ</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>நீ</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>தோகை   மா மயில் அன்னவர் இன்பம் துற்றிலாமையில்</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>பெண்டிர்களாலுண்டாகும்   விஷய போகஸுகங்களை அநுபவியாமையால்</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>இங்கு   ஒழிந்து</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>(சில காலம்) இவ்விபூதியிலேயிருந்து</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>போகம்   எய்தி</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>விஷய   போகங்களை யநுபவித்து</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>பின்னும்</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>அதன்   பிறகு</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>நம்   இடைக்கே போதுவாய்</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>நம்மிடம்   வந்து சேரக்கடவாய்’</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>என்ற</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>என்றருளிச்செய்த</p>
+</td>
+</tr>
+<tr>
+<td width="280">
+<p>பொன்   அருள்</p>
+</td>
+<td width="30">
+<p align="center">-</p>
+</td>
+<td width="292">
+<p>சிறந்த   கிருபையானது</p>
+</td>
+</tr>
+<tr>
+<td colspan="3" width="602">
+<p align="center">எனக்கும் ஆகவேண்டும் என்று அடி இணை   அடைந்தேன்--.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p align="center"><strong><span style="text-decoration: underline;">ஸ்ரீ காஞ்சி பிரதிவாதி பயங்கரம் அண்ணங்கராசாரியார் எழுதிய </span></strong></p>
+<p align="center"><strong><span style="text-decoration: underline;">விளக்க உரை</span></strong></p>
+<p style="text-align: justify;">***- கோவிந்தஸ்வாமியினுடைய கருத்தறிந்து காரியஞ்செய்ததுபோல அடியேனுக்கும் கருத்தறிந்து காரியஞ்செய்யவேணுமென்று அவனுடைய விருத்தாந்தத்தை முன்னிட்டுக் கொண்டு சரணம்புகுகிறார்.</p>
+<p style="text-align: justify;">கோவிந்தஸ்வாமி யென்பானொரு பிராமணன் இதிஹாஸ புராணங்களைப் பலகாலுங்கேட்டு அதனாலே கண்ணபிரானுடைய பால்ய சேஷ்டிதங்களையும் ராஸக்ரிடை (குரவைகோத்தல்) முதலிய திருவிளையாடல்களையும் ஸாக்ஷாத்தாகக் கண்டு களிக்கக் கருத்துக்கொண்டவனாய், ‘இதை எம்பெருமான் பக்கல் நாம் பிரார்த்தித்தால் அப்பெருமான் அருள்செய்யக் குறையில்லை’ என்றெண்ணி ஊன்வாட வுண்ணாது உயிர்காவலிட்டு உடலிற் பிரியாப்புலனைந்தும் நொந்து தான்வாடவாடத் தவஞ்செய்கையில், எம்பெருமான் இவனது நினைவின்படியே க்ருஷ்ணாவதார க்ருத்யங்களையெல்லாம் அவ்வண்ணமே ஸாக்ஷாத்கரிப்பித்து ‘இன்னமும் உனக்கு வேண்டுவதென்?’ என்று கேட்டருளினன்; அதற்கு இவன் ‘தேவரீரோடு கூடவே அத்தாணிச் சேவகனாயிருந்து நித்யாநுபவம் பண்ணிக்களிக்க விரும்பியிருக்கின்றேன்’ என்றான்; இவன்றான் வாயாலே இங்ஙனே கூறினனாயினும் ழூ உள்ளுவாருள்ளிற் றெல்லாமுடனிருந்தறியு மெம்பெருமான் அவனுடைய நாபியிலுள்ள உண்மைக்கருத்தை உள்ளபடியே கண்டறியவல்லவனாதலால் ‘இவனுக்கு நம்மோடு நித்யாநுபவம் பண்ணுகைதான் உண்மையான விருப்பமோ?’ என்று ஆராய்ந்து பார்த்தான்; பார்த்தரில், ‘இவனுக்கு சப்தாதிவிஷய போகங்களில் இன்னமும் நசை விட்டபாடில்லை’ என்றறிருந்து, ‘அந்தணா! நீ இன்னம் சிறிது காலம் இந்நிலத்திலேயேயிருந்து விஷயபோகங்களை ஆசைதீரச்செய்து தலைக்கட்டி, பின்பு நம்மோடே வரக்கடவாய்’ என்றருளிச்செய்து அந்தர்த்தான மடைந்ததாக ஒரு இதிஹாஸமுண்டு; அஃது இப்பாட்டில் அருளிச்செய்யப்படுகிறது.  இவ்வரலாறு எந்தப் புராணத்திலுள்ளதென்று ஆனமட்டும் ஆராய்ந்து பார்த்தும் ஆகரம் கண்டறிந்திலேன்; வேறு ஆழ்வார்களுமிதனை அருளிச்செய்திலர்.  ஸ்தலமாஹாத்மியங்கள் கூறும் புராணங்களில் திருவேங்கடமலை மாஹாத்மியங் கூறுமிடத்து இவ்வரலாறு விரித்துரைக்கப்பட்டுளதாக ஒரு நண்பர் கூறக்கேட்டேன்.</p>
+<p style="text-align: justify;">கண்ணபிரான் நம்பி மூத்தபிரானும் அக்ரூரரால் அழைத்துச் செல்லப்பட்டு மதுராபுரிக்கெழுந்தருளினவளவிலே மாலாகாரர் திருமாளிகையிலே புக்கு அவரால் ஆராதிக்கப்பெற்ற போது, கண்ணபிரான் அவரை அநுக்ரஹித்துப் பேசும் புடையிலே “புக்த்வா ச விபுலாந் போகாந் த்வமந்தே மத்ப்ரஸாதத:, மமாநுஸ்மரணம் ப்ராப்ய திவ்யம் லோகமவாப்ஸ்யஸி” (இவ்விடத்தில் அநுபவிக்கவேண்டிய போகங்களையெல்லாம் பெருக்க நீ அநுபவித்து, தேஹமுடிவுகாலத்தில் என்னருளால் என்னைச்சிந்தித்து திவ்யலோகமடைவாய்) என்றருளியது இங்கு ஸ்மரிக்கத்தக்கது.</p>
+<p style="text-align: justify;">“இங்கொழிந்து போகம் நீ யெய்திப்பின்னும் நம்மிடைக்கே போதுவாயென்ற பொன்னருள் எனக்குமாகவேண்டும்” என்ற விதனால் கோவிந்த ஸ்வாமிக்குப்போலே தமக்கும் விஷய போகங்களில் போதுபோக்காகும்படி அருள் செய்யவேணுமென்று ஆழ்வார் பிரார்த்திப்பதாகப் பொருள்கொள்ளவேண்டா: “சரந்தேந்து மென்முலையார் தடந்தோள் புணாரின்ப வெள்ளத்தாழ்ந்தேன் அருநரகத் தழுந்தும் பயன்படைத்தேன், போந்தேன் புண்ணியனே! உன்னையெய்தி என் தீவினைகள் தீர்ந்தேன்” என்று விஷயாந்தரங்களைக் காறியுமிழ்ந்து பேசுமிவ்வாழ்வார்க்கு அந்த நினைவு கனவிலும் தேன்ற ப்ரஸக்தியில்லை.  ஆகையாலே, நித்யகைங்கரிய விரோதியான இந்த தேஹஸம்பந்தத்தை அறுத்துத் தந்தருளவேணுமென்பதே இப்போது இவர்க்குப் பிரார்த்தனையாகும்.  இப்படியாகில், அந்தரங்கத்தில் விஷயபோகங்களில் நசையுள்ளவனாயிருந்த கோவிந்தஸ்வாமியை உதாஹரணமா யெடுத்துக்காட்டியது ஏதுக்கென்னில்; அவனுடைய உட்கருத்தைக் கண்டறிந்து அவனுக்கு அருள் செய்ததுபோல அடியேனுக்கும் உட்கருத்தையறிந்து அருள வேண்டுமென்னுமித்தனையே இங்கு விவக்ஷரிதம். (இப்பெரிய திருமொழியின் ஈற்றுத் திருப்பதிகமான “மாற்றமுள” என்னுந் திருமொழியில் இவ்வாழ்வாரது உத்தேச்யம் நன்கு விளங்கக் காண்க.)</p>
+<p style="text-align: justify;">இங்கே ஒரு சங்கை உதிப்பதுண்டு; எம்பெருமானோவென்னில் தன்னடி சேரவிரும்புவார் ஆரேனுமுண்டோ? என்று ஆள்பார்த்துத் திரிகிறவன்; மோக்ஷத்தில் ருசியில்லாதவர்களுக்கும் எவ்வகையினாலேனம் ருசியைப் பிறப்பித்து நித்ய கைங்கர்ய ஸாம்ராஜ்யத்தைத் தந்தருள்பவனென்று ப்ரஸித்தனாயிருப்பவன்.  இப்படிப்பட்ட எம்பெருமான், ‘உன்னோடு கூடவே வரவிரும்புகிறே’ னென்று சொல்லும் ஒரு மஹானுபாவனைப் பெற்றால் பெருமகிழ்ச்சி கொண்டு ‘அப்பா! வாராய்; உன்னையே தேடித் திரிகின்றேன்; கடுக வா; போவோம்’ என்று ஆதரித்து அழைத்துக்கொண்டு போக வுரியவனே யன்றி, கெட்டவழியைக் காட்டி ஒழிந்துபோ என்னத் தக்கவனல்லன்; அப்படியிருந்தும், கூடவருவேனென்ற கோவிந்த ஸ்வாமியைப் பெருமான் உபேக்ஷரித்து வார்த்தை சொன்னது ஏன்?  என்று சங்கிக்கலாம்.  இதற்கு நாம் என் சொல்லவல்லோம்; எம்பெருமானுடைய ஸ்வாதந்திரியம் விசித்ரமானது; ஸம்ஸாரத்தில் பற்று சிறிதுமில்லாதவர்களை ஸம்ஸாரத்தில் வீழ்த்தவும், மோக்ஷருசி யில்லாதவர்களை மோக்ஷத்திற்குக் கொண்டு சேர்க்கவும் தனக்குள்ள ஸ்வாதந்திரியத்தைச் சில வ்யக்திகள் திறத்தில் அவன் காட்டுவதுண்டு.  இங்கே வியாக்யான வாக்கியங்காண்மின் :- “ஈச்வரன் நினைத்தால் விஷய ப்ரவணரையும் இவ்வாஸநையறுத்துக் கொண்டுபோக சக்தனென்னுமிடமும், எத்தனையேனும் பகவத் ப்ரவணரையும் தேஹ ஸம்பந்தத்தின் வழியே கொண்டுபோய் விநாசத்தைப் பலிப்பிக்குமென்னுமிடமும் வெளியிட்டது.  ஸாதுக்களுக்கடைய உபமாநபூமியாயிருக்கிற ஸ்ரீப்ரஹ்லாதாழ்வானுமிறே எதிரம்பு கோத்தான்.”</p>
+<p style="text-align: justify;">தோகைமாமயிலன்னவரின்பம் = மாதர்க்கு மயிலை உவமை கூறுவதுண்டு; மயில் தோகைபோன்ற கூந்தல்வளம் வாய்ந்தவர் என்கை.</p>
+<p> </p>
+<p align="center"><strong><span style="text-decoration: underline;">English Translation</span></strong></p>
+<p><span style="font-size: small;">Then the  posionous serpent called Sumuka, fearing wrath of the merciless Garuda,  came to you with a prayer for safety, when you gave him to Garuda for  safe keep. O the foul-mouthed agents of Yama-god mercilessly will take  me, I fear them. Ocean-hued Lord, I've come to your lotus feet.  O Lord  surrounded by groves in Arangam!</span></p></div><span class="article_separator">&nbsp;</span>
+</div>
+<div class="cleared"></div>
+
+
+</div>
+
+		<div class="cleared"></div>
+    </div>
+</div>
+
+
+
+
+
+</div>
+
+<div class="art-sidebar1">
+<div class="art-Block">
+		    <div class="art-Block-cc"></div>
+		    <div class="art-Block-body">
+		
+		
+<div class="art-BlockHeader">
+		    <div class="l"></div>
+		    <div class="r"></div>
+		    <div class="art-header-tag-icon">
+		        <div class="t">
+		வருகை பதிவு
+</div>
+		    </div>
+		</div>
+		
+		
+<div class="art-BlockContent">
+		    <div class="art-BlockContent-body">
+		
+		<!-- Vinaora Visitors Counter for Joomla! --><div id="vvisit_counter"><div><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/4.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/0.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/5.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/2.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/1.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/2.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/5.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /></div><div><a href="http://vinaora.com" target="_self" title="Vinaora Visitors Counter 2.0 for Joomla!">Visitors Counter</a></div></div>
+
+				<div class="cleared"></div>
+		    </div>
+		</div>
+		
+		
+
+				<div class="cleared"></div>
+		    </div>
+		</div>
+		
+
+</div>
+
+
+</div>
+<div class="cleared"></div>
+
+
+
+<div class="art-Footer">
+ <div class="art-Footer-inner">
+  <div class="art-Footer-text">
+  
+  
+  </div>
+ </div>
+
+</div>
+
+		<div class="cleared"></div>
+    </div>
+</div>
+<div class="cleared"></div>
+<table align="center" width="1000px"><tr><td>
+<div class="art-nostyle">
+
+
+
+<table class="contentpaneopen">
+
+
+
+<tr>
+<td valign="top">
+<table style="width: 1000px; text-align: justify;" border="0">
+<tbody>
+<tr>
+<td style="text-align: center;">
+<p style="padding-left: 30px; text-align: justify;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">அறிமுகம்</span></strong></span></span></p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: justify; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: large;"><span style="font-family: arial,helvetica,sans-serif;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">உள்ளடக்கம்</span></strong></span></span></span></span></span></p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: left; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: large;"><span style="font-family: arial,helvetica,sans-serif;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">இணைப்புகள்</span></strong></span></span></span></span></span></p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: left; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: large;"><span style="font-family: arial,helvetica,sans-serif;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">Follow us on</span></strong></span></span></span></span></span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left; padding-left: 30px;"><span style="color: #99ccff;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /><a href="/index.php?option=com_content&amp;view=article&amp;id=4125"><span style="color: #183661; ">எங்களைப் பற்றி</span></a></span><span style="color: #183661;"><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">தள அறிமுகம்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">அறிவிப்பு</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">கடிதங்கள்</span></span></span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><a href="/index.php?option=com_contact&amp;view=contact&amp;id=1&amp;Itemid=205"><span style="font-size: small;">தொடர்பு</span></a> 
+<ul>
+</ul>
+</td>
+<td style="padding-left: 30px;"><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">பிரபந்தம்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=65:2010-10-25-08-00-01&amp;catid=52:2010-10-25-07-52-34">திவ்ய தேசங்கள்</a></span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">கதைகள்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">கட்டுரைகள்</span></span> 
+<ul>
+</ul>
+</td>
+<td style="padding-left: 30px;">
+<p><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">பக்தி இலக்கியம்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span></span><span style="color: #183661;"><span style="font-size: small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=4614&amp;Itemid=58">வைணவ இணைய தளங்கள்</a></span></span><br /><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">வலைப் பூக்கள்<br /></span></span></p>
+<p><span style="color: #183661;"><span style="font-size: small;"><br /></span></span></p>
+<ul>
+</ul>
+</td>
+<td>
+<p style="line-height: 20px; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/small_facebook_icon.png" border="0" /> Facebook</span><span style="font-size: small;"> </span><br /><span style="font-size: small;"><img src="/images/stories/small_twitter_icon.png" border="0" /> Twitter</span></span></p>
+<p style="line-height: 20px; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: small;"><br /></span></span></p>
+<p style="line-height: 20px; padding-left: 30px;"><span style="color: #183661;"><br /></span></p>
+<ul>
+</ul>
+</td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+
+</table>
+<span class="article_separator">&nbsp;</span>
+
+</div>
+</td></tr></table>
+
+
+<table width="100%" height="60px"border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td bgcolor="#EDECDA">&nbsp;</td>
+    <td width="500" align="left" bgcolor="#EDECDA"><div>Sitemap  |  Disclaimer</a></div></td>
+    <td width="500" align="right" bgcolor="#EDECDA"> &copy; Dravida Veda | All rights reseved <br> <a href="http://www.mediapurple.com/"> Web Design - Purple Rain</a></td>
+    <td bgcolor="#EDECDA">&nbsp;</td>
+  </tr>
+</table>
+</div>
+
+
+</body> 
+</html>

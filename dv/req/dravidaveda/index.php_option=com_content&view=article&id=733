@@ -1,0 +1,593 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" >
+ <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+var scrolltotop={
+	//startline: Integer. Number of pixels from top of doc scrollbar is scrolled before showing control
+	//scrollto: Keyword (Integer, or "Scroll_to_Element_ID"). How far to scroll document up when control is clicked on (0=top).
+	setting: {startline:100, scrollto: 0, scrollduration:1000, fadeduration:[500, 100]},
+	controlHTML: '<img src="/images/stories/audio/up.png" style="width:48px; height:48px" />', //HTML for control, which is auto wrapped in DIV w/ ID="topcontrol"
+	controlattrs: {offsetx:5, offsety:5}, //offset of control relative to right/ bottom of window corner
+	anchorkeyword: '#top', //Enter href value of HTML anchors on the page that should also act as "Scroll Up" links
+
+	state: {isvisible:false, shouldvisible:false},
+
+	scrollup:function(){
+		if (!this.cssfixedsupport) //if control is positioned using JavaScript
+			this.$control.css({opacity:0}) //hide control immediately after clicking it
+		var dest=isNaN(this.setting.scrollto)? this.setting.scrollto : parseInt(this.setting.scrollto)
+		if (typeof dest=="string" && jQuery('#'+dest).length==1) //check element set by string exists
+			dest=jQuery('#'+dest).offset().top
+		else
+			dest=0
+		this.$body.animate({scrollTop: dest}, this.setting.scrollduration);
+	},
+
+	keepfixed:function(){
+		var $window=jQuery(window)
+		var controlx=$window.scrollLeft() + $window.width() - this.$control.width() - this.controlattrs.offsetx
+		var controly=$window.scrollTop() + $window.height() - this.$control.height() - this.controlattrs.offsety
+		this.$control.css({left:controlx+'px', top:controly+'px'})
+	},
+
+	togglecontrol:function(){
+		var scrolltop=jQuery(window).scrollTop()
+		if (!this.cssfixedsupport)
+			this.keepfixed()
+		this.state.shouldvisible=(scrolltop>=this.setting.startline)? true : false
+		if (this.state.shouldvisible && !this.state.isvisible){
+			this.$control.stop().animate({opacity:1}, this.setting.fadeduration[0])
+			this.state.isvisible=true
+		}
+		else if (this.state.shouldvisible==false && this.state.isvisible){
+			this.$control.stop().animate({opacity:0}, this.setting.fadeduration[1])
+			this.state.isvisible=false
+		}
+	},
+	
+	init:function(){
+		jQuery(document).ready(function($){
+			var mainobj=scrolltotop
+			var iebrws=document.all
+			mainobj.cssfixedsupport=!iebrws || iebrws && document.compatMode=="CSS1Compat" && window.XMLHttpRequest //not IE or IE7+ browsers in standards mode
+			mainobj.$body=(window.opera)? (document.compatMode=="CSS1Compat"? $('html') : $('body')) : $('html,body')
+			mainobj.$control=$('<div id="topcontrol">'+mainobj.controlHTML+'</div>')
+				.css({position:mainobj.cssfixedsupport? 'fixed' : 'absolute', bottom:mainobj.controlattrs.offsety, right:mainobj.controlattrs.offsetx, opacity:0, cursor:'pointer'})
+				.attr({title:'Scroll Back to Top'})
+				.click(function(){mainobj.scrollup(); return false})
+				.appendTo('body')
+			if (document.all && !window.XMLHttpRequest && mainobj.$control.text()!='') //loose check for IE6 and below, plus whether control contains any text
+				mainobj.$control.css({width:mainobj.$control.width()}) //IE6- seems to require an explicit width on a DIV containing text
+			mainobj.togglecontrol()
+			$('a[href="' + mainobj.anchorkeyword +'"]').click(function(){
+				mainobj.scrollup()
+				return false
+			})
+			$(window).bind('scroll resize', function(e){
+				mainobj.togglecontrol()
+			})
+		})
+	}
+}
+
+scrolltotop.init()
+
+/***********************************************
+* Scroll To Top Control script- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Project Page at http://www.dynamicdrive.com for full source code
+***********************************************/
+
+</script>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=EmulateIE7" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="நாலாயிர திவ்ய பிரபந்தம், nalayira divya prabandham,naalaayira divya prabandham" />
+  <meta name="title" content="(475)" />
+  <meta name="author" content="Administrator" />
+  <meta name="description" content="நாலாயிர திவ்ய பிரபந்தம், nalayira divya prabandham,naalaayira divya prabandham" />
+  <meta name="generator" content="Joomla! 1.5 - Open Source Content Management" />
+  <title>(475)</title>
+  <link rel="stylesheet" href="/plugins/system/modalizer/modals/colorbox/style5/colorbox.css" type="text/css" />
+  <link rel="stylesheet" href="http://www.dravidaveda.org/plugins/content/qluetip/css/tip.css" type="text/css" />
+  <link rel="stylesheet" href="/modules/mod_vvisit_counter/css/mod_vvisit_counter.css" type="text/css" />
+  <style type="text/css">
+    <!--
+#cboxLoadedContent{background-color:#fff;}
+    -->
+  </style>
+  <script type="text/javascript" src="/plugins/system/modalizer/modals/jquery.min.js"></script>
+  <script type="text/javascript" src="/plugins/system/modalizer/modals/colorbox/jquery.colorbox-min.js"></script>
+  <script type="text/javascript" src="/media/system/js/mootools.js"></script>
+  <script type="text/javascript" src="/media/system/js/caption.js"></script>
+  <script type="text/javascript" src="http://www.dravidaveda.org/plugins/content/qluetip/js/qluetip.js"></script>
+  <script type="text/javascript">
+
+			$j(document).ready(function(){
+				$j('a.modalizer_link,').colorbox({width:'100%',height:'100%',iframe:true});
+				$j('a.modalizer_link_image').colorbox({width:'100%',height:'100%'});
+				$j('a.modalizer_link_external').colorbox({width:'100%',height:'100%',iframe:true});
+			});
+		
+  </script>
+
+  <link rel="stylesheet" href="/templates/system/css/system.css" type="text/css" />
+  <link rel="stylesheet" href="/templates/system/css/general.css" type="text/css" />
+  <link rel="Favorite icon" href="/images/stories/audio/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/templates/dravida_song/css/template.css" />
+  <!--[if IE 6]><link rel="stylesheet" href="/templates/dravida_song/css/template.ie6.css" type="text/css" media="screen" /><![endif]-->
+  <!--[if IE 7]><link rel="stylesheet" href="/templates/dravida_song/css/template.ie7.css" type="text/css" media="screen" /><![endif]-->
+  <script type="text/javascript" src="/templates/dravida_song/script.js"></script>
+ </head>
+<body>
+<div id="art-page-background-simple-gradient">
+<table align="center" width="1000px" height="28px" ><tr><td></td><td></td></tr></table>
+
+
+<table align="center" width="1000" height="175" ><tr><td><a href="http://dravidaveda.org/"><img src="/images/stories/dv-logo.png"/></a></td><td>
+<div class="art-nostyle">
+
+<form action="index.php" method="post">
+	<div class="search">
+		<input name="searchword" id="mod_search_searchword" maxlength="20" alt="search" class="inputbox" type="text" size="20" value="search..."  onblur="if(this.value=='') this.value='search...';" onfocus="if(this.value=='search...') this.value='';" />	</div>
+	<input type="hidden" name="task"   value="search" />
+	<input type="hidden" name="option" value="com_search" />
+	<input type="hidden" name="Itemid" value=0 />
+</form>
+</div>
+</td></tr></table>
+
+<table align="center" width="1008px" height="96px"><tr><td></td></tr></table>
+<table align="center" width="1006px" style="padding: 20px 0 0 0;"><tr><td></td></tr></table>
+</div>
+<div id="art-main">
+<div class="art-Sheet">
+    <div class="art-Sheet-tl"></div>
+    <div class="art-Sheet-tr"></div>
+    <div class="art-Sheet-bl"></div>
+    <div class="art-Sheet-br"></div>
+    <div class="art-Sheet-tc"></div>
+    <div class="art-Sheet-bc"></div>
+    <div class="art-Sheet-cl"></div>
+    <div class="art-Sheet-cr"></div>
+    <div class="art-Sheet-cc"></div>
+    <div class="art-Sheet-body">
+<table align="center" width="1000px" style="margin:-3px 0 0 -3px;"><tr><td></td></tr></table>
+
+
+<div class="art-contentLayout">
+<div class="art-content">
+
+
+
+
+<div class="art-Post">
+    <div class="art-Post-tl"></div>
+    <div class="art-Post-tr"></div>
+    <div class="art-Post-bl"></div>
+    <div class="art-Post-br"></div>
+    <div class="art-Post-tc"></div>
+    <div class="art-Post-bc"></div>
+    <div class="art-Post-cl"></div>
+    <div class="art-Post-cr"></div>
+    <div class="art-Post-cc"></div>
+    <div class="art-Post-body">
+<div class="art-Post-inner">
+<div class="art-PostContent">
+<div class="art-article"><h5 style="text-align: center;"><span style="font-size: medium;">(475)</span></h5>
+<p style="text-align: left; padding-left: 150px;">வையத்து வாழ்வீர்காள் நாமும்நம் பாவைக்குச்</p>
+<p style="text-align: left; padding-left: 150px;">செய்யும் கிரிசைகள் கேளீரோ பாற்கடலுள்</p>
+<p style="text-align: left; padding-left: 150px;">பையத் துயின்ற பரம னடிபாடி</p>
+<p style="text-align: left; padding-left: 150px;">நெய்யுண்ணோம் பாலுண்ணோம் நாட்காலே நீராடி</p>
+<p style="text-align: left; padding-left: 150px;">மையிட்டு எழுதோம் மலரிட்டு நாம்முடியோம்</p>
+<p style="text-align: left; padding-left: 150px;">செய்யா தனசெய்யோம் தீக்குறளைச் சென்றோதோம்</p>
+<p style="text-align: left; padding-left: 150px;">ஐயமும் பிச்சையும் ஆந்தனையும் கைகாட்டி</p>
+<p style="text-align: left; padding-left: 150px;">உய்யுமாற் எண்ணி உகந்தேலோர் எம்பாவாய்.</p>
+<p style="text-align: justify;"> </p>
+<p align="center"><strong><span style="text-decoration: underline;">பதவுரை</span></strong></p>
+<table style="width: 638px;" border="1" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+<tr>
+<td width="228">
+<p>வையத்து</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>இப் பூமண்டலத்தில்</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>வாழ்வீர்காள்</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>வாழ்ந்திரா நின்றுள்ளவர்களே!</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>நாமும்</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>(எம்பெருமானாலேயே பேறு என்ற அத்யவஸாய முடைய) நாமும்</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>உய்யும் ஆறு எண்ணி</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>உஜ்ஜீவிக்கும் வழியை ஆராய்ந்து,</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>பால் கடலுள் பைய துயின்ற பரமன் அடி பாடி</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>திருப்பாற்கடலில் அவதாநத்துடன் கண் வளர்ந்தருளா நின்ற   பரமபுருஷனுடைய திருவடிகட்கு மங்களாசாஸணம் பண்ணி</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>ஐயமும் பிச்சையும் ஆந்தனையும் கை காட்டி</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>(ஆசார்யாதிகளுக்கு   இடு கையாகிற) ஐயத்தையும், (ஆர்த்தர்கட்கு   இடுகையாகிற) பிக்ஷையையும் சக்தியுள்ளவளவும்    இட்டு</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>உகந்து</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>மகிழ்ந்து</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>ஈம் பாவைக்கு செய்யும்</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>நமது நோன்புக்கு (அங்கமாகச்) செய்யவேண்டிய</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>கிரிசைகள்</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>க்ரியைகளை</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>கேளீர்</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>காதுகொடுத்துக்கேளுங்கள்</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>நாம்</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>நோன்பு நோற்கத் தொடங்கின நாம்</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>நெய் உண்ணோம்</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>நெய் உண்ணக்கடவோமல்லோம்;</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>பால் உண்ணோம்</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>பாலை உண்ணக்கடவோமல்லோம்;</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>நாட்காலே நீர் ஆடி</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>விடியற் காலத்திலேயே ஸ்நாநஞ்செய்துவிட்டு</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>மை இட்டு எழுதோம்</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>(கண்ணில்) மையிட்டு அலங்காரம் பண்ணக்கடவோமல்லோம்;</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>மலர் இட்டு முடியோம்</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>(குழலிற்) பூ வைத்து முடிக்கக் கடவோமல்லோம்;</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>செய்யாதன</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>(மேலைத்   தலைவர்கள்) செய்யாதவற்றை</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>செய்யோம்</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>செய்யக் கடவோமல்லோம்;</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>தீ குறளை</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>கொடிய கோட்சொற்களை</p>
+</td>
+</tr>
+<tr>
+<td width="228">
+<p>சென்று ஓதோம்</p>
+</td>
+<td width="26">
+<p>-</p>
+</td>
+<td width="385">
+<p>(எம்பெருமானிடத்துச்) சென்று கூறக் கடவோமல்லோம்;</p>
+</td>
+</tr>
+<tr>
+<td colspan="3" width="638">
+<p align="center">ஏல் ஓர்   எம்பாவாய்</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p align="center"><strong><span style="text-decoration: underline;">ஸ்ரீ காஞ்சி பிரதிவாதி பயங்கரம் அண்ணங்கராசாரியார் எழுதிய </span></strong></p>
+<p align="center"><strong><span style="text-decoration: underline;">விளக்க உரை</span></strong></p>
+<p style="text-align: justify;">***- ஒரு விசேஷ காரியத்தில் ஒருப்பட்டவர்கள் அக்காரியம் தலைக்கட்டுமளவும் சிலவற்றைப் பரிஹரிக்க வேண்டுமென்றும் சிலவற்றைப் பற்றவேண்டுமென்றும் அந்த வீடுபற்றுக்களை முதலில் ஸங்கல்பித்துக்கொள்ள வேண்டுமென்றும் சாஸ்திரங்களிற் கூறியுள்ளதனால், அதற்கேற்ப, நோன்பு ஆகிற விசேஷ காரியத்தில் ஒருப்பட்ட இவ்வாயர் மங்கைகள் தாங்கள் விடுமவற்றையும் பற்றுமவற்றையும் ஸங்கல்பிக்கிறார்கள், இப்பாட்டில்.</p>
+<p style="text-align: justify;">பாற்கடலுள் பையத்துயின்ற பரமனடிபாடுகை, நாட்காலே நீராடுகை, ஐயமும் பிச்சையு மாந்தனையுங் கைகாட்டுகை ஆகிற இம்மூன்றும் செய்யப்படுமவை.  நெய்யுண்ணாமை, பாலுண்ணாமை, மையிட்டெழுதாமை, மலரிட்டு முடியாமை, செய்யாதன செய்யாமை, தீக்குறளை சென்றோதாமை என்பன விடப்படுமவை.  “உண்ணோம், செய்யோம், ஓதோம்” என்ற தன்மைப் பன்மை வினைமுற்றுக்கள் ஸங்கல்பத்தைக் காட்டுமவை.  “செய்யுங் கிரிசைகள் கேளீரோ” என்றாற்போலவே “விடுங்கிரிசைகள் கேளீரோ” என்றுஞ் சொல்ல வேண்டாவோவென்னில்; வேண்டா; விடுகையென்பதும் செய்யுங் கிரிசையினுள் அடங்கக்கூடுமாதலின் எனவே, “செய்யுங் கிரிசைகள்” என்ற ஒரு சொற்போக்கிற்றானே வீடுபற்றுக்களிரண்டும் வெளியாயின வென்க.</p>
+<p style="text-align: justify;">வாழ்ச்சிக்கு நிலமல்லதா இருள் தருமா ஞாலத்தில் வாழ்வதென்பது நெருப்புச் சட்டியில் தாமரை பூப்பதையொக்குமாதலால், இங்ஙன் வாழப்பிறந்தவர்களின் பெருமை என்னே! என வியந்து ‘வையத்து வாழ்வீர்காள்’ என விளிக்கின்றனர்.  நீர்மை மேன்மை முதலிய குணங்களனைத்தும் விளங்குமாறு கண்ணபிரான் அவதரித்த ஆய்ப்பாடியிற் பிறவியின் மிக்க வாழ்ச்சி யில்லையே.  கண்ணபிரானுடைய விருப்பத்திற்கு இலக்காகமாட்டாதே முரட்டாண்களாய்ப் பிறத்தல், பருவங்கழித்த பெண்களாயிருத்தல் செய்யாதே ஒத்தபருவத்திற் பெண்களாயிருக்குமவர்களின் வாழ்ச்சி பேச்சுக்கு நிலமல்லவென்க.</p>
+<p style="text-align: justify;">நாமும் என்றவிடத்து உம்மைக்குக் கருத்தென் எனில்; ஸ்வாமிக்குப் பரதந்த்ரமான ஸ்வம் பேற்றுக்காகத்தானே ஒரு ப்ரவ்ருத்தி பண்ணுகைக்கு உரிமையற்றதாயிருக்க, ருசி இருந்தவிடத்தில் இருக்கவொட்டாமையாலே பதறிச் செல்லுகின்றமையைக் காட்டும்.  “ஆறெனக்கு நின்பாதமே சரணாகத் தந்தொழிந்தாய்” “நாகணை மிசை நம்பிரான் சரணே சரண் நமக்கு” என்றிருக்கையாகிற அநந்யோபாயத்வத்தைக் குலைக்கவல்ல செயல்களில் நோன்பும் ஒன்றாதலால் அது ஆத்மாவுக்கு அப்ராப்தகரும மெனப்படுகிறது.  ஆகில் அப்ராப்த காரியத்தில் இவர்கள் கைவைப்பது ஸ்வரூப விருத்தமேயன்றோ வென்னில்; அன்று; “அப்ராப்த விஷயங்களிலே ஸக்தனானவன் அது லபிக்கவேணுமென்றிரா நின்றால் ப்ராப்த விஷய ப்ரவணனக்குச் சொல்லவேண்டாவிறே; அநுஷ்டாநமும் அநநுஷ்டாநமம் உபாயகோடியில் அந்வயியாது.  அநந்யோ பாயத்வமும், அநந்யோபேயத்வமும் அநந்யதைவத்வமும் குலையும்படியான ப்ரவ்ருத்தி காணா நின்றோமிறே.  ஜ்ஞாநவிபாக கார்யமான அஜ்ஞாநத்தாலே வருமவையெல்லாம் அடிக்கழஞ்சு பெறும்.  ஊபாயபலமாய் உபேயாந்தர்ப்பூதமாயிருக்குமது உபாயப்ரதி பந்தகமாகாது” இத்தியாதி ஸ்ரீவசநபூஷண ஸூக்திகளையும் அவ்விடத்து வியாக்கியான வாக்கியங்களையுங் கண்டு தெளிக.</p>
+<p style="text-align: justify;">இந்திரஜித்து முதலியவர்கள் எம்பெருமானையும் அவனடியாரையும் அழிக்கைக்குச்செய்த யாகம் போலன்றியே, பிரயோஜநாந்தரங்களை விரும்பிச்செய்யும் விரதங்கள் போலுமன்றியே க்ருஷ்ணனும் க்ருஷ்ண விபூதியும் ஸத்தைபெறுதற்குச் செய்யும் நோன்பு இது என்ற வாசியைக் காட்டுகிறது, “நம் பாவைக்கு” என்ற சொற்போக்கு.</p>
+<p style="text-align: justify;">செய்யுங் கிரிசைகள் என்றது – சேதநராகையாலே பேறு கைபுகுமளவும் காலக்ஷேபத்துக் குறுப்பாகச் செய்யும் செயல்கள் என்றபடி.  “பெருந்தெருவே ஊராரி கழிலும் ஊராதொழியேன் நான் வாரார்பூம் பெண்ணைமடல்” என்று மடலெடுப்பதாகக் காட்டிவிட்டவளவே போலன்றி அநுஷ்டான பர்யந்தமாகச் செய்கிற நோன்பு இது என்பதைக்காட்டும், செய்யும் என்ற சொற்போக்கு.</p>
+<p style="text-align: justify;">‘பெண்களையும் கிருஷ்ணனையும் நெடுநாள் கடுமையாகப் பிரித்துவைத்த இவ்வாய்ப்பாடியில் இங்ஙனே ஒரு சேர்த்தியுண்டானவாறு என்கொல்!’ என்றும், ‘இவ்விருள் தருமா ஞாலத்தில் பகவத் விஷயத்தை அநுபவித்தற்கு இத்தனைபேர் திரள்வது என்ன விசித்திரம்!’ என்றும் வியந்து மரம் மலை முதலியன போல ஸ்தப்தராய மயங்கிக் கிடக்குமவர்களைத் துடைதட்டியெழுப்புவாரைப்போல் “கேளீர்” என்று துடை தட்டி உணர்த்துகிறார்கள்.  அந்யபரத்வத்தைத் தவிர்க்கைக்காகவன்றோ சொல் நடுவில் கேளீர் என்னவேண்டுவது.</p>
+<p style="text-align: justify;">‘பசுக்களுக்கு மேய்ச்சல் வாய்த்தால் அப்போது கிடைப்பனவற்றை யெல்லாம் விரைந்து உட்கொண்டு பின்னர் ஸாவகாசமாக அசையிடுவதுபோல, பகைவர் பரம்பின் இப்பாடியில் க்ருஷ்ணஸம்ச்லேஷத்திற்கு வழிபிறந்த இந்நாளிற் செய்ய வேண்டியவற்றைச்சடக்கெனச் செய்துவிட்டுப் பின்பு ஸாவகாசமாக இருந்து நெஞ்சார மகிழ வேண்டும்;  அன்றி இப்போது மேற்காரியத்திற் பதற்றமற்று ‘இங்ஙனே வாய்த்தவாறு என்னே!’ என்றாற்போலச் சிலபேசிக்கொண்டு மகிழ்ந்து மயங்கி ஸ்தப்தைகளாய் நின்றால் க்ருஷ்ணாநுபவத்துக் கென்று வாய்த்த அற்ப காலமும் பழுதேகழியும்; இந்நாலு நாளுங் கடந்தால் க்ருஷ்ண னெங்கே, நாம் எங்கே’ என்றிருக்கும் அவர்களாதலால் “செய்யுங் கிரிசைகள் கேளீரோ” எனப் பதற்றந்தோற்றக் கூறுகின்றனர்.  அவர்கள் கேட்கைக்கு உடன்பட்டவாறே சொல்லைத் தொடங்குகின்றனர் ‘பாற்கடலுள்’ என்பது முதலாக.</p>
+<p style="text-align: justify;">இடர்ப்பட்டாரை இன்பக்கடலில் ஆழ்த்துவதை இயற்கைத் தொழிலாகவுடைய எம்பெருமான், தாமரைமலர் வேண்டி வானத்தே நிற்பவன்போற் சேணுயர் வானமாகிற வைகுந்த நாட்டிலிருந்தாற் காரியமாகாதெனக் கருதி, ஆர்த்தர்களின் கூச்சல் செவிப்படுமாறு இவ்வண்டத்திற்குட்பட்ட திருப்பாற்கடற்கெழுந்தருளி அங்குழ உறங்குவான்போல் யோகுசெய்த பெருமானாயிருப்பன் என்னும் வரலாறு அறிக.  அங்குப் பிராட்டிமார் போகத்தில் திருவுள்ளமூன்றாது ஆர்த்த ரக்ஷணத்தில் அவஹிதனாயிருக்குமாற்றைக் கூறும், பைய என்றுங் குறிப்பு வினையெச்சம் ஒரு மாணிக்கத்தைத் தகட்டிலழுத்தினால் அது மிக்க புகர் பெற்றுத் தோற்றுமாறுபோல, எம்பெருமான் திருப்பாற்கடலில் திருவனந்தாழ்வான்மேற்சாய்ந்த பிறகு திருமேனியிற்புகர் நிறம் பெற்றுப் பரம புருஷனெனத் தெற்றென விளங்குமாறிருக்குந் தன்மையை உளப்படுத்திப் பரமன் என்றனர்.  அன்றி, ஆர்த்தரக்ஷணத்தில் ஆவல்கொண்டு வானாணயும் விட்டு வருகையாகிற குண விசேஷத்தால் வந்த மேன்மையை உளப்படுத்திக் கூறுகின்றனரெனினு மொக்கும்.  எம்பெருமானுடைய மேன்மையை நினைத்தவாறே தங்களுடைய தாழ்மையும் தன்னடையே நினைவுக்கு வருமாதலால், பின்பு அவனை எத்துகையே பணியாதல்பற்றி அடிபாடி என்றனர்.</p>
+<p style="text-align: justify;">எல்லாவகைகளாலும் விஞ்சின மேன்மையையுடைய கண்ணபிரானடியைப் பாடி என்ன வேண்டியிருக்க, அங்ஙன் சொல்லாது, திருப்பாற்கடல் நிலைமையைப் பாடுவதாகச் சொல்லுகிறவிதற்குக் கருத்துயாதெனில்; “கிருஷ்ணணையும் நம்மையும் நோக்கிப் பண்டே அதிசங்கை கொண்டிருக்கிற இடையர், நமக்குத் தெய்வம் தந்த இச்சேர்த்தியைச் சீறி அழிக்கிற் செய்வதென்?” என்னுமச்சத்தினால் கண்ணனடி பாடுவதாகக் கூறுகின்றிலரெனக்கொள்க. ஏஷ நாராணய : ஸ்ரீமாந் க்ஷீரார்ணவ நிகேதந :-நாகபர்யங்க முத்ஸ்ருஜ்ய ஹ்யாகதோ மதுராம் புரீம்” என்னும் பிரமாணத்தை அவ்விடையர் அறியாரென நினைத்தனர்போலும்.</p>
+<p style="text-align: justify;">“உண்ணுஞ்சோறு பருகுநீர்த் தின்னும் வெற்றிலையு மெல்லாங் கண்ணன்” என்றபடி ஸகல போக்யமயனான எம்பெருமான்றனடி பாடுதலையே உண்கையாக நினைக்கும் உறுதி இவர்கட்கு உளதாதலால், வேறு உணவில் விருப்பமொழியுமாறு பற்றி, நெய்யுண்ணோம் பாலுண்ணோம் என்கிறார்கள்.  உண்டார்க்கு உண்ணவேண்டாவே.  ‘நெய்குடியோம், பால்குடியோம்’ என்ன வேண்டியிருக்க, ‘நெய் உண்ணோம், பால் உண்ணோம்’ என்றது சாதிப்பேச்சு ஆனது பற்றியே ‘நெய்யுண்டான், பாலுண்டான்’ என்று கண்ணபிரானுக்குப் பேர் வழங்குவதும்.  அன்றியே, திருவாய்ப்பாடியிற் கண்ணபிரான் பிறந்த பின்னர் நெய் பால் முதலியவற்றை ஒருவரும் கண்டறியாதராய்ப் பேர் மாத்திரத்தைக் காதிற்கேட்டுள்ளவர்களாய், அவை உண்ணத் தகுந்தவையோ, குடிக்கத் தகுந்தவையோ வென்பதையும் ஆராய்ந்தறிந்திலராதலால், ‘அவை உட்கொள்ளப் படுமவை’ என்னுமளவையே கொண்டு “நெய்யுண்ணோம் பாலுண்ணோம்” என்கிறார்களென்று ரஸோக்தியாகவுமருளிச் செய்வர்.  “அடிபாடி நெய்யுண்ணோம்” என்ற சொற் போக்கால் அடிபாடுவதற்கு முன்னே நெய்யும் பாலும் தாரகமாயிருந்தன வாயினும் அடிபாடப் பெற்ற பின்னர் “எல்லாங் கண்ணன்” என்றிருக்கும் நிலைமை வாய்த்தமை தோற்றுமென்பர்.</p>
+<p style="text-align: justify;">நோன்பு நோற்கைக்கு அங்கமாகவும் விரஹதாப மாறுகைக்காகவும் குளிக்கும் படியைச் சொல்லுகிறது, நாட்காலே நீராடி என்று.  சக்ரவர்த்தித் திருமகன் நாடு துறந்து காடு சென்றபின் பரதாழ்வான் “இராமபிரனைக் காட்டுக்கு ஓட்டிய பாவிகாண் இவன்” என்னும் உலக நிந்தைக்கு அஞ்சி ஒருவர் கண்ணுக்கு மிலக்காகாதபடி பொழுதுவிடியுமுன்னமே சரயுவிற்சென்று நீராடி வந்தாற்போல், இவர்களும் ஸ்வப்ர வ்ருத்தி பரத்வ ப்ரகாசநப்ரயுக்தமான லோககர்ஹைக்கு அஞ்சி ஒருவராலுங் காணவொண்ணாதபடி  பின் மாலையிற்றானே போய் நிராட நினைக்கிறார்கள், நாட்காலே என்று.</p>
+<p style="text-align: justify;">இந்திரியங்களுள் பிரதானமான கண்களுக்கு, “காணாதார்கண்ணென்றுங் கண்ணல்ல கண்டாமே” என்றபடி எம்பெருமானை அநுபவிக்கையொழிய வேறு பேறு இலதாதலால் அப்பேறு வாய்க்குமுன் அக்கண்களை  அலங்கரிக்கக் கடவோ மல்லோம்; “நின்பாதபங்கயமே தலைக்கணியாய்” “தாள் கண்டு கொண்டேன் தலைமேற் புனைந்தேனே” என்றபடி எம்பெருமான் தன் இணையடிகளைப் புனைதலே தலைக்குப் பேறாதலால் அப்பேறு பெறுதற்குமுன் தலையை அலங்கரிக்கக் கடவேலமல்லோ மென்கிறார்கள், ஐந்தாமடியால்.</p>
+<p style="text-align: justify;">ஒரு காரியம் பிரமாணங்களில் அநுஷ்டேயமாகச் சொல்லப்பட்டிருப்பினும் சிஷ்டாநுஷ்டாநமின்றி யொழியில் அது விடத்தக்கதெயாமென்னும் ஷம்ப்ர தாயார்த் தத்தை, வெளியிடும், செய்யாதன செய்யோம் என்பது.  தசரத சக்ரவர்த்தியின் கட்டளையாலும் பெருமாள் நியமனத்தாலும் பரதாழ்வான் அரசாளுகைக்கு உரியனாயிருந்தும் அங்ஙன் ஆளாதொழிந்தது முத்தாரிருக்க இளையார் முடிசூடுகை பூர்வாநஷ்டாநத்திற்குச் சேராதென்னும் நினைவாலன்றோ.  ஆபஸ்தம்பராலும்  தர்மஜ்ஞ ஸமய: ப்ரமாணம் வேதாச்சழூ என்று சிஷ்டாநுஷ்டாநமே முதற் பிரமாணமாகக் கூறப்பட்டமை அறியத்தக்கது.  இனி, இவர்கள் நோன்பு நோற்கையாகிறவிது சிஷ்டாநுஷ்டாந ஸித்தமோ?  ஏனில்; ஆம்; பூர்வமீமாம்ஸையில் ஹோளாதி கரணங்யாபத்தை ஆராய்ந்துணர்க. (ஹோளையாவது வஸந்தோத்ஸவம்; இதனை ஹோளாஹமெனவுங் கூறுவர்.  இது பங்குனி மாதத்துப் பௌர்ணமாஸிக்கடுத்த ப்ரதிபத்தில் ஒருவர் மேல் ஒருவர் மஞ்சனீர் தெளித்துச் செய்யப்படும் உத்ஸவம் இது திஸ்டா சாரஸித்த மென்னுமிடம் அவ்வதிகரணத்தில் நிஷ்கர்ஷிக்கப்பட்டது.  அதுபோலவே இந்நோன்பும் சிஷ்டாசாரஸித்தமெனக்கொள்க;  “மார்கழி நீராடுவான் மேலையார் செய்வனகள் வேண்டுவன கேட்டியேல்” என்று மேலுங் கூறுவர்.)</p>
+<p style="text-align: justify;">தோழிமார் ஒருவர்க்கொருவர் உரையாடும் போது “பேய்ப்பெண்ணே” என்றும், “நாயகப் பெண்பிள்ளாய்” என்றும் பலவகையாக விளிப்பர்களாதலால், ‘அவளைக் கௌரவப்படுத்தினாள், என்னை லாகவப்படுத்தினாள்” எனச்சீறி எம்பெருமான் பக்கலிற் சென்று ஒருவர் மேலொருவர் குற்றங்குறை கூறுதல் கூடாதென்று தம்மிலே தாம் ஸங்கேதித்துக் கொள்ளுகின்றனர், தீக்குறளை சென்றோதோம் என்று.  ஒரு விரதத்தில் அதிகரித்தவர் தீயசொற்களைச் சொல்வதைத் தவிரவேண்டுமென்று விதியாதலால், அவ்விதிக்கிணங்கச் சங்கற்பித்துக் கொள்கின்றன ரென்க. ‘பேய்ப்பெண்ணே!’ என்று வையவுங்கடவோம்;  ‘நாயகப் பெண்பிள்ளாய்!’ என்று காலிலே விழவுங்கடவோம்; அவன் செவிப்படுத்தோம்; பத்துமாஸம் சுற்றுமிருந்து ராக்ஷஸிகள் பண்ணின தர்ஜங்பர்த்ஸநாதிகளை ஏகாந்தத்திலும் பெருமாளுக்கு விண்ணப்பஞ் செய்யாத பிராட்டியைப் போலே” என்ற ஆறாயிரப்படி அருளிச்செயல் இங்கு அறியத்தக்கது.</p>
+<p style="text-align: justify;">யோக்ய புருஷர் விஷயத்திலும் ஆசார்ய விஷயத்திலும் உரிய காலங்களில் பஹுமாநத்துடன் வெகுவாக ஸமர்ப்பிக்குமது ஐயம்; “தேஹி” என்று அர்த்தியாநின்ற பிக்ஷுக்கள் விஷயத்தில் ஆதரத்துடன் பரிமிதமாக ஸமர்ப்பிக்குமது பிச்சை.  இவ்விரண்டையும் இயன்றவளவு செய்யக்கடவோ மென்கிறார்கள், ஏழாமடியில்;.  ஆந்தனையும் என்றது ஆமளவுமென்றபடி; சக்தியுள்ளவளவும் என்க.  ‘இந்நோன்பு ஆந்தனையும்’ என்று உரைப்பாருமுளர்.  “அவர்கள் கொள்ளவல்லராந்தனையும்” என்று முரைப்பர்.  கைகாட்டி என்ற சொல்நயத்தால் எவ்வளவு கொடுத்தாலும் ‘நாம் என்ன கொடுத்துவிட்டோம்’ என்ற நெஞ்சிலோட வேணுமென்பது போதருமென்ப.</p>
+<p style="text-align: justify;">உள்ளுறைபொருள் :- எம்பெருமானையே ஸர்வபோக்யமுமாகக் கொள்ளவேண்டுமென்கிறது, நெய்யுண்ணோமித்யாதியால்.  வர்ணாசரமங்கட்கு உரிய, நித்ய கருமங்கள் குறையற அநுஷ்டிக்கக்கடவன வென்கிறது, “நாட்காலே நீராடி” என்பதனால்.  மை கண்ணுக்கு ப்ரகாசகமாகையாலே ஆத்மயாதாத்மிய ப்ரகாசகமான ஜ்யாநயோகத்தில் அந்வயிக்கலாகாதென்றும், மலரிட்டு  முடிகை ஸ்வபோகருபமாகையாலே பக்தி யோகத்தைச் சொல்லிற்றாய், அதில் அந்வயிக்கலாகாதென்றுங் கூறுகின்றது ஐந்தாமடி.  “நாம் முடியோம்” என்கையாலே பகவத் ப்ராப்தி ஸாதனங்களான ஞானயோக பக்தியோகங்களில் நாமாக அந்வயியாதொழிகையே வேண்டுவது; அவன்றானே இவ்வாதம் வஸ்துவை அநுபவிக்கும்போது ஞானபக்திகள் இரண்டையுந் தந்து ‘இவற்றை நீ தவிராதொழிய வேணும்’ என்றால் செய்யலாவதில்லை என்னுமிடம் தோற்றும்.  இனி “மையிட்டெழுதோ” மென்பதனால் ஐச்வரியத்தில் ஆசை கொள்ளக்கடவோ மல்லோமென்றும், “மலரிட்டு முடியோ” மென்பதனால் ஆத்மாநுபவமாகிற கைவல்யத்தில் ஊன்றக்கடவோமல்லோ மென்றுஞ் சொல்லுகிறதெனவுங் கூறக்குறையில்லை.  எம்பெருமான் வாத்ஸல்யாதிகுண யுக்தனாகிலும் “வேதம் வல்லார்களைக் கொண்டு விண்ணோர்பெருமான் திருப்பாதம் பணிந்து” என்றபடி பாகவதரை முன்னிட்டல்லது ஆச்ரயிக்கலாகாது என்பதைக் காட்டும், “செய்யாதன செய்வோம்” என்பது.  பிறர்க்கு அநர்த்தத்தை விளைக்கவல்ல பொய் சொல்லலாகாது என்கிறது, “தீக்குறளை சென்றோதோம்” என்று.  ஐயமாவது – பகவத் வைபவம்; பிச்சையாவது – பாகவத வைபவம்;  இவை இரண்டையும் தானறிந்தவளவும் பிறர்க்கு உபதேசிக்க வேண்டுமென்கிறது.  புகவத் ஸந்நிதியில் பாகவத வைபவத்தையும், பாகவத ஸந்நிதியில் பகவத் வைபவத்தையும் யதாசக்தி கூறவேண்டுமென்க.</p>
+<p style="text-align: justify;"> </p>
+<p align="center"><strong><span style="text-decoration: underline;">English Translation</span></strong></p>
+<p><span style="font-size: small;">O people  of the world pray hear about the vows we undertake, Singing the praise  the Lord who sleeps in the Ocean of Milk, we shall abstain from milk and  Ghee, and bathe before dawn. We shall not line our eyes with collyrium,  nor adorn our hair with flowers. Regaining from forbidden acts,  avoiding evil tales, we shall give alms and charity in full measure, and  pray for the elevation of spirit. Let us rejoice.</span></p></div><span class="article_separator">&nbsp;</span>
+</div>
+<div class="cleared"></div>
+
+
+</div>
+
+		<div class="cleared"></div>
+    </div>
+</div>
+
+
+
+
+
+</div>
+
+<div class="art-sidebar1">
+<div class="art-Block">
+		    <div class="art-Block-cc"></div>
+		    <div class="art-Block-body">
+		
+		
+<div class="art-BlockHeader">
+		    <div class="l"></div>
+		    <div class="r"></div>
+		    <div class="art-header-tag-icon">
+		        <div class="t">
+		வருகை பதிவு
+</div>
+		    </div>
+		</div>
+		
+		
+<div class="art-BlockContent">
+		    <div class="art-BlockContent-body">
+		
+		<!-- Vinaora Visitors Counter for Joomla! --><div id="vvisit_counter"><div><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/4.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/0.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/5.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/2.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/0.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/7.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/0.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /></div><div><a href="http://vinaora.com" target="_self" title="Vinaora Visitors Counter 2.0 for Joomla!">Visitors Counter</a></div></div>
+
+				<div class="cleared"></div>
+		    </div>
+		</div>
+		
+		
+
+				<div class="cleared"></div>
+		    </div>
+		</div>
+		
+
+</div>
+
+
+</div>
+<div class="cleared"></div>
+
+
+
+<div class="art-Footer">
+ <div class="art-Footer-inner">
+  <div class="art-Footer-text">
+  
+  
+  </div>
+ </div>
+
+</div>
+
+		<div class="cleared"></div>
+    </div>
+</div>
+<div class="cleared"></div>
+<table align="center" width="1000px"><tr><td>
+<div class="art-nostyle">
+
+
+
+<table class="contentpaneopen">
+
+
+
+<tr>
+<td valign="top">
+<table style="width: 1000px; text-align: justify;" border="0">
+<tbody>
+<tr>
+<td style="text-align: center;">
+<p style="padding-left: 30px; text-align: justify;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">அறிமுகம்</span></strong></span></span></p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: justify; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: large;"><span style="font-family: arial,helvetica,sans-serif;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">உள்ளடக்கம்</span></strong></span></span></span></span></span></p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: left; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: large;"><span style="font-family: arial,helvetica,sans-serif;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">இணைப்புகள்</span></strong></span></span></span></span></span></p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: left; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: large;"><span style="font-family: arial,helvetica,sans-serif;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">Follow us on</span></strong></span></span></span></span></span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left; padding-left: 30px;"><span style="color: #99ccff;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /><a href="/index.php?option=com_content&amp;view=article&amp;id=4125"><span style="color: #183661; ">எங்களைப் பற்றி</span></a></span><span style="color: #183661;"><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">தள அறிமுகம்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">அறிவிப்பு</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">கடிதங்கள்</span></span></span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><a href="/index.php?option=com_contact&amp;view=contact&amp;id=1&amp;Itemid=205"><span style="font-size: small;">தொடர்பு</span></a> 
+<ul>
+</ul>
+</td>
+<td style="padding-left: 30px;"><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">பிரபந்தம்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=65:2010-10-25-08-00-01&amp;catid=52:2010-10-25-07-52-34">திவ்ய தேசங்கள்</a></span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">கதைகள்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">கட்டுரைகள்</span></span> 
+<ul>
+</ul>
+</td>
+<td style="padding-left: 30px;">
+<p><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">பக்தி இலக்கியம்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span></span><span style="color: #183661;"><span style="font-size: small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=4614&amp;Itemid=58">வைணவ இணைய தளங்கள்</a></span></span><br /><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">வலைப் பூக்கள்<br /></span></span></p>
+<p><span style="color: #183661;"><span style="font-size: small;"><br /></span></span></p>
+<ul>
+</ul>
+</td>
+<td>
+<p style="line-height: 20px; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/small_facebook_icon.png" border="0" /> Facebook</span><span style="font-size: small;"> </span><br /><span style="font-size: small;"><img src="/images/stories/small_twitter_icon.png" border="0" /> Twitter</span></span></p>
+<p style="line-height: 20px; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: small;"><br /></span></span></p>
+<p style="line-height: 20px; padding-left: 30px;"><span style="color: #183661;"><br /></span></p>
+<ul>
+</ul>
+</td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+
+</table>
+<span class="article_separator">&nbsp;</span>
+
+</div>
+</td></tr></table>
+
+
+<table width="100%" height="60px"border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td bgcolor="#EDECDA">&nbsp;</td>
+    <td width="500" align="left" bgcolor="#EDECDA"><div>Sitemap  |  Disclaimer</a></div></td>
+    <td width="500" align="right" bgcolor="#EDECDA"> &copy; Dravida Veda | All rights reseved <br> <a href="http://www.mediapurple.com/"> Web Design - Purple Rain</a></td>
+    <td bgcolor="#EDECDA">&nbsp;</td>
+  </tr>
+</table>
+</div>
+
+
+</body> 
+</html>

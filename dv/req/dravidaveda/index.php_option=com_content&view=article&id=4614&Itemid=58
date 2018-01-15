@@ -1,0 +1,478 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" >
+ <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+var scrolltotop={
+	//startline: Integer. Number of pixels from top of doc scrollbar is scrolled before showing control
+	//scrollto: Keyword (Integer, or "Scroll_to_Element_ID"). How far to scroll document up when control is clicked on (0=top).
+	setting: {startline:100, scrollto: 0, scrollduration:1000, fadeduration:[500, 100]},
+	controlHTML: '<img src="/images/stories/audio/up.png" style="width:48px; height:48px" />', //HTML for control, which is auto wrapped in DIV w/ ID="topcontrol"
+	controlattrs: {offsetx:5, offsety:5}, //offset of control relative to right/ bottom of window corner
+	anchorkeyword: '#top', //Enter href value of HTML anchors on the page that should also act as "Scroll Up" links
+
+	state: {isvisible:false, shouldvisible:false},
+
+	scrollup:function(){
+		if (!this.cssfixedsupport) //if control is positioned using JavaScript
+			this.$control.css({opacity:0}) //hide control immediately after clicking it
+		var dest=isNaN(this.setting.scrollto)? this.setting.scrollto : parseInt(this.setting.scrollto)
+		if (typeof dest=="string" && jQuery('#'+dest).length==1) //check element set by string exists
+			dest=jQuery('#'+dest).offset().top
+		else
+			dest=0
+		this.$body.animate({scrollTop: dest}, this.setting.scrollduration);
+	},
+
+	keepfixed:function(){
+		var $window=jQuery(window)
+		var controlx=$window.scrollLeft() + $window.width() - this.$control.width() - this.controlattrs.offsetx
+		var controly=$window.scrollTop() + $window.height() - this.$control.height() - this.controlattrs.offsety
+		this.$control.css({left:controlx+'px', top:controly+'px'})
+	},
+
+	togglecontrol:function(){
+		var scrolltop=jQuery(window).scrollTop()
+		if (!this.cssfixedsupport)
+			this.keepfixed()
+		this.state.shouldvisible=(scrolltop>=this.setting.startline)? true : false
+		if (this.state.shouldvisible && !this.state.isvisible){
+			this.$control.stop().animate({opacity:1}, this.setting.fadeduration[0])
+			this.state.isvisible=true
+		}
+		else if (this.state.shouldvisible==false && this.state.isvisible){
+			this.$control.stop().animate({opacity:0}, this.setting.fadeduration[1])
+			this.state.isvisible=false
+		}
+	},
+	
+	init:function(){
+		jQuery(document).ready(function($){
+			var mainobj=scrolltotop
+			var iebrws=document.all
+			mainobj.cssfixedsupport=!iebrws || iebrws && document.compatMode=="CSS1Compat" && window.XMLHttpRequest //not IE or IE7+ browsers in standards mode
+			mainobj.$body=(window.opera)? (document.compatMode=="CSS1Compat"? $('html') : $('body')) : $('html,body')
+			mainobj.$control=$('<div id="topcontrol">'+mainobj.controlHTML+'</div>')
+				.css({position:mainobj.cssfixedsupport? 'fixed' : 'absolute', bottom:mainobj.controlattrs.offsety, right:mainobj.controlattrs.offsetx, opacity:0, cursor:'pointer'})
+				.attr({title:'Scroll Back to Top'})
+				.click(function(){mainobj.scrollup(); return false})
+				.appendTo('body')
+			if (document.all && !window.XMLHttpRequest && mainobj.$control.text()!='') //loose check for IE6 and below, plus whether control contains any text
+				mainobj.$control.css({width:mainobj.$control.width()}) //IE6- seems to require an explicit width on a DIV containing text
+			mainobj.togglecontrol()
+			$('a[href="' + mainobj.anchorkeyword +'"]').click(function(){
+				mainobj.scrollup()
+				return false
+			})
+			$(window).bind('scroll resize', function(e){
+				mainobj.togglecontrol()
+			})
+		})
+	}
+}
+
+scrolltotop.init()
+
+/***********************************************
+* Scroll To Top Control script- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Project Page at http://www.dynamicdrive.com for full source code
+***********************************************/
+
+</script>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=EmulateIE7" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="நாலாயிர திவ்ய பிரபந்தம், nalayira divya prabandham,naalaayira divya prabandham" />
+  <meta name="title" content="வைணவ இணைய தளங்கள்" />
+  <meta name="author" content="Administrator" />
+  <meta name="description" content="நாலாயிர திவ்ய பிரபந்தம், nalayira divya prabandham,naalaayira divya prabandham" />
+  <meta name="generator" content="Joomla! 1.5 - Open Source Content Management" />
+  <title>வைணவ இணைய தளங்கள்</title>
+  <link rel="stylesheet" href="/plugins/system/modalizer/modals/colorbox/style5/colorbox.css" type="text/css" />
+  <link rel="stylesheet" href="http://www.dravidaveda.org/plugins/content/qluetip/css/tip.css" type="text/css" />
+  <link rel="stylesheet" href="http://www.dravidaveda.org/plugins/content/faqslider/faqslider.css" type="text/css" />
+  <link rel="stylesheet" href="/modules/mod_vvisit_counter/css/mod_vvisit_counter.css" type="text/css" />
+  <style type="text/css">
+    <!--
+#cboxLoadedContent{background-color:#fff;}
+    -->
+  </style>
+  <script type="text/javascript" src="/plugins/system/modalizer/modals/jquery.min.js"></script>
+  <script type="text/javascript" src="/plugins/system/modalizer/modals/colorbox/jquery.colorbox-min.js"></script>
+  <script type="text/javascript" src="/media/system/js/mootools.js"></script>
+  <script type="text/javascript" src="/media/system/js/caption.js"></script>
+  <script type="text/javascript" src="http://www.dravidaveda.org/plugins/content/qluetip/js/qluetip.js"></script>
+  <script type="text/javascript">
+
+			$j(document).ready(function(){
+				$j('a.modalizer_link,').colorbox({width:'100%',height:'100%',iframe:true});
+				$j('a.modalizer_link_image').colorbox({width:'100%',height:'100%'});
+				$j('a.modalizer_link_external').colorbox({width:'100%',height:'100%',iframe:true});
+			});
+				window.addEvent('domready', function(){ new Accordion($$('.panel h3.jpane-toggler'), $$('.panel div.jpane-slider'), {onActive: function(toggler, i) { toggler.addClass('jpane-toggler-down'); toggler.removeClass('jpane-toggler'); },onBackground: function(toggler, i) { toggler.addClass('jpane-toggler'); toggler.removeClass('jpane-toggler-down'); },duration: 300,show: -1,opacity: true,alwaysHide: true}); });
+  </script>
+
+  <link rel="stylesheet" href="/templates/system/css/system.css" type="text/css" />
+  <link rel="stylesheet" href="/templates/system/css/general.css" type="text/css" />
+  <link rel="Favorite icon" href="/images/stories/audio/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/templates/dravida_song/css/template.css" />
+  <!--[if IE 6]><link rel="stylesheet" href="/templates/dravida_song/css/template.ie6.css" type="text/css" media="screen" /><![endif]-->
+  <!--[if IE 7]><link rel="stylesheet" href="/templates/dravida_song/css/template.ie7.css" type="text/css" media="screen" /><![endif]-->
+  <script type="text/javascript" src="/templates/dravida_song/script.js"></script>
+ </head>
+<body>
+<div id="art-page-background-simple-gradient">
+<table align="center" width="1000px" height="28px" ><tr><td></td><td></td></tr></table>
+
+
+<table align="center" width="1000" height="175" ><tr><td><a href="http://dravidaveda.org/"><img src="/images/stories/dv-logo.png"/></a></td><td>
+<div class="art-nostyle">
+
+<form action="index.php" method="post">
+	<div class="search">
+		<input name="searchword" id="mod_search_searchword" maxlength="20" alt="search" class="inputbox" type="text" size="20" value="search..."  onblur="if(this.value=='') this.value='search...';" onfocus="if(this.value=='search...') this.value='';" />	</div>
+	<input type="hidden" name="task"   value="search" />
+	<input type="hidden" name="option" value="com_search" />
+	<input type="hidden" name="Itemid" value=58 />
+</form>
+</div>
+</td></tr></table>
+
+<table align="center" width="1008px" height="96px"><tr><td></td></tr></table>
+<table align="center" width="1006px" style="padding: 20px 0 0 0;"><tr><td></td></tr></table>
+</div>
+<div id="art-main">
+<div class="art-Sheet">
+    <div class="art-Sheet-tl"></div>
+    <div class="art-Sheet-tr"></div>
+    <div class="art-Sheet-bl"></div>
+    <div class="art-Sheet-br"></div>
+    <div class="art-Sheet-tc"></div>
+    <div class="art-Sheet-bc"></div>
+    <div class="art-Sheet-cl"></div>
+    <div class="art-Sheet-cr"></div>
+    <div class="art-Sheet-cc"></div>
+    <div class="art-Sheet-body">
+<table align="center" width="1000px" style="margin:-3px 0 0 -3px;"><tr><td></td></tr></table>
+
+
+<div class="art-contentLayout">
+<div class="art-content">
+
+
+
+
+<div class="art-Post">
+    <div class="art-Post-tl"></div>
+    <div class="art-Post-tr"></div>
+    <div class="art-Post-bl"></div>
+    <div class="art-Post-br"></div>
+    <div class="art-Post-tc"></div>
+    <div class="art-Post-bc"></div>
+    <div class="art-Post-cl"></div>
+    <div class="art-Post-cr"></div>
+    <div class="art-Post-cc"></div>
+    <div class="art-Post-body">
+<div class="art-Post-inner">
+
+ <h2 class="art-PostHeader"> 
+வைணவ இணைய தளங்கள்
+
+</h2>
+
+<div class="art-PostContent">
+<div class="art-article"><p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; font-size: small;"><a href="http://www.chinnajeeyar.org/" target="_blank" style="color: #354258;">http://www.chinnajeeyar.org</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://www.ahobilamutt.org/" target="_blank" style="color: #354258;">http://www.ahobilamutt.org</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://www.antaryami.net/monasteries.html" target="_blank" style="color: #354258;">http://www.antaryami.net/monasteries.html</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; font-size: small;"><a href="http://www.kaarimaaran.com/" target="_blank" style="color: #354258;">www.kaarimaaran.com</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://www.varavaramuni.com/" target="_blank" style="color: #354258;">http://www.varavaramuni.com/</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://www.kinchitkaramtrust.org/" target="_blank" style="color: #354258;">http://www.kinchitkaramtrust.org</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://www.maransdog.com/" target="_blank" style="color: #354258;">www.maransdog.com</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://varavaramunisambandhis.com/" target="_blank" style="color: #354258;">http://varavaramunisambandhis.com/</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://www.ramanuja.org/" target="_blank" style="color: #354258;">www.ramanuja.org</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://www.saranagathi.org/" target="_blank" style="color: #354258;">www.Saranagathi.org</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://www.acharya.org/" target="_blank" style="color: #354258;">www.acharya.org</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://www.srivaishnavan.com/" target="_blank" style="color: #354258;">www.srivaishnavan.com</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://www.antaryami.net/" target="_blank" style="color: #354258;">www.antaryami.net</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://www.vedics.org/" target="_blank" style="color: #354258;">www.vedics.org</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://www.prapatti.org/" target="_blank" style="color: #354258;">www.prapatti.com</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://www.sundarasimham.org/" target="_blank" style="color: #354258;">www.sundarasimham.org</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; color: #000080; font-size: small;"><a href="http://webcache.googleusercontent.com/search?q=cache:http://vanamamalai.com/kainkaryams/intro.html" target="_blank" style="color: #354258;">http://webcache.googleusercontent.com/search?q=cache:http://vanamamalai.com/kainkaryams/intro.html</a></span></span></span></p>
+<p><span style="border-collapse: collapse; font-family: arial,sans-serif;"><span style="text-decoration: underline;"><span style="font-family: Times New Roman; font-size: small;"><br /></span></span></span></p></div><span class="article_separator">&nbsp;</span>
+</div>
+<div class="cleared"></div>
+
+
+</div>
+
+		<div class="cleared"></div>
+    </div>
+</div>
+
+
+
+
+
+</div>
+
+<div class="art-sidebar1">
+<div class="art-Block">
+		    <div class="art-Block-cc"></div>
+		    <div class="art-Block-body">
+		
+		
+		
+<div class="art-BlockContent">
+		    <div class="art-BlockContent-body">
+		
+		<div align="center">
+	<img src="/images/stories/header2/nala_logo.png" alt="nala_logo.png" width="200" height="60" /></div>
+
+				<div class="cleared"></div>
+		    </div>
+		</div>
+		
+		
+
+				<div class="cleared"></div>
+		    </div>
+		</div>
+		
+
+<div class="art-Block">
+		    <div class="art-Block-cc"></div>
+		    <div class="art-Block-body">
+		
+		
+<div class="art-BlockHeader">
+		    <div class="l"></div>
+		    <div class="r"></div>
+		    <div class="art-header-tag-icon">
+		        <div class="t">
+		உள்ளடக்கம்
+</div>
+		    </div>
+		</div>
+		
+		
+<div class="art-BlockContent">
+		    <div class="art-BlockContent-body">
+		
+		
+<table class="contentpaneopen">
+
+
+
+<tr>
+<td valign="top">
+<p><div class="faqslider"><div id="faqSliders" class="pane-sliders"><div class="panel"><h3 class="jpane-toggler title" id="panel1"><span>பெரியாழ்வார்</span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h4><a href="/index.php?option=com_content&amp;view=article&amp;id=46&amp;Itemid=61"><span style="font-size: medium;">திருப்பல்லாண்டு</span></a></h4>
+<h4>பெரியாழ்வார் திருமொழி</h4>
+<p style="line-height: 25px;"><span style="color: #993300;">முதற்பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small; line-height: 25px;"><a href="/index.php?option=com_content&amp;view=article&amp;id=59&amp;Itemid=61">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=67&amp;Itemid=61">திருமொழி - 3</a>, <span style="color: #1e6194;"><a href="/index.php?option=com_content&amp;view=article&amp;id=68">திருமொழி - 4</a></span>,<br /> <a href="/index.php?option=com_content&amp;view=article&amp;id=69&amp;Itemid=61">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=70&amp;Itemid=61">திருமொழி - 6</a>,<a href="/index.php?option=com_content&amp;view=article&amp;id=71&amp;Itemid=61"> திருமொழி - 7,</a><br /> <a href="/index.php?option=com_content&amp;view=article&amp;id=72&amp;Itemid=61">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=73&amp;Itemid=61">திருமொழி - 9</a>, <span style="color: #1e6194;"><a href="/index.php?option=com_content&amp;view=article&amp;id=74&amp;Itemid=61">திருமொழி - 10</a></span><br /></span></span><br /><span style="color: #993300;">இரண்டாம் பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=75&amp;Itemid=61">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=76&amp;Itemid=61">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=77&amp;Itemid=61">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=78&amp;Itemid=61">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=79&amp;Itemid=61">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=80&amp;Itemid=61">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=81&amp;Itemid=61">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=82&amp;Itemid=61">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=83&amp;Itemid=61">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=84&amp;Itemid=61">திருமொழி - 10</a></span></span><br /><span style="color: #993300;"><br />மூன்றாம் பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=85&amp;Itemid=61">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=86&amp;Itemid=61">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=87&amp;Itemid=61">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=88&amp;Itemid=61">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=89&amp;Itemid=61">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=90&amp;Itemid=61">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=91&amp;Itemid=61">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=92&amp;Itemid=61">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=93&amp;Itemid=61">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=94&amp;Itemid=61">திருமொழி - 10</a></span><br /></span><br /><span style="color: #993300;">நான்காம் பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=95&amp;Itemid=61">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=96&amp;Itemid=61">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=97&amp;Itemid=61">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=98&amp;Itemid=61">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=99&amp;Itemid=61">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=100&amp;Itemid=61">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=101&amp;Itemid=61">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=102&amp;Itemid=61">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=104&amp;Itemid=61">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=105&amp;Itemid=61">திருமொழி - 10</a></span></span><br /><br /><span style="color: #993300;">ஐந்தாம்பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=105&amp;Itemid=61">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=106&amp;Itemid=61">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=107&amp;Itemid=61">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=108&amp;Itemid=61">திருமொழி - 4</a>,</span></span></p> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel2"><span>ஆண்டாள்</span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h4>திருப்பாவை</h4>
+<p><span style="font-size: x-small;"><span style="color: #333333;"><a href="/index.php?option=com_content&amp;view=article&amp;id=109">திருமொழி - 01</a></span></span><span style="font-size: x-small;"><span style="color: #333333;">, </span></span><span style="font-size: x-small;"><span style="color: #333333;"><a href="/index.php?option=com_content&amp;view=article&amp;id=134"> திருமொழி - 02</a></span></span><span style="font-size: x-small;"><span style="color: #333333;">, </span></span><span style="font-size: x-small;"><span style="color: #333333;"><a href="/index.php?option=com_content&amp;view=article&amp;id=135">திருமொழி - 03</a>.</span></span></p>
+<h4>நாச்சியார் திருமொழி</h4>
+<p style="line-height: 24px;"><span style="font-size: x-small;"><span style="line-height: 25px; color: #333333;"><a href="/index.php?option=com_content&amp;view=article&amp;id=110">திருமொழி - 01</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=111">திருமொழி - 02</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=112">திருமொழி - 03</a>,<br /><a href="/index.php?option=com_content&amp;view=article&amp;id=113">திருமொழி - 04</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=114">திருமொழி - 05</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=115">திருமொழி - 06</a>,<br /><a href="/index.php?option=com_content&amp;view=article&amp;id=116">திருமொழி - 07</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=117">திருமொழி - 08</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=118">திருமொழி - 09</a>,<br /><a href="/index.php?option=com_content&amp;view=article&amp;id=119">திருமொழி - 10</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=120">திருமொழி - 11</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=121">திருமொழி - 12</a><br /><a href="/index.php?option=com_content&amp;view=article&amp;id=122">திருமொழி - 13</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=123">திருமொழி - 14</a></span></span></p> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel3"><span>குலசேகராழ்வார்</span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h5><strong>பெருமாள் திருமொழி</strong></h5>
+<p><span style="font-size: x-small;"><span style="line-height: 25px; color: #333333;"><a href="/index.php?option=com_content&amp;view=article&amp;id=124">திருமொழி - 01</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=125">திருமொழி - 02</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=126">திருமொழி - 03</a>,<br /><a href="/index.php?option=com_content&amp;view=article&amp;id=127">திருமொழி - 04</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=128">திருமொழி - 05</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=129">திருமொழி - 06</a>,<br /><a href="/index.php?option=com_content&amp;view=article&amp;id=130">திருமொழி - 07</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=131">திருமொழி - 08</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=132">திருமொழி - 09</a>,<br /><a href="/index.php?option=com_content&amp;view=article&amp;id=133">திருமொழி - 10</a>.</span></span></p> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel4"><span>திருமழிசை ஆழ்வார்</span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h5><strong>திருச்சந்த விருத்தம்</strong></h5>
+<p><span style="font-size: x-small;"><span style="line-height: 25px; color: #333333;"><a href="/index.php?option=com_content&amp;view=article&amp;id=136">திருமொழி - 01</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=137">திருமொழி - 02</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=138">திருமொழி - 03</a>,<br /><a href="/index.php?option=com_content&amp;view=article&amp;id=139">திருமொழி - 04</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=140">திருமொழி - 05</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=141">திருமொழி - 06</a>,<br /><a href="/index.php?option=com_content&amp;view=article&amp;id=142">திருமொழி - 07</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=143">திருமொழி - 08</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=144">திருமொழி - 09</a>,<br /><a href="/index.php?option=com_content&amp;view=article&amp;id=145">திருமொழி - 10</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=146">திருமொழி - 11</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=147">திருமொழி - 12</a>.</span></span></p> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel5"><span>தொண்டரடிப் பொடியாழ்வார்</span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h5><strong>திருமாலை</strong></h5>
+<p><span style="font-size: x-small;"><span style="line-height: 25px; color: #333333;"><a href="/index.php?option=com_content&amp;view=article&amp;id=148">திருமொழி - 01</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=149">திருமொழி - 02</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=150">திருமொழி - 03</a>,<br /><a href="/index.php?option=com_content&amp;view=article&amp;id=151">திருமொழி - 04</a>,</span></span></p>
+<h5><a href="/index.php?option=com_content&amp;view=article&amp;id=152"><strong><span style="font-size: small;">திருப்பள்ளியெழுச்சி</span></strong></a></h5> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel6"><span>திருப்பாணாழ்வார்</span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h5><strong><a href="/index.php?option=com_content&amp;view=article&amp;id=153"><span style="font-size: small;">அமலனாதிபிரான்</span></a></strong></h5> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel7"><span>மதுரகவியாழ்வார்</span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h5><strong><a href="/index.php?option=com_content&amp;view=article&amp;id=154"><span style="font-size: small;">கண்ணிநுண் சிறுதாம்பு</span></a></strong></h5> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel8"><span>திருமங்கையாழ்வார்</span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h5><strong>பெரிய திருமொழி</strong></h5>
+<p style="line-height: 25px;"><span style="color: #993300;">முதற்பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small; line-height: 25px;"><a href="/index.php?option=com_content&amp;view=article&amp;id=339">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=350">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=358">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=367">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=370">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=372">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=374">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=375">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=376">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=377">திருமொழி - 10</a></span></span></p>
+<p style="line-height: 25px;"><span style="color: #993300;">இரண்டாம் பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=378">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=379">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=380">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=383">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=387">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=390">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=398">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=403">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=404">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=431">திருமொழி - 10</a></span></span></p>
+<p style="line-height: 25px;"><span style="color: #993300;">மூன்றாம் பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=448">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=456">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=464">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=472">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=479">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=482">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=487">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=494">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=496">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=505">திருமொழி - 10</a></span></span></p>
+<p style="line-height: 25px;"><span style="color: #333333;"><span style="font-size: x-small;"> </span></span><span style="color: #993300;">நான்காம் பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=520">திருமொழி - 1,</a> <a href="/index.php?option=com_content&amp;view=article&amp;id=521">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=522">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=538">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=539">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=540">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=541">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=545">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=548">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=553">திருமொழி - 10</a></span></span></p>
+<p style="line-height: 25px;"><span style="color: #993300;">ஐந்தாம்பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=568">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=582">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=587">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=592">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=595">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=596">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=598">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=599">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=600">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=612">திருமொழி - 10</a>.</span></span></p>
+<p style="line-height: 25px;"><span style="color: #333333;"> </span><span style="color: #993300;">ஆறாம்பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=621">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=625">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=629">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=630">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=634">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=637">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=638">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=639">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=940">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=641">திருமொழி - 10</a></span></span></p>
+<p><span style="color: #993300;">ஏழாம்பத்து</span></p>
+<p style="line-height: 25px;"><span style="color: #333333;"><span style="font-size: x-small; line-height: 25px;"><a href="/index.php?option=com_content&amp;view=article&amp;id=642">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=648">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=653">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=664">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=665">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=669">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=683">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=700">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=703">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=710">திருமொழி - 10</a></span></span></p>
+<p><span style="color: #993300;">எட்டாம்பத்து</span></p>
+<p style="line-height: 25px;"><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=711">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=724">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=727">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=729">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=730">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=731">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=734">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=736">திருமொழி - </a><a href="/index.php?option=com_content&amp;view=article&amp;id=738">8, திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=741">திருமொழி - 10</a></span></span></p>
+<p><span style="color: #993300;">ஒன்பதாம்பத்து</span></p>
+<p style="line-height: 25px;"><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=747">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=749">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=750">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=751">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=753">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=756">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=762">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=764">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=767">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=775">திருமொழி - 10</a></span></span></p>
+<p><span style="color: #993300;">பத்தாம்பத்து</span></p>
+<p style="line-height: 25px;"><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=781">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=784">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=794">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=798">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=804">திருமொழி - 5</a>,<a href="/index.php?option=com_content&amp;view=article&amp;id=805"> திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=807">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=808">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=809">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=810">திருமொழி - 10</a></span></span></p>
+<p><span style="color: #993300;">பதினோராம்பத்து</span></p>
+<p style="line-height: 25px;"><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=811">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=812">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=813">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=814">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=815">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=816">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=849">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=856">திருமொழி - 8</a>.</span></span></p>
+<h5 style="line-height: 25px;"><strong>திருக்குறுந்தாண்டகம்</strong></h5>
+<p><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=865">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=871">திருமொழி - 2</a>.</span></span></p>
+<h5><strong>திருநெடுந்தாண்டகம்</strong></h5>
+<p><strong> </strong><span style="color: #333333; font-weight: normal; font-size: x-small;"><span style="font-weight: normal;"><a href="/index.php?option=com_content&amp;view=article&amp;id=881">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=889">திருமொழி - 2</a>, </span><span style="font-weight: normal;"><a href="/index.php?option=com_content&amp;view=article&amp;id=895">திருமொழி - 3</a></span><span style="font-weight: normal;">,</span></span></p> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel9"><span>பொய்கையாழ்வார்</span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h5><strong>முதல் திருவந்தாதி</strong></h5>
+<p><span style="color: #333333;"><span style="font-size: x-small; line-height: 25px;"><a href="/index.php?option=com_content&amp;view=article&amp;id=951">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=954">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=960">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=962">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=964">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=967">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=970">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=979">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=982">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=987">திருமொழி - 10</a>.</span></span></p> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel10"><span>பூதத்தாழ்வார் </span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h5><strong>இரண்டாம் திருவந்தாதி</strong></h5>
+<p><span style="color: #333333;"><span style="font-size: x-small; line-height: 25px;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1002">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1086">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1089">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1092">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1097">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1102">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1105">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1110">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1117">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1120">திருமொழி - 10</a></span></span></p> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel11"><span>பேயாழ்வார் </span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h5><strong>மூன்றாந் திருவந்தாதி</strong></h5>
+<p><span style="color: #333333;"><span style="font-size: x-small; line-height: 25px;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1128">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1134">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1137">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1139">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1140">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1144">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1147">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1148">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1149">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1150">திருமொழி - 10</a></span></span></p> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel12"><span>திருமழிசை ஆழ்வார் ||</span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h5><strong>நான்முகன் திருவந்தாதி</strong></h5>
+<p><span style="color: #333333;"><span style="font-size: x-small; line-height: 25px;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1156">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1159">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1163">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1167">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1169">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1171">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1175">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1179">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1183">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1184">திருமொழி - 10</a></span></span></p> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel13"><span>நம்மாழ்வார்</span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h5><strong>திருவிருத்தம்</strong></h5>
+<p><span style="color: #333333;"><span style="font-size: x-small; line-height: 25px;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1186">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1187">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1188">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1189">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1190">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1191">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1192">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1193">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1194">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1195">திருமொழி - 10</a></span></span></p>
+<h5><strong><a href="/index.php?option=com_content&amp;view=article&amp;id=1196"><span style="font-size: small;">திருவாசிரியம்</span></a></strong></h5>
+<h5><strong>பெரிய திருவந்தாதி</strong></h5>
+<p><span style="color: #333333;"><span style="font-size: x-small; line-height: 25px;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1197">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1198">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1199">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1200">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1201">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1202">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1203">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1204">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1205">திருமொழி - 9</a>.</span></span></p>
+<h5><strong><a href="/index.php?option=com_content&amp;view=article&amp;id=1227"><span style="font-size: small;">திருவெழு கூற்றிருக்கை</span></a></strong></h5> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel14"><span>திருமங்கையாழ்வார் ||</span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h5><strong>சிறிய திருமடல்</strong></h5>
+<p><span style="color: #333333;"><span style="font-size: x-small; line-height: 25px;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1228">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1229">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1230">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1231">திருமொழி - 4</a>.</span></span></p>
+<h5><strong>பெரிய திருமடல்</strong></h5>
+<p><span style="color: #333333;"><span style="font-size: x-small; line-height: 25px;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1232">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1233">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1234">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1235">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1236">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1237">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1238">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1239">திருமொழி - 8</a>.</span></span></p> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel15"><span>திருவரங்கத்தமுதனார்</span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h5><strong>இராமாநுச நூற்றந்தாதி</strong></h5>
+<p><span style="color: #333333;"><span style="font-size: x-small; line-height: 25px;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1301">திருமொழி - 01</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1308">திருமொழி - 02</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1375">திருமொழி - 03</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1382">திருமொழி - 04</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1386">திருமொழி - 05</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1388">திருமொழி - 06</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1392">திருமொழி - 07</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1394">திருமொழி - 08</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1395">திருமொழி - 09</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1396">திருமொழி - 10</a>.</span></span></p> </td></tr></table><span class="article_separator">&nbsp;</span></div></div><div class="panel"><h3 class="jpane-toggler title" id="panel16"><span>நம்மாழ்வார் ||</span></h3><div class="jpane-slider content"><table class="contentpaneopen "><tr><td valign="top"><h5><strong>திருவாய்மொழி</strong></h5>
+<p style="line-height: 25px;"><span style="color: #993300;">முதற்பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small; line-height: 25px;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1398">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1399">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1400">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1401">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1402">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1403">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1404">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1405">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1406">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1407">திருமொழி - 10</a></span></span></p>
+<p style="line-height: 25px;"><span style="color: #993300;">இரண்டாம் பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1419">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1420">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1421">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1422">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1423">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1424">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1425">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1426">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1427">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1428">திருமொழி - 10</a></span></span></p>
+<p style="line-height: 25px;"><span style="color: #993300;">மூன்றாம் பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1417">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1416">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1415">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1414">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1413">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1412">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1411">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1410">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1409">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1408">திருமொழி - 10</a></span></span></p>
+<p style="line-height: 25px;"><span style="color: #993300;">நான்காம் பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1496">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1495">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1494">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1493">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1492">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1491">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1490">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1489">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1488">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1487">திருமொழி - 10</a></span></span></p>
+<p style="line-height: 25px;"><span style="color: #993300;">ஐந்தாம்பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1516">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1515">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1514">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1513">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1512">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1511">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1510">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1509">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1508">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1507">திருமொழி - 10</a>.</span></span></p>
+<p style="line-height: 25px;"><span style="color: #333333;"><span style="font-size: x-small;"> </span></span><span style="color: #993300;"><strong> </strong></span><span style="color: #993300;">ஆறாம்பத்து</span><br /><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1526">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1525">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1524">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1523">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1522">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1521">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1520">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1519">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1518">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1517">திருமொழி - 10</a></span></span></p>
+<p><span style="color: #993300;">ஏழாம்பத்து</span></p>
+<p style="line-height: 25px;"><span style="color: #333333;"><span style="font-size: x-small; line-height: 25px;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1536">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1535">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1534">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1533">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1532">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1531">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1530">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1529">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1528">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1527">திருமொழி - 10</a></span></span></p>
+<p><span style="color: #993300;">எட்டாம்பத்து</span></p>
+<p style="line-height: 25px;"><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1546">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1545">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1544">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1543">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1542">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1541">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1540">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1539">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1538">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1537">திருமொழி - 10</a></span></span></p>
+<p><span style="color: #993300;">ஒன்பதாம்பத்து</span></p>
+<p style="line-height: 25px;"><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1556">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1555">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1554">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1553">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1552">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1551">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1550">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1549">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1548">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1547">திருமொழி - 10</a></span></span></p>
+<p><span style="color: #993300;">பத்தாம்பத்து</span></p>
+<p style="line-height: 25px;"><span style="color: #333333;"><span style="font-size: x-small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=1566">திருமொழி - 1</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1565">திருமொழி - 2</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1564">திருமொழி - 3</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1563">திருமொழி - 4</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1562">திருமொழி - 5</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1561">திருமொழி - 6</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1560">திருமொழி - 7</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1559">திருமொழி - 8</a>, <a href="/index.php?option=com_content&amp;view=article&amp;id=1558">திருமொழி - 9</a>, <br /><a href="/index.php?option=com_content&amp;view=article&amp;id=1557">திருமொழி - 10</a></span></span></p> </td></tr></table><span class="article_separator">&nbsp;</span></div></div></div></div></p></td>
+</tr>
+
+</table>
+<span class="article_separator">&nbsp;</span>
+
+
+				<div class="cleared"></div>
+		    </div>
+		</div>
+		
+		
+
+				<div class="cleared"></div>
+		    </div>
+		</div>
+		
+
+<div class="art-Block">
+		    <div class="art-Block-cc"></div>
+		    <div class="art-Block-body">
+		
+		
+<div class="art-BlockHeader">
+		    <div class="l"></div>
+		    <div class="r"></div>
+		    <div class="art-header-tag-icon">
+		        <div class="t">
+		வருகை பதிவு
+</div>
+		    </div>
+		</div>
+		
+		
+<div class="art-BlockContent">
+		    <div class="art-BlockContent-body">
+		
+		<!-- Vinaora Visitors Counter for Joomla! --><div id="vvisit_counter"><div><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/4.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/0.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/5.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/1.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/9.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/7.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /><img src="http://www.dravidaveda.org/modules/mod_vvisit_counter/images/digit_counter/plainblue/2.png" alt="mod_vvisit_counter" title="Vinaora Visitors Counter 2.0" /></div><div><a href="http://vinaora.com" target="_self" title="Vinaora Visitors Counter 2.0 for Joomla!">Visitors Counter</a></div></div>
+
+				<div class="cleared"></div>
+		    </div>
+		</div>
+		
+		
+
+				<div class="cleared"></div>
+		    </div>
+		</div>
+		
+
+</div>
+
+
+</div>
+<div class="cleared"></div>
+
+
+
+<div class="art-Footer">
+ <div class="art-Footer-inner">
+  <div class="art-Footer-text">
+  
+  
+  </div>
+ </div>
+
+</div>
+
+		<div class="cleared"></div>
+    </div>
+</div>
+<div class="cleared"></div>
+<table align="center" width="1000px"><tr><td>
+<div class="art-nostyle">
+
+
+
+<table class="contentpaneopen">
+
+
+
+<tr>
+<td valign="top">
+<table style="width: 1000px; text-align: justify;" border="0">
+<tbody>
+<tr>
+<td style="text-align: center;">
+<p style="padding-left: 30px; text-align: justify;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">அறிமுகம்</span></strong></span></span></p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: justify; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: large;"><span style="font-family: arial,helvetica,sans-serif;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">உள்ளடக்கம்</span></strong></span></span></span></span></span></p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: left; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: large;"><span style="font-family: arial,helvetica,sans-serif;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">இணைப்புகள்</span></strong></span></span></span></span></span></p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: left; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: large;"><span style="font-family: arial,helvetica,sans-serif;"><span style="text-shadow: #ffffff 0px 1px 1px;"><span style="font-size: medium;"><strong><span style="color: #126daf;">Follow us on</span></strong></span></span></span></span></span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left; padding-left: 30px;"><span style="color: #99ccff;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /><a href="/index.php?option=com_content&amp;view=article&amp;id=4125"><span style="color: #183661; ">எங்களைப் பற்றி</span></a></span><span style="color: #183661;"><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">தள அறிமுகம்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">அறிவிப்பு</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">கடிதங்கள்</span></span></span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><a href="/index.php?option=com_contact&amp;view=contact&amp;id=1&amp;Itemid=205"><span style="font-size: small;">தொடர்பு</span></a> 
+<ul>
+</ul>
+</td>
+<td style="padding-left: 30px;"><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">பிரபந்தம்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=65:2010-10-25-08-00-01&amp;catid=52:2010-10-25-07-52-34">திவ்ய தேசங்கள்</a></span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">கதைகள்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">கட்டுரைகள்</span></span> 
+<ul>
+</ul>
+</td>
+<td style="padding-left: 30px;">
+<p><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">பக்தி இலக்கியம்</span><br /><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span></span><span style="color: #183661;"><span style="font-size: small;"><a href="/index.php?option=com_content&amp;view=article&amp;id=4614&amp;Itemid=58">வைணவ இணைய தளங்கள்</a></span></span><br /><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/icon_arrow_small.gif" border="0" /></span><span style="font-size: small;">வலைப் பூக்கள்<br /></span></span></p>
+<p><span style="color: #183661;"><span style="font-size: small;"><br /></span></span></p>
+<ul>
+</ul>
+</td>
+<td>
+<p style="line-height: 20px; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: small;"><img src="/images/stories/small_facebook_icon.png" border="0" /> Facebook</span><span style="font-size: small;"> </span><br /><span style="font-size: small;"><img src="/images/stories/small_twitter_icon.png" border="0" /> Twitter</span></span></p>
+<p style="line-height: 20px; padding-left: 30px;"><span style="color: #183661;"><span style="font-size: small;"><br /></span></span></p>
+<p style="line-height: 20px; padding-left: 30px;"><span style="color: #183661;"><br /></span></p>
+<ul>
+</ul>
+</td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+
+</table>
+<span class="article_separator">&nbsp;</span>
+
+</div>
+</td></tr></table>
+
+
+<table width="100%" height="60px"border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td bgcolor="#EDECDA">&nbsp;</td>
+    <td width="500" align="left" bgcolor="#EDECDA"><div>Sitemap  |  Disclaimer</a></div></td>
+    <td width="500" align="right" bgcolor="#EDECDA"> &copy; Dravida Veda | All rights reseved <br> <a href="http://www.mediapurple.com/"> Web Design - Purple Rain</a></td>
+    <td bgcolor="#EDECDA">&nbsp;</td>
+  </tr>
+</table>
+</div>
+
+
+</body> 
+</html>
