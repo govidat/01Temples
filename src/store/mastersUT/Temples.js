@@ -6,8 +6,8 @@ export var mtemplesMaster = [
 ];
 
 export var mtemplesDetails = [
-  {"Id":2,"Detail1": "Some details1","Detail2": "Some details2" },
-  {"Id":5,"Detail1": "Some details1","Detail2": "Some details2"},
-  {"Id":26,"Detail1": "Some details1","Detail2": "Some details2" },
-  {"Id":76,"Detail1": "Some details1","Detail2": "Some details2" }
+  {"Id":2,"Name":" Name x","Detail1": "Some details1","Detail2": "Some details2" },
+  {"Id":5,"Name":" Name x","Detail1": "Some details1","Detail2": "Some details2"},
+  {"Id":26,"Name":" Name x","Detail1": "Some details1","Detail2": "Some details2" },
+  {"Id":76,"Name":" Name x","Detail1": "Some details1","Detail2": "Some details2" }
 ];

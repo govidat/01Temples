@@ -7,7 +7,7 @@
         <h5 class="mb-0">
           <a data-toggle="collapse" :href="'#'+'itemTemple'+String(item)" aria-expanded="true" :aria-controls="'itemTemple'+String(item)">
             <label :for="'headingTemples'+String(item)">
-               Temple : {{ item }}  {{ templesDetails.find(itm => itm.Id === item).Name }}
+               Temple : {{ item }}  {{templesMaster.find(itm => itm.Id === item).Name }}
              </label>
           </a>
         </h5>

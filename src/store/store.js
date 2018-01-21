@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import {deriveMaxSaints, deriveMaxTemples, deriveMaxSongs} from './helper.js';
-import {mstatesMaster} from './masters/States.js';
-import {mtemplesMaster, mtemplesDetails} from './masters/Temples.js';
-import {msaintsMaster, msaintsDetails} from './masters/Saints.js';
-import {msongsMaster, msongsDetails} from './masters/Songs.js';
+import {mstatesMaster} from './mastersDEV/States.js';
+import {mtemplesMaster, mtemplesDetails} from './mastersDEV/Temples.js';
+import {msaintsMaster, msaintsDetails} from './mastersDEV/Saints.js';
+import {msongsMaster, msongsDetails} from './mastersDEV/Songs.js';
 
 Vue.use(Vuex);
 

@@ -1,7 +1,7 @@
 export var msaintsMaster = [
-  {"Id":1,"Name":"DEV Poigai Alwar"},
-  {"Id":2,"Name":"DEV Bhoodath Alwar"},
-  {"Id":3,"Name":"DEV Pei Alwar"},
+  {"Id":1,"Name":"Poigai Alwar"},
+  {"Id":2,"Name":"Bhoodath Alwar"},
+  {"Id":3,"Name":"Pei Alwar"},
   {"Id":4,"Name":"Thirumazhisai Alwar"},
   {"Id":5,"Name":"Thirumangai Alwar"},
   {"Id":6,"Name":"Thondaradippodi Alwar"},
@@ -14,7 +14,7 @@ export var msaintsMaster = [
 ];
 
 export var msaintsDetails = [
-  {"Id":1,"Name":"DEV Poigai Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
+  {"Id":1,"Name":"Poigai Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
   {"Id":2,"Name":"Bhoodath Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
   {"Id":3,"Name":"Pei Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
   {"Id":4,"Name":"Thirumazhisai Alwar", "Detail1": "Some details1 of Saint","Detail2": "Some details2 of Saint"},
