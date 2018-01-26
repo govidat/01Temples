@@ -10,44 +10,7 @@
         </h5>
       </div>
       <div :id="'itemSong'+String(item)" class="collapse" :class="{ show: index===0}" role="tabpanel" :aria-labelledby="'headingSongs'+String(item)" data-parent="#accordionSongs">
-        <div class="card-body">
-          Song Details:
-          <p v-for="item in songsDetails.find(itm => itm.Id === item).TamSong">
-            {{ item }}
-          </p>
-           <!-- {{ songsDetails.find(itm => itm.Id === item).Detail1 }} -->
-          <div class="card-header" role="tab" :id="'subheading1Songs'+String(item)">
-            <h5 class="mb-0">
-              <a class="collapsed" data-toggle="collapse" :href="'#'+'subitem1Song'+String(item)" aria-expanded="false" :aria-controls="'subitem1Song'+String(item)">
-                Song # {{ item }} - Tamil Explanation
-              </a>
-            </h5>
-          </div>
-          <!-- <div id="collapseOnedotOne" class="collapse" role="tabpanel" aria-labelledby="headingOnedotOne" data-parent="#accordionTemples"> -->
-          <div :id="'subitem1Song'+String(item)" class="collapse" role="tabpanel" :aria-labelledby="'subheading1Songs'+String(item)" :data-parent="'#'+'headingSongs'+String(item)">
-            <div class="card-body">
-              <p v-for="item in songsDetails.find(itm => itm.Id === item).TamExpln">
-                {{ item }}
-              </p>
-              <!-- Song # {{ item }} .1 Transileteration Details. -->
-            </div>
-          </div>
-          <div class="card-header" role="tab" :id="'subheading2Songs'+String(item)">
-            <h5 class="mb-0">
-              <a class="collapsed" data-toggle="collapse" :href="'#'+'subitem2Song'+String(item)" aria-expanded="false" :aria-controls="'subitem2Song'+String(item)">
-                Song # {{ item }} .2 - English explanation
-              </a>
-            </h5>
-          </div>
-          <div :id="'subitem2Song'+String(item)" class="collapse" role="tabpanel" :aria-labelledby="'subheading2Songs'+String(item)" :data-parent="'#'+'headingSongs'+String(item)">
-            <div class="card-body">
-              <p v-for="item in songsDetails.find(itm => itm.Id === item).EngExpln">
-                {{ item }}
-              </p>
-              <!-- Song {{ item }} .2 Tamil Explanantion Anim pariatur -->
-            </div>
-          </div>
-        </div>
+        <z40Son :details="songsDetails.find(itm => itm.Id === item)"></z40Son>
       </div>
     </div>
   </div>
@@ -55,6 +18,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import z40Son from './AppGen3cSongs2.vue';
 
 export default {
   computed: {
@@ -64,6 +28,9 @@ export default {
     songsDetails: 'songsDetailsGet',
     // picked: 'filterselected',
     }),
+  },
+  components: {
+    z40Son
   },
 
 }
