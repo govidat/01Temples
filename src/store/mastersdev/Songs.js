@@ -1,15 +1,42 @@
 export var msongsMaster = [
-  {"Id":1,"Name":"DEV Song1"},
-  {"Id":2,"Name":"DEV Song2"},
-  {"Id":3,"Name":"Song3"},
-  {"Id":4,"Name":"Song4"},
-  {"Id":5,"Name":"Song5"},
-  {"Id":6,"Name":"Song6"},
-  {"Id":11,"Name":"Song11"},
-  {"Id":12,"Name":"Song12"},
-  {"Id":13,"Name":"Song13"},
-  {"Id":102,"Name":"Song102"},
-  {"Id":1003,"Name":"Song1003"}
+  {"Id":1,"CompNo":1},
+  {"Id":2,"CompNo":1},
+  {"Id":3,"CompNo":1},
+  {"Id":4,"CompNo":1},
+  {"Id":5,"CompNo":1},
+  {"Id":6,"CompNo":1},
+  {"Id":11,"CompNo":1},
+  {"Id":12,"CompNo":1},
+  {"Id":13,"CompNo":1},
+  {"Id":102,"CompNo":1},
+  {"Id":1003,"CompNo":1}
+];
+
+export var msongsComp = [
+  {"Id":1,"Alvar":"Periyalwar","Comp":"Thirumozhi","TamAlvar":"பெரியாழ்வார்","TamComp":"திருமொழி"},
+  {"Id":2,"Alvar":"Sri Andal","Comp":"Thiruppavai","TamAlvar":"ஆண்டாள்","TamComp":"திருப்பாவை"},
+  {"Id":3,"Alvar":"Sri Andal","Comp":"Nachiar Tirumozhi","TamAlvar":"ஆண்டாள்","TamComp":"நாச்சியார் திருமொழி"},
+  {"Id":4,"Alvar":"Kulasekara Alwar","Comp":"Perumal Thirumozhi","TamAlvar":"குலசேகராழ்வார்","TamComp":"பெருமாள் திருமொழி"},
+  {"Id":5,"Alvar":"Thirumazhisai Alwar","Comp":"Thiruchchanda Viruththam","TamAlvar":"திருமழிசை ஆழ்வார்","TamComp":"திருச்சந்த விருத்தம்"},
+  {"Id":6,"Alvar":"Thondaradippodi Alwar","Comp":"Thirumalai","TamAlvar":"தொண்டரடிப் பொடியாழ்வார்","TamComp":"திருமாலை"},
+  {"Id":7,"Alvar":"Thondaradippodi Alwar","Comp":"Thiruppalliyezhuchchi","TamAlvar":"தொண்டரடிப் பொடியாழ்வார்","TamComp":"திருப்பள்ளியெழுச்சி"},
+  {"Id":8,"Alvar":"Thiruppaan Alwar","Comp":"Amalanadhi piran","TamAlvar":"திருப்பாணாழ்வார்","TamComp":"அமலனாதிபிரான்"},
+  {"Id":9,"Alvar":"Madhurakavi Alwar","Comp":"Kanni Nun Siruththambu","TamAlvar":"மதுரகவியாழ்வார்","TamComp":"கண்ணிநுண் சிறுதாம்பு"},
+  {"Id":10,"Alvar":"Thirumangai Alwar","Comp":"Peria Thirumozhi","TamAlvar":"திருமங்கையாழ்வார்","TamComp":"பெரிய திருமொழி"},
+  {"Id":11,"Alvar":"Thirumangai Alwar","Comp":"Kurun Thandagam","TamAlvar":"திருமங்கையாழ்வார்","TamComp":"திருக்குறுந்தாண்டகம்"},
+  {"Id":12,"Alvar":"Thirumangai Alwar","Comp":"Nedum Thandagam","TamAlvar":"திருமங்கையாழ்வார்","TamComp":"திருநெடுந்தாண்டகம்"},
+  {"Id":13,"Alvar":"Poigai Alwar","Comp":"Mudhal Thiruvandhadhi","TamAlvar":"பொய்கையாழ்வார்","TamComp":"முதல் திருவந்தாதி"},
+  {"Id":14,"Alvar":"Bhoodath Alwar","Comp":"Irandam Thiruvandhadhi","TamAlvar":"பூதத்தாழ்வார்","TamComp":"இரண்டாம் திருவந்தாதி"},
+  {"Id":15,"Alvar":"Pei Alwar","Comp":"Moonram Thiruvandhadhi","TamAlvar":"பேயாழ்வார்","TamComp":"மூன்றாந் திருவந்தாதி"},
+  {"Id":16,"Alvar":"Thirumazhisai Alwar","Comp":"Naanmugan Thiruvandhadhi","TamAlvar":"திருமழிசை ஆழ்வார் ","TamComp":"நான்முகன் திருவந்தாதி"},
+  {"Id":17,"Alvar":"Nammalwar","Comp":"Thiruviruththam","TamAlvar":"நம்மாழ்வார்","TamComp":"திருவிருத்தம்"},
+  {"Id":18,"Alvar":"Nammalwar","Comp":"Thiruvasiriyam","TamAlvar":"நம்மாழ்வார்","TamComp":"திருவாசிரியம்"},
+  {"Id":19,"Alvar":"Nammalwar","Comp":"Peria Thiruvandhadhi","TamAlvar":"நம்மாழ்வார்","TamComp":"பெரிய திருவந்தாதி"},
+  {"Id":20,"Alvar":"Thirumangai Alwar","Comp":"Thiruvezhukkurrirukkai","TamAlvar":"திருமங்கையாழ்வார்","TamComp":"திருவெழு கூற்றிருக்கை"},
+  {"Id":21,"Alvar":"Thirumangai Alwar","Comp":"Siriya Thirumadal","TamAlvar":"திருமங்கையாழ்வார்","TamComp":"சிறிய திருமடல்"},
+  {"Id":22,"Alvar":"Thirumangai Alwar","Comp":"Peria Thirumadal","TamAlvar":"திருமங்கையாழ்வார்","TamComp":"பெரிய திருமடல்"},
+  {"Id":23,"Alvar":"Thiruvarangathu Amudhanaar","Comp":"Ramanuja Nootrandhadi","TamAlvar":"திருவரங்கத்தமுதனார்","TamComp":"இராமாநுச நூற்றந்தாதி"},
+  {"Id":24,"Alvar":"Nammalwar","Comp":"Thiruvay Mozhi","TamAlvar":"நம்மாழ்வார்","TamComp":"திருவாய்மொழி"},
 ];
 
 export var msongsDetails = [
