@@ -3,7 +3,8 @@
         <div class="card-header" role="tab" :id="'heading'+name">
           <h5 class="mb-0">
             <button class="btn btn-block btn-secondary" data-toggle="collapse" :href="'#items'+name" aria-expanded="true" :aria-controls="'items'+name">
-              <i class="fa fa-arrows-v fa-lg"></i> Select {{ name }}
+              <!-- <i class="fa fa-arrows-v fa-lg"></i> -->
+              Select {{ name }}
             </button>
           </h5>
         </div>
@@ -26,11 +27,11 @@
                   <label :for="name+String(item)"> {{ mapName.get('master').find(itm => itm.Id === item).Name }}</label>
               </li>
             </div>
-            <br>
+            <!-- <br>
             <div>
                 <p>Max : {{ name }} {{ mapName.get('max') }}</p>
                 <p>Sel : {{ name }} {{ mapName.get('sel') }}</p>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

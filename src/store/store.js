@@ -4,7 +4,7 @@ import {deriveMaxSaints, deriveMaxTemples, deriveMaxSongs} from './helper.js';
 import {mstatesMaster} from './mastersDEV/States.js';
 import {mtemplesMaster, mtemplesDetails} from './mastersDEV/Temples.js';
 import {msaintsMaster, msaintsDetails} from './mastersDEV/Saints.js';
-import {msongsMaster, msongsDetails} from './mastersDEV/Songs.js';
+import {msongsMaster, msongsDetails, msongsComp} from './mastersDEV/Songs.js';
 
 Vue.use(Vuex);
 
@@ -33,6 +33,7 @@ export const store = new Vuex.Store({
     selSongs: [],
     songsMaster: msongsMaster,
     songsDetails: msongsDetails,
+    songsComp: msongsComp,
   },
 
 
@@ -93,6 +94,9 @@ export const store = new Vuex.Store({
     },
     songsDetailsGet: state => {
       return state.songsDetails;
+    },
+    songsCompGet: state => {
+      return state.songsComp;
     },
   },
 
