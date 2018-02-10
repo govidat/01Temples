@@ -4,15 +4,15 @@
   </div> -->
   <div class="card-header" role="tab" :id="'headingSongs'+String(itemno)">
     <h5 class="mb-0">
-      <a data-toggle="collapse" :href="'#'+'itemSong'+String(itemno)" aria-expanded="true" :aria-controls="'itemSong'+String(itemno)" @click.prevent="myCollapse">
+      <a data-toggle="collapse" :href="'#'+'itemSong'+String(itemno)" aria-expanded="true" :aria-controls="'itemSong'+String(itemno)">
         Song # {{ itemno }} : {{ details.Alvar}} / {{details.Comp}} / {{ details.TamAlvar}} / {{details.TamComp}}
       </a>
     </h5>
-    <div v-if="!isCollapsed">
+    <!-- <div v-if="!isCollapsed"> -->
       <div :id="'itemSong'+String(itemno)" class="collapse" role="tabpanel" :aria-labelledby="'headingSongs'+String(itemno)" data-parent="#accordionSongs">
         <z40Son :details="songsDetails.find(itm => itm.Id === itemno)"></z40Son>
       </div>
-    </div>
+    <!-- </div> -->
 
   </div>
 </template>
@@ -36,11 +36,11 @@ export default {
       isCollapsed: true
     }
   },
-  methods: {
-    myCollapse: function(){
-      this.isCollapsed = !this.isCollapsed;
-    }
-  },
+  // methods: {
+  //   myCollapse: function(){
+  //     this.isCollapsed = !this.isCollapsed;
+  //   }
+  // },
 
   props: ['details', 'itemno'],
 

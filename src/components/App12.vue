@@ -1,27 +1,27 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <ul class="nav nav-tabs card-header-tabs">
+      <ul class="nav nav-pills card-header-tabs">
         <li class="nav-item">
-          <a class="nav-link active" href="#" data-toggle="tab" role="tab" aria-selected="true" @click.prevent="updatenav2Sel(0)">Home</a>
+          <a class="nav-link active" href="#" data-toggle="pill" role="tab" aria-selected="true" @click.prevent="updatenav2Sel(0)">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" data-toggle="tab" role="tab" aria-selected="false">Maps</a>
+          <a class="nav-link disabled" href="#" data-toggle="pill" role="tab" aria-selected="false">Maps</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" data-toggle="tab" role="tab" aria-selected="false" @click.prevent="updatenav2Sel(2)">Saints<span class="badge badge-primary badge-pill">{{ selSaints.length }}</span></a>
+          <a class="nav-link" href="#" data-toggle="tab" role="pill" aria-selected="false" @click.prevent="updatenav2Sel(2)">Saints<span class="badge badge-primary badge-pill">{{ selSaints.length }}</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" data-toggle="tab" role="tab" aria-selected="false" @click.prevent="updatenav2Sel(3)">Temples<span class="badge badge-primary badge-pill">{{ selTemples.length }}</span></a>
+          <a class="nav-link" href="#" data-toggle="tab" role="pill" aria-selected="false" @click.prevent="updatenav2Sel(3)">Temples<span class="badge badge-primary badge-pill">{{ selTemples.length }}</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" data-toggle="tab" role="tab" aria-selected="false" @click.prevent="updatenav2Sel(4)">Songs<span class="badge badge-primary badge-pill">{{ selSongs.length }}</span></a>
+          <a class="nav-link" href="#" data-toggle="tab" role="pill" aria-selected="false" @click.prevent="updatenav2Sel(4)">Songs<span class="badge badge-primary badge-pill">{{ selSongs.length }}</span></a>
         </li>
         <li class="nav-item ml-auto">
-          <a class="nav-link" href="#" data-toggle="tab" role="tab" aria-selected="false" @click.prevent="updatenav2Sel(5)">Contacts</a>
+          <a class="nav-link" href="#" data-toggle="tab" role="pill" aria-selected="false" @click.prevent="updatenav2Sel(5)">Contacts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" data-toggle="tab" role="tab" aria-selected="false" @click.prevent="updatenav2Sel(6)">Features</a>
+          <a class="nav-link" href="#" data-toggle="tab" role="pill" aria-selected="false" @click.prevent="updatenav2Sel(6)">Features</a>
         </li>
       </ul>
     </div>
