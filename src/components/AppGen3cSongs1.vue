@@ -20,7 +20,33 @@
 <script>
 
 import { mapGetters } from 'vuex';
-import z40Son from './AppGen3cSongs2.vue';
+
+const z40Son = () => ({
+  // The component to load. Should be a Promise
+  component: import('./AppGen3cSongs2.vue'),
+});
+// import z40Son from './AppGen3cSongs2.vue';
+
+// async component
+// const z40Son = () => ({
+//   component: import('./AppGen3cSongs2.vue'),
+  // loading: LoadingComp,
+  // error: ErrorComp,
+  // delay: 200,
+  // timeout: 3000
+// });
+
+// import store from 'vuex';
+// import payload from '../store/modules/mod1';
+// store.registerModule('mod1', payload);
+
+// import {
+//   customer,
+//   mapAddressFields,
+//   mapContactMultiRowFields,
+//   mapNameFields,
+// } from '../../store/modules/customer';
+// if (!store.state.customer) store.registerModule(`customer`, customer);
 
 export default {
   computed: {
@@ -45,5 +71,8 @@ export default {
   props: ['details', 'itemno'],
 
 }
+// Vue.use(Vuex);
+// import payload from './modules/mod1';
+// store.registerModule('mod1', payload)
 
 </script>

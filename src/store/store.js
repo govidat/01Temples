@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import {deriveMaxSaints, deriveMaxTemples, deriveMaxSongs} from './helper.js';
-import {mstatesMaster} from './mastersDEV/States.js';
-import {mtemplesMaster, mtemplesDetails} from './mastersDEV/Temples.js';
-import {msaintsMaster, msaintsDetails} from './mastersDEV/Saints.js';
-import {msongsMaster, msongsComp} from './mastersDEV/Songs.js';
-import {msongsDetails} from './mastersUT/Songs.js';
+import {mstatesMaster} from './mastersUT/States.js';
+import {mtemplesMaster, mtemplesDetails} from './mastersUT/Temples.js';
+import {msaintsMaster, msaintsDetails} from './mastersUT/Saints.js';
+import {msongsMaster, msongsComp} from './mastersUT/Songs.js';
+import msongsDetails from './mastersUT/SongsDetails.json';
 
 Vue.use(Vuex);
 
@@ -35,6 +35,19 @@ export const store = new Vuex.Store({
     songsMaster: msongsMaster,
     songsDetails: msongsDetails,
     songsComp: msongsComp,
+
+    // for 3a Temples pagination
+    itemspp3a: 5,
+    selpage3a: 1,
+
+    // for 3b Saints pagination
+    itemspp3b: 5,
+    selpage3b: 1,
+
+    // for 3c Songs pagination
+    itemspp3c: 5,
+    selpage3c: 1,
+
   },
 
 
@@ -99,6 +112,29 @@ export const store = new Vuex.Store({
     songsCompGet: state => {
       return state.songsComp;
     },
+
+    itemspp3aGet: state => {
+      return state.itemspp3a;
+    },
+    selpage3aGet: state => {
+      return state.selpage3a;
+    },
+
+    itemspp3bGet: state => {
+      return state.itemspp3b;
+    },
+    selpage3bGet: state => {
+      return state.selpage3b;
+    },
+
+    itemspp3cGet: state => {
+      return state.itemspp3c;
+    },
+    selpage3cGet: state => {
+      return state.selpage3c;
+    },
+
+
   },
 
   mutations: {
@@ -130,6 +166,27 @@ export const store = new Vuex.Store({
 
     },
 
+    itemspp3aMut (state, payload) {
+        state.itemspp3a = payload;
+      },
+    selpage3aMut (state, payload) {
+        state.selpage3a = payload;
+      },
+
+    itemspp3bMut (state, payload) {
+        state.itemspp3b = payload;
+      },
+    selpage3bMut (state, payload) {
+        state.selpage3b = payload;
+      },
+
+    itemspp3cMut (state, payload) {
+        state.itemspp3c = payload;
+      },
+
+    selpage3cMut (state, payload) {
+        state.selpage3c = payload;
+      },
 
     updatenav2Sel (state, payload) {
         state.nav2Sel = payload;
@@ -335,6 +392,34 @@ export const store = new Vuex.Store({
       commit('delX', payload);
     },
 
+    itemspp3aAct: ({commit}, payload) => {
+      commit('itemspp3aMut', payload);
+    },
+    selpage3aAct: ({commit}, payload) => {
+      commit('selpage3aMut', payload);
+    },
+    itemspp3bAct: ({commit}, payload) => {
+      commit('itemspp3bMut', payload);
+    },
+    selpage3bAct: ({commit}, payload) => {
+      commit('selpage3bMut', payload);
+    },
+
+    itemspp3cAct: ({commit}, payload) => {
+      commit('itemspp3cMut', payload);
+    },
+    selpage3cAct: ({commit}, payload) => {
+      commit('selpage3cMut', payload);
+    },
+
   },
 
+  // modules: {
+  //   mod1
+  // }
+
 })
+
+// import payload from './modules/mod1';
+// store.registerModule('mod1', payload);
+// // import('./modules/mod1').then(payload => {store.registerModule('mod1', payload)});

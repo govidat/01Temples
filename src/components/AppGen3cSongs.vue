@@ -1,8 +1,13 @@
 <template>
   <div>
-    <zpagin :totalPages=totalPages :pagesToDisplay=pagesToDisplay @selectedpage="selpage = $event" class="pagination-m"></zpagin>
-    <!-- {{ selpage }}
-    {{ filteredselSongs}} -->
+    <zpagin :totalItems=this.selSongs.length
+    :pagesToDisplay=pagesToDisplay
+    :itemsppPrnt=this.itemspp3c
+    :selpagePrnt=this.selpage3c
+    :rangeippPrnt=this.rangeippPrnt
+    @selectedipp="itemspp3cAct($event)"
+    @selectedpage="selpage3cAct($event)"
+    class="pagination-m"></zpagin>
     <div id="accordionSongs" role="tablist">
       <div class="card" v-for="(item, index) in filteredselSongs">
         <z30Son :details="songsComp.find(itm => itm.Id === songsMaster.find(itm => itm.Id === item).CompNo)" :itemno=item ></z30Son>
@@ -10,14 +15,19 @@
     </div>
   </div>
 
-
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import z30Son from './AppGen3cSongs1.vue';
-import zpagin from './AppPagination.vue';
+import { mapActions } from 'vuex';
 
+// import z30Son from './AppGen3cSongs1.vue';
+import zpagin from './AppPaginationVuex.vue';
+
+const z30Son = () => ({
+  // The component to load. Should be a Promise
+  component: import('./AppGen3cSongs1.vue'),
+});
 // import z40Son from './AppGen3cSongs2.vue';
 
 export default {
@@ -27,16 +37,16 @@ export default {
     selSongs: 'selSongsGet',
     // songsDetails: 'songsDetailsGet',
     songsComp: 'songsCompGet',
-    // picked: 'filterselected',
+
+    itemspp3c: 'itemspp3cGet',
+    selpage3c: 'selpage3cGet',
     }),
 
-    totalPages: function() {
-        return Math.ceil(this.selSongs.length / this.itemsPerPage)
-    },
 
     filteredselSongs: function() {
-      // filtered items to be in the range of (this.selpage-1)*this.itemsPerPage AND this.selpage*this.itemsPerPage
-      return this.selSongs.filter(function(element, index) { return index >= (this.selpage-1)*this.itemsPerPage && index < this.selpage*this.itemsPerPage}, this)
+      // filtered items to be in the range of (this.selpage3c-1)*this.itemspp3c AND this.selpage3c*this.itemspp3c
+      // return this.selSongs.filter(function(element, index) { return index >= (this.selpage3c-1)*this.itemspp3c && index < this.selpage3c*this.itemspp3c}, this)
+      return this.selSongs.slice((this.selpage3c-1)*this.itemspp3c, this.selpage3c*this.itemspp3c)
     }
 
   },
@@ -49,11 +59,25 @@ export default {
 
   data: function() {
     return {
-      itemsPerPage: 10,
       pagesToDisplay: 10,
-      selpage: 1,
+      rangeippPrnt: [2,5,10,20],
     };
-  }
+  },
+
+  methods: {
+    ...mapActions([
+      'itemspp3cAct',
+      'selpage3cAct'
+    ])
+  },
+
+//  methods: {
+// "itemspp = $event"
+//    testitemspp: function (payload) {
+//      this.itemspp = payload
+//    }
+//  }
 
 }
+
 </script>
