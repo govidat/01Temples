@@ -10,7 +10,8 @@
         </a>
       </h5>
     </div>
-    <div :id="'subitem1Song'+String(details.Id)" class="collapse" role="tabpanel" :aria-labelledby="'subheading1Songs'+String(details.Id)" :data-parent="'#'+'headingSongs'+String(details.Id)">
+    <!-- <div :id="'subitem1Song'+String(details.Id)" class="collapse" role="tabpanel" :aria-labelledby="'subheading1Songs'+String(details.Id)" :data-parent="'#'+'headingSongs'+String(details.Id)"> -->
+    <div :id="'subitem1Song'+String(details.Id)" class="collapse" role="tabpanel" :aria-labelledby="'subheading1Songs'+String(details.Id)" :data-parent="'subheading1Songs'+String(details.Id)">
       <div class="card-body">
         <!-- <p v-for="item in details.TamTblWords.map(function(e, i) { return [e, details.TamTblMeanings[i]];}) ">
           {{ item[0,0] }}
@@ -34,7 +35,7 @@
         </a>
       </h5>
     </div>
-    <div :id="'subitem2Song'+String(details.Id)" class="collapse" role="tabpanel" :aria-labelledby="'subheading2Songs'+String(details.Id)" :data-parent="'#'+'headingSongs'+String(details.Id)">
+    <div :id="'subitem2Song'+String(details.Id)" class="collapse" role="tabpanel" :aria-labelledby="'subheading2Songs'+String(details.Id)" :data-parent="'subheading2Songs'+String(details.Id)">
       <div class="card-body">
         <h5>ஸ்ரீ காஞ்சி பிரதிவாதி பயங்கரம் அண்ணங்கராசாரியார் எழுதிய விளக்க உரை</h5>
         <p v-for="item in details.TamExpln">
@@ -49,7 +50,7 @@
         </a>
       </h5>
     </div>
-    <div :id="'subitem3Song'+String(details.Id)" class="collapse" role="tabpanel" :aria-labelledby="'subheading3Songs'+String(details.Id)" :data-parent="'#'+'headingSongs'+String(details.Id)">
+    <div :id="'subitem3Song'+String(details.Id)" class="collapse" role="tabpanel" :aria-labelledby="'subheading3Songs'+String(details.Id)" :data-parent="'subheading3Songs'+String(details.Id)">
       <div class="card-body">
         <p v-for="item in details.EngExpln">
           {{ item }}

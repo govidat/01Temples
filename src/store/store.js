@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
+
 import {deriveMaxSaints, deriveMaxTemples, deriveMaxSongs} from './helper.js';
-import {mstatesMaster} from './mastersUT/States.js';
-import {mtemplesMaster, mtemplesDetails} from './mastersUT/Temples.js';
-import {msaintsMaster, msaintsDetails} from './mastersUT/Saints.js';
-import {msongsMaster, msongsComp} from './mastersUT/Songs.js';
-import msongsDetails from './mastersUT/SongsDetails.json';
+import {mstatesMaster} from './mastersDEV/States.js';
+import {mtemplesMaster, mtemplesDetails} from './mastersDEV/Temples.js';
+import {msaintsMaster, msaintsDetails} from './mastersDEV/Saints.js';
+import {msongsMaster, msongsComp} from './mastersDEV/Songs.js';
+// import msongsDetails from './mastersDEV/SongsDetails.json';
 
 Vue.use(Vuex);
 
@@ -33,7 +35,8 @@ export const store = new Vuex.Store({
     maxSongs: [],
     selSongs: [],
     songsMaster: msongsMaster,
-    songsDetails: msongsDetails,
+    // songsDetails: msongsDetails,
+    songsDetails: [],
     songsComp: msongsComp,
 
     // for 3a Temples pagination
@@ -190,6 +193,10 @@ export const store = new Vuex.Store({
 
     updatenav2Sel (state, payload) {
         state.nav2Sel = payload;
+      },
+
+    songsDetailsMut (state, payload) {
+        state.songsDetails = payload;
       },
 
     updatefilterCollapsed (state) {
@@ -408,11 +415,33 @@ export const store = new Vuex.Store({
     itemspp3cAct: ({commit}, payload) => {
       commit('itemspp3cMut', payload);
     },
+
+    songsDetailsAct: ({commit}, payload) => {
+      const a = payload[0]
+      const b = payload[1]
+      const asongsDetails = []
+      axios.get('https://temples-82a3c.firebaseio.com/mSongsDetails.json?orderBy="Id"&startAt=' + a + '&limitToFirst=' + b )
+        .then(res => {
+          // console.log(res)
+          const data = res.data
+          for (let key in data) {
+            // console.log(data[key])
+            if ( data[key] !== null) {
+              const sdetail = data[key]
+              asongsDetails.push(sdetail)
+            }
+          }
+          // console.log(asongsDetails)
+          commit('songsDetailsMut', asongsDetails)})
+        .catch(error => console.log(error))
+    },
+
     selpage3cAct: ({commit}, payload) => {
       commit('selpage3cMut', payload);
     },
 
-  },
+
+  }
 
   // modules: {
   //   mod1

@@ -113,6 +113,8 @@ export default {
     selectpage(payload) {
       this.selpage = payload;
       this.$emit('selectedpage', this.selpage);
+      // emit an event to trigger axios call for the details from firebase
+      this.$emit('pageResetCall');
     },
 
     selectipp(payload) {

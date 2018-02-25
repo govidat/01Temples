@@ -1,24 +1,24 @@
 <template>
-  <!-- <div>
-      {{ itemno}} {{ details.Alvar}} / {{details.Comp}} / {{ details.TamAlvar}} / {{details.TamComp}}
-  </div> -->
   <div class="card-header" role="tab" :id="'headingSongs'+String(itemno)">
     <h5 class="mb-0">
-      <a data-toggle="collapse" :href="'#'+'itemSong'+String(itemno)" aria-expanded="true" :aria-controls="'itemSong'+String(itemno)">
+      <a data-toggle="collapse" :href="'#'+'itemSong'+String(itemno)" aria-expanded="true" :aria-controls="'itemSong'+String(itemno)" @click.prevent="myCollapse">
         Song # {{ itemno }} : {{ details.Alvar}} / {{details.Comp}} / {{ details.TamAlvar}} / {{details.TamComp}}
       </a>
     </h5>
-    <!-- <div v-if="!isCollapsed"> -->
-      <div :id="'itemSong'+String(itemno)" class="collapse" role="tabpanel" :aria-labelledby="'headingSongs'+String(itemno)" data-parent="#accordionSongs">
+    <!-- {{ this.isCollapsed0}}  {{ this.isCollapsed}} -->
+    <div v-if="!isCollapsed">
+      <!-- <div :id="'itemSong'+String(itemno)" class="collapse" role="tabpanel" :aria-labelledby="'headingSongs'+String(itemno)" data-parent="#accordionSongs" > -->
+      <div :id="'itemSong'+String(itemno)" class="collapse" role="tabpanel" :aria-labelledby="'headingSongs'+String(itemno)" :data-parent="'headingSongs'+String(itemno)" >
         <z40Son :details="songsDetails.find(itm => itm.Id === itemno)"></z40Son>
+        <!-- <z40Son :details="subdetails"></z40Son> -->
       </div>
-    <!-- </div> -->
+    </div>
 
   </div>
 </template>
 
 <script>
-
+// import axios from 'axios';
 import { mapGetters } from 'vuex';
 
 const z40Son = () => ({
@@ -27,28 +27,15 @@ const z40Son = () => ({
 });
 // import z40Son from './AppGen3cSongs2.vue';
 
-// async component
-// const z40Son = () => ({
-//   component: import('./AppGen3cSongs2.vue'),
-  // loading: LoadingComp,
-  // error: ErrorComp,
-  // delay: 200,
-  // timeout: 3000
-// });
-
-// import store from 'vuex';
-// import payload from '../store/modules/mod1';
-// store.registerModule('mod1', payload);
-
-// import {
-//   customer,
-//   mapAddressFields,
-//   mapContactMultiRowFields,
-//   mapNameFields,
-// } from '../../store/modules/customer';
-// if (!store.state.customer) store.registerModule(`customer`, customer);
 
 export default {
+  // created() {
+  //   //do something after creating vue instance
+  //   axios.get('https://temples-82a3c.firebaseio.com/mSongsDetails.json')
+  //     .then(res => console.log(res))
+  //     .catch(error => console.log(error))
+  // },
+
   computed: {
     ...mapGetters({
     songsDetails: 'songsDetailsGet',
@@ -59,16 +46,23 @@ export default {
   },
   data: function () {
     return {
+      // isCollapsed: this.isCollapsed0
       isCollapsed: true
     }
   },
-  // methods: {
-  //   myCollapse: function(){
-  //     this.isCollapsed = !this.isCollapsed;
-  //   }
-  // },
+  watch: {
+    songsDetails: function () {
+      this.isCollapsed = true
+    }
+  },
+  methods: {
+    myCollapse: function(){
+      this.isCollapsed = !this.isCollapsed;
+    }
+  },
 
   props: ['details', 'itemno'],
+  // props: ['details', 'itemno', 'isCollapsed0'],
 
 }
 // Vue.use(Vuex);
